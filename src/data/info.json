@@ -1,32 +1,20 @@
 [
   {
-    "job_title": "Job 1",
-    "job_description": "Very good job",
-    "company_name": "ABC Software Company",
-    "compensation_per_year": "$40000 per year"
+    "songTitle": "You Only Live Twice",
+    "songDescription": "Very good song",
+    "artistName": "Nancy Sinatra",
+    "songPdfLink": "https://docs.google.com/document/d/1qweF6QSCTozJOrMWo3MZh5tPbX0TwGtRLgyisqp6eTI/edit?usp=sharing"
   },
   {
-    "job_title": "Job 1",
-    "job_description": "Very good job",
-    "company_name": "ABC Software Company",
-    "compensation_per_year": "$40000 per year"
+    "songTitle": "Find the River",
+    "songDescription": "Very good song",
+    "artistName": "R.E.M.",
+    "songPdfLink": "https://docs.google.com/document/d/1YFuoEwd2hdmCs92gblB2wRPJJIKDwAdfIebWFjmXNlQ/edit?usp=sharing"
   },
   {
-    "job_title": "Job 1",
-    "job_description": "Very good job",
-    "company_name": "ABC Software Company",
-    "compensation_per_year": "$40000 per year"
-  },
-  {
-    "job_title": "Job 1",
-    "job_description": "Very good job",
-    "company_name": "ABC Software Company",
-    "compensation_per_year": "$40000 per year"
-  },
-  {
-    "job_title": "Job 2",
-    "job_description": "Better job",
-    "company_name": "XYZ Software Company",
-    "compensation_per_year": "$60000 per year"
+    "songTitle": "Dive",
+    "songDescription": "Very good song",
+    "artistName": "Nirvana",
+    "songPdfLink": "https://docs.google.com/document/d/1RgQHg1o4w9dpH3q1KRjRJxO1PTd2G7Pgu6JgZbZJHlM/edit?usp=sharing"
   }
 ]

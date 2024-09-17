@@ -1,15 +1,15 @@
 <script lang="ts">
-  import JobDisplay from "../components/JobDisplay.svelte";
+  import SongDisplay from "../components/SongDisplay.svelte";
   import type { PageServerData } from "./$types";
 
   export let data: PageServerData;
 </script>
 
 <div class="home-page">
-  <h1>Job Listing Home page</h1>
+  <h1>Song Listing Home page</h1>
 
-  {#each data.job_list as job}
-    <JobDisplay {job} />
+  {#each data.songList as song}
+    <SongDisplay {song} />
   {/each}
 </div>
 
