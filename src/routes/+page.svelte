@@ -6,11 +6,15 @@
 </script>
 
 <div class="home-page">
-  <h1>Song Listing Home page</h1>
+  <h1>Song Listing Home Page</h1>
 
-  {#each data.songList as song}
-    <SongDisplay {song} />
-  {/each}
+  {#if data.songList.length > 0}
+    {#each data.songList as song}
+      <SongDisplay {song} />
+    {/each}
+  {:else}
+    <p>No songs available.</p>
+  {/if}
 </div>
 
 <style>

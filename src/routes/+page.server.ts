@@ -1,12 +1,26 @@
-// We import data from the JSON file. This is for simplicity purposes. In the real app, you would likely fetch this data from a database by making an API call.
-import songs from "../data/info.json";
+import PocketBase from "pocketbase";
 import type { SongList } from "../types";
+import { EMAIL, PASSWORD } from "$env/static/private";
 
-const songList: SongList = songs;
+const pb = new PocketBase("http://173.230.149.14:80");
 
-// Last, we define a load function that will return an object with the assigned data. SvelteKit will automatically call this function when the page is requested. So, the magic for SSR code happens here as we fetch the data in the server and build the HTML with the data we get back.
-export const load = () => {
-  return {
-    songList,
-  };
+export const load = async () => {
+  try {
+    await pb.admins.authWithPassword(EMAIL, PASSWORD);
+    const records = await pb.collection("songs").getFullList(100, {
+      sort: "-created",
+    });
+
+    const songList: SongList = records.map((record) => ({
+      songTitle: record.songTitle,
+      songDescription: record.songDescription,
+      artistName: record.artistName,
+      songPdfLink: record.songPdfLink,
+    }));
+
+    return { songList };
+  } catch (error) {
+    console.error("Error fetching songs from PocketBase:", error);
+    return { songList: [] };
+  }
 };
