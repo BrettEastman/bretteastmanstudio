@@ -13,7 +13,7 @@ export const load = async () => {
 
     const songList: SongList = records.map((record) => ({
       songTitle: record.songTitle,
-      songDescription: record.songDescription,
+      instrumentDescription: record.instrumentDescription,
       artistName: record.artistName,
       songPdfLink: record.songPdfLink,
     }));

@@ -16,7 +16,7 @@ const seedDatabase = async () => {
     for (const song of songs) {
       await pb.collection("songs").create({
         songTitle: song.songTitle,
-        songDescription: song.songDescription,
+        instrumentDescription: song.instrumentDescription,
         artistName: song.artistName,
         songPdfLink: song.songPdfLink,
       });

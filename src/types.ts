@@ -2,7 +2,17 @@ export type SongList = SongItem[];
 
 export interface SongItem {
   songTitle: string;
-  songDescription: string;
+  instrumentDescription: InstrumentDescription;
   artistName: string;
   songPdfLink: string;
 }
+
+export type InstrumentDescription =
+  | "Piano"
+  | "Drums"
+  | "Bass-tab"
+  | "Bass-score"
+  | "Guitar-tab"
+  | "Guitar-score"
+  | "Guitar-chords"
+  | "Guitar-chords-tab";
