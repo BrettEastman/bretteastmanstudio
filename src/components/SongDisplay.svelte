@@ -5,7 +5,7 @@
 
 <div class="song-item">
   <p>Title: <b>{song.songTitle}</b></p>
-  <p>Description: <b>{song.songDescription}</b></p>
+  <p>Description: <b>{song.instrumentDescription}</b></p>
   <div class="song-details">
     <span>Artist: <b>{song.artistName}</b></span>
     <span>PDF: <a href={song.songPdfLink}>Link</a></span>

@@ -1,20 +1,92 @@
 [
   {
     "songTitle": "You Only Live Twice",
-    "songDescription": "Very good song",
+    "instrumentDescription": "Guitar-chords-tab",
     "artistName": "Nancy Sinatra",
     "songPdfLink": "https://docs.google.com/document/d/1qweF6QSCTozJOrMWo3MZh5tPbX0TwGtRLgyisqp6eTI/edit?usp=sharing"
   },
   {
     "songTitle": "Find the River",
-    "songDescription": "Very good song",
+    "instrumentDescription": "Guitar-chords-tab",
     "artistName": "R.E.M.",
     "songPdfLink": "https://docs.google.com/document/d/1YFuoEwd2hdmCs92gblB2wRPJJIKDwAdfIebWFjmXNlQ/edit?usp=sharing"
   },
   {
+    "songTitle": "Violet",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Hole",
+    "songPdfLink": "https://docs.google.com/document/d/1evuzCdBds1Do5WESQqo_kJl1SdfQTijvi4xnlG5qCJQ/edit?usp=sharing"
+  },
+  {
     "songTitle": "Dive",
-    "songDescription": "Very good song",
+    "instrumentDescription": "Guitar-chords-tab",
     "artistName": "Nirvana",
     "songPdfLink": "https://docs.google.com/document/d/1RgQHg1o4w9dpH3q1KRjRJxO1PTd2G7Pgu6JgZbZJHlM/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Your Loves Return",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Gordon Lightfoot",
+    "songPdfLink": "https://drive.google.com/file/d/1iKlAHBkSkecbQ7mIVbcsdx9_KOwfxSSC/view?usp=sharing"
+  },
+  {
+    "songTitle": "Welcome Home (Sanitarium)",
+    "instrumentDescription": "Guitar-tab",
+    "artistName": "Metallica",
+    "songPdfLink": "https://docs.google.com/document/d/1ibi-nXFfk2mF5IQa1zN1QcW9Zpt-1fzK_IWib9NtgAM/edit?usp=sharing"
+  },
+  {
+    "songTitle": "The Thing That Should Not Be",
+    "instrumentDescription": "Guitar-tab",
+    "artistName": "Metallica",
+    "songPdfLink": "https://docs.google.com/document/d/1P2X0okMl9fk_11D-wF4p9pPmLJxyfmVav8h1G-ldUeU/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Dream On",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Aerosmith",
+    "songPdfLink": "https://docs.google.com/document/d/1pfyKIutIEEI9DAvj1xMYr_wfE4aEDD6DAEce9c8H_Hw/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Basket Case",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Green Day",
+    "songPdfLink": "https://drive.google.com/file/d/1-GjKvgnSoI6KnKHRnBC_hlK5N5Kz_kK8/view?usp=sharing"
+  },
+  {
+    "songTitle": "Runnin' Down a Dream",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Tom Petty",
+    "songPdfLink": "https://docs.google.com/document/d/1bKrR-W4tNMgtE9TzuB0sGUuiDwqfGjdCCl9jfQY3LPg/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Crazy On You",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "Heart",
+    "songPdfLink": "https://docs.google.com/document/d/1cuMzPLg2hkMGzGMqmq-FesX6_IeTMGJOrwDhpHT8xbE/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Just Like Heaven",
+    "instrumentDescription": "Guitar-chords-tab",
+    "artistName": "The Cure",
+    "songPdfLink": "https://docs.google.com/document/d/1x4rtuHgAkJAzGewiqACfSSK5R4ggikba3KvjhpDkess/edit?usp=sharing"
+  },
+  {
+    "songTitle": "Real Love",
+    "instrumentDescription": "Guitar-chords",
+    "artistName": "The Beatles",
+    "songPdfLink": "https://docs.google.com/document/d/1xOs5H6Mqq6jOo5FW6jTfQZ1FmH0RZPL9zMWIdFlGTmQ/edit?usp=sharing"
+  },
+  {
+    "songTitle": "The Warmth of the Sun",
+    "instrumentDescription": "Guitar-chords",
+    "artistName": "The Beach Boys",
+    "songPdfLink": "https://docs.google.com/document/d/1n2dO669zSIw9mm4EltohGxyPSuIdAAAwLSGWiua8JqE/edit?usp=sharing"
+  },
+  {
+    "songTitle": "The Rain Song",
+    "instrumentDescription": "Guitar-chords",
+    "artistName": "Led Zeppelin",
+    "songPdfLink": "https://docs.google.com/document/d/1BualAkey_diTH_XWzG88O3AM-ZS7IRF50OLvFkwLfbs/edit?usp=sharing"
   }
 ]
