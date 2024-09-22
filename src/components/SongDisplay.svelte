@@ -3,26 +3,16 @@
   export let song: SongItem;
 </script>
 
-<div class="song-item">
-  <p>Title: <b>{song.songTitle}</b></p>
-  <p>Description: <b>{song.instrumentDescription}</b></p>
-  <div class="song-details">
-    <span>Artist: <b>{song.artistName}</b></span>
-    <span>PDF: <a href={song.songPdfLink}>Link</a></span>
+<a
+  href={song.songPdfLink}
+  class="border border-primary70 rounded-xl p-4 w-1/2 m-1 hover:bg-primary70 hover:text-white duration-100"
+  target="_blank"
+>
+  <div>
+    <p>Title: <b>{song.songTitle}</b></p>
+    <div class="flex justify-between">
+      <span>Artist: <b>{song.artistName}</b></span>
+      <span>{song.instrumentDescription}</span>
+    </div>
   </div>
-</div>
-
-<style>
-  .song-item {
-    border: 1px solid grey;
-    padding: 2rem;
-    width: 50%;
-    margin: 1rem;
-    border-radius: 10px;
-  }
-
-  .song-details {
-    display: flex;
-    justify-content: space-between;
-  }
-</style>
+</a>

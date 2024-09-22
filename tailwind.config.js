@@ -2,7 +2,20 @@
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary10: "#0D0E0B",
+        primary20: "#2B2B2B",
+        primary30: "#696969",
+        primary40: "#848484",
+        primary50: "#A0A0A0",
+        primary60: "#B7B8B6",
+        primary70: "#C9CAC8",
+        primary80: "#EEEEEE",
+        primary90: "#FCFCFC",
+        primary100: "#FFFFFF",
+      },
+    },
   },
   plugins: [],
 };
