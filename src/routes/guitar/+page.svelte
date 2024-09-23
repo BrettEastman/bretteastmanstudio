@@ -13,6 +13,6 @@
       <SongDisplay {song} />
     {/each}
   {:else}
-    <p>No songs available.</p>
+    <p>No guitar songs available.</p>
   {/if}
 </div>
