@@ -1,5 +1,5 @@
 import PocketBase from "pocketbase";
-import type { SongList } from "../types";
+import type { SongList } from "$lib/typesAndInterfaces";
 import { EMAIL, PASSWORD } from "$env/static/private";
 
 const pb = new PocketBase("http://173.230.149.14:80");
