@@ -1,6 +1,6 @@
 <footer>
   <div
-    class="bg-primary30 border-t border-solid border-primary80 flex justify-end gap-4 pr-4 sm:py-6 sm:gap-8"
+    class="bg-primary30 border-t-4 border-solid border-tertiary70 flex justify-end gap-4 pr-4 sm:py-6 sm:gap-8"
   >
     <a
       href="https://github.com/BrettEastman/bretteastmanstudio/"

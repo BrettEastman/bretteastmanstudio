@@ -5,8 +5,10 @@
   export let data: PageServerData;
 </script>
 
-<div class="grid place-items-center px-6">
-  <h1 class="text-xl text-primary30 font-semibold py-8">Bass Songs</h1>
+<div class="grid place-items-center gap-4 px-6">
+  <h1 class="text-xl text-primary30 font-semibold py-8 dark:text-secondary90">
+    Bass Songs
+  </h1>
   {#if data.songList.length > 0}
     {#each data.songList as song}
       <SongDisplay {song} />

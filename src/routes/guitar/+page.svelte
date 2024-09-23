@@ -5,7 +5,7 @@
   export let data: PageServerData;
 </script>
 
-<div class="flex flex-col items-center justify-center px-2 py-4">
+<div class="grid place-items-center gap-4 px-6">
   <h1 class="text-xl text-primary30 font-semibold py-8">Guitar songs</h1>
 
   {#if data.songList.length > 0}

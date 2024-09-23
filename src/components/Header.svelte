@@ -6,16 +6,20 @@
   ];
 </script>
 
-<header class="flex justify-between items-center px-4 py-2 bg-primary50">
+<header
+  class="flex justify-between items-center px-4 py-2 bg-primary50 border-b-4 border-solid border-tertiary80 dark:bg-secondary20 dark:border-tertiary70"
+>
   <a
     href="/"
-    class="text-primary90 font-semibold hover:text-primary80 duration-200"
+    class="text-primary90 dark:text-tertiary90 font-semibold hover:text-secondary60 duration-100"
     >Brett Eastman Studio Archives</a
   >
   <nav>
     <ul class="flex">
       {#each navItems as item}
-        <li class="mx-2 text-primary90 hover:text-primary80 duration-200">
+        <li
+          class="mx-2 text-primary90 dark:text-tertiary90 hover:text-secondary60 duration-100"
+        >
           <a href={item.href}>{item.name}</a>
         </li>
       {/each}

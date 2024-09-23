@@ -37,6 +37,7 @@ html {
   --tertiary80: #f2d5a6;
   --tertiary90: #f9ead2; /* hsl(37, 75%, 90%) */
   --tertiary100: #ffffff;
+  --shadowXl: rgba(0, 0, 0, 0.15) 0px 4px 20px 0px;
 }
 
 * {

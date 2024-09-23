@@ -3,6 +3,9 @@ export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
+      boxShadow: {
+        customXl: "rgba(0, 0, 0, 0.15) 0px 4px 20px 0px",
+      },
       colors: {
         primary10: "#0d0e0b",
         primary20: "#2b2b2b",
@@ -14,7 +17,7 @@ export default {
         primary80: "#eeeeee",
         primary90: "#fcfcfc",
         primary100: "#ffffff",
-        secondary10: "0c1d27",
+        secondary10: "#0c1d27",
         secondary20: "#18394e",
         secondary30: "#245675",
         secondary40: "#30739c",
@@ -33,6 +36,7 @@ export default {
         tertiary70: "#ecc079",
         tertiary80: "#f2d5a6",
         tertiary90: "#f9ead2",
+        tertiary97: "#fdf9f2",
         tertiary100: "#ffffff",
       },
     },
