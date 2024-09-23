@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center px-2 py-4">
-  <h1 class="text-xl font-semibold py-8">Guitar songs</h1>
+  <h1 class="text-xl text-primary30 font-semibold py-8">Guitar songs</h1>
 
   {#if data.songList.length > 0}
     {#each data.songList as song}

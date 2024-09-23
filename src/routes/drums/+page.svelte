@@ -6,7 +6,7 @@
 </script>
 
 <div class="grid place-items-center px-6">
-  <h1 class="text-xl font-semibold py-8">Drum songs</h1>
+  <h1 class="text-xl text-primary30 font-semibold py-8">Drum songs</h1>
   {#if data.songList.length > 0}
     {#each data.songList as song}
       <SongDisplay {song} />
