@@ -12,6 +12,7 @@ export type InstrumentDescription =
   | "Drums"
   | "Bass-tab"
   | "Bass-score"
+  | "Bass-tab-score"
   | "Guitar-tab"
   | "Guitar-score"
   | "Guitar-chords"
