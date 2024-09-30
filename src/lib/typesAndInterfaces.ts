@@ -8,7 +8,6 @@ export interface SongItem {
 }
 
 export type InstrumentDescription =
-  | "Piano"
   | "Drums"
   | "Bass-tab"
   | "Bass-score"
