@@ -8,7 +8,7 @@ export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
     // const records = await pb.collection("songs").getFirstListItem("Bass");
-    const records = await pb.collection("songs").getList(1, 5, {
+    const records = await pb.collection("songs").getList(1, 100, {
       filter: 'instrumentDescription ~ "Bass"',
     });
 
