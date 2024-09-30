@@ -11,14 +11,14 @@
 >
   <a
     href="/"
-    class="text-primary90 dark:text-tertiary90 font-semibold hover:text-secondary60 duration-100"
-    >Brett Eastman Studio Archives</a
+    class="text-primary90 dark:text-tertiary90 font-semibold hover:text-primary70 duration-200"
+    >Brett Eastman Studio <em>student PDF archives</em></a
   >
   <nav>
     <ul class="flex">
       {#each navItems as item}
         <li
-          class="mx-2 text-primary90 dark:text-tertiary90 hover:text-secondary60 duration-100"
+          class="mx-2 text-primary90 dark:text-tertiary90 hover:text-primary70 duration-200"
         >
           <a href={item.href}>{item.name}</a>
         </li>
