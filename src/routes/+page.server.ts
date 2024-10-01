@@ -1,8 +1,8 @@
 import PocketBase from "pocketbase";
 import type { SongList } from "$lib/typesAndInterfaces";
-import { EMAIL, PASSWORD } from "$env/static/private";
+import { EMAIL, PASSWORD, PB_URL } from "$env/static/private";
 
-const pb = new PocketBase("http://173.230.149.14:80");
+const pb = new PocketBase(PB_URL);
 
 export const load = async () => {
   try {
