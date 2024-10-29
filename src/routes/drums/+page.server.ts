@@ -8,7 +8,7 @@ export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
     // pb.collection.getList is a method that takes 3 arguments: page, pageSize, and options. The options object has a filter property that is a query string that filters the records in the collection according to what the operand dictates. In this case, "~" is the operand and it is used to filter the records in the collection where the instrumentDescription field contains the string "Drums".
-    const records = await pb.collection("songs").getList(1, 5, {
+    const records = await pb.collection("songs").getList(1, 100, {
       filter: 'instrumentDescription ~ "Drums"',
     });
 

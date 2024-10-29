@@ -3,6 +3,7 @@
   import type { PageServerData } from "./$types";
 
   export let data: PageServerData;
+
   let searchQuery = "";
 
   $: filteredSongs = data.songList.filter((song) =>
