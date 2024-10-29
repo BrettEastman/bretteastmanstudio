@@ -3,6 +3,12 @@
   import type { PageServerData } from "./$types";
 
   export let data: PageServerData;
+
+  let searchQuery = "";
+
+  $: filteredSongs = data.songList.filter((song) =>
+    song.songTitle.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 </script>
 
 <div class="flex flex-col items-center px-2 py-4">
@@ -38,8 +44,14 @@
   <h1 class="text-xl text-primary30 font-semibold py-8 dark:text-secondary90">
     All Songs:
   </h1>
-  {#if data.songList.length > 0}
-    {#each data.songList as song}
+  <input
+    type="text"
+    class="w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md"
+    placeholder="Search for a song..."
+    bind:value={searchQuery}
+  />
+  {#if filteredSongs.length > 0}
+    {#each filteredSongs as song}
       <SongDisplay {song} />
     {/each}
   {:else}

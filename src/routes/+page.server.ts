@@ -7,7 +7,7 @@ const pb = new PocketBase(PB_URL);
 export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("songs").getFullList(100, {
+    const records = await pb.collection("songs").getFullList(200, {
       sort: "-created",
     });
 
