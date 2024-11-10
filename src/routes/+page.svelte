@@ -27,5 +27,30 @@
       aim was to inspire students to do their very best and to find their own deep
       connection to music.
     </p>
+    <br />
+    <p>
+      This website is an archive of various teaching materials Brett created for
+      students over the years. There are several categories of links to PDFs
+      that anyone is welcome to download for free. If you are a drum teach or
+      drum student, you may also be interested in purchasing Brett's drum book,
+      <a
+        href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
+        target="_blank"
+        aria-label="Patterns and Beats on Amazon"
+        class="hover:text-secondary60 duration-200">Patterns and Beats</a
+      >, which is intended for beginning to intermediate level students.
+    </p>
+    <a
+      href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
+      target="_blank"
+      aria-label="Patterns and Beats on Amazon"
+      class="grid place-items-center my-8"
+    >
+      <img
+        src="/images/Patterns-and-Beats4.jpg"
+        alt="Patterns and Beats front cover"
+        class="w-1/2 rounded-lg"
+      />
+    </a>
   </div>
 </div>
