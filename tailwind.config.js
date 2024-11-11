@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        customXl: "rgba(0, 0, 0, 0.15) 0px 4px 20px 0px",
+        customXl: "rgba(0, 0, 0, 0.07) 0px 3px 13px 0px",
       },
       colors: {
         primary10: "#0d0e0b",
@@ -26,6 +26,10 @@ export default {
         secondary70: "#8abcdb",
         secondary80: "#b1d2e7",
         secondary90: "#d8e9f3",
+        secondary93: "#e4f0f7",
+        secondary96: "#eff6fa",
+        secondary97: "#f3f8fb",
+        secondary98: "#f7fbfd",
         secondary100: "#ffffff",
         tertiary10: "#2d1e06",
         tertiary20: "#593c0d",

@@ -5,7 +5,7 @@
 
 <a
   href={song.songPdfLink}
-  class="border border-primary70 bg-tertiary97 dark:bg-secondary20 shadow-customXl dark:shadow-none rounded-xl p-4 w-full sm:w-1/2 m-1 hover:bg-primary90 dark:hover:bg-secondary10 hover:text-white hover:shadow-none duration-100"
+  class="border border-primary70 bg-secondary96 dark:bg-secondary20 shadow-customXl dark:shadow-none rounded-xl p-4 w-full sm:w-1/2 m-1 hover:bg-secondary93 dark:hover:bg-secondary10 hover:text-white hover:shadow-none duration-200"
   target="_blank"
 >
   <div class="text-primary10 dark:text-primary90">

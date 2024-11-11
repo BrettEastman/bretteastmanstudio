@@ -6,7 +6,7 @@
 
 <div>
   <Header />
-  <div class="h-fit min-h-svh bg-primary90 dark:bg-secondary10">
+  <div class="h-fit min-h-svh bg-secondary97 dark:bg-secondary10">
     <slot />
   </div>
   <Footer />
