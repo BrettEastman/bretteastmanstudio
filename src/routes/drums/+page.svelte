@@ -6,9 +6,12 @@
 
   let searchQuery = "";
 
-  $: filteredSongs = data.songList.filter((song) =>
-    song.songTitle.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  $: filteredSongs = data.songList.filter((song) => {
+    return (
+      song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
@@ -18,7 +21,7 @@
   <input
     type="text"
     class="w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md"
-    placeholder="Search for a drum song..."
+    placeholder="Search for a drum song by artist or title..."
     bind:value={searchQuery}
   />
   {#if filteredSongs.length > 0}
