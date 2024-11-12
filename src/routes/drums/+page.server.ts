@@ -19,6 +19,8 @@ export const load = async () => {
       songPdfLink: record.songPdfLink,
     }));
 
+    songList.sort((a, b) => a.songTitle.localeCompare(b.songTitle));
+
     return { songList };
   } catch (error) {
     console.error("Error fetching songs from PocketBase:", error);

@@ -29,16 +29,26 @@
     </p>
     <br />
     <p>
-      This website is an archive of various teaching materials Brett created for
-      students over the years. There are several categories of links to PDFs
-      that anyone is welcome to download for free. If you are a drum teacher or
-      student, you may also be interested in purchasing Brett's drum book,
+      This website is an archive of various teaching materials Brett created or
+      modified for students over the years. There are several categories of
+      links to PDFs that anyone is welcome to download for free. Note that this
+      collection represents a mix of material that was either useful for
+      teaching music concepts, or requested by the student.
+    </p>
+    <br />
+    <p>
+      For the drummers out there, you may also be interested in purchasing
+      Brett's book,
       <a
         href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
         target="_blank"
         aria-label="Patterns and Beats on Amazon"
         class="hover:text-secondary60 duration-200">Patterns and Beats</a
-      >, which is intended for beginner to intermediate level students.
+      >, which is intended for beginner to intermediate level students. It is a
+      very useful reference and guide, which contains collections of linear
+      patterns, arranged by difficulty, and a curated selection of enjoyable and
+      educational drum beats. The layout was aesthetically designed for
+      readability, clarity and comfort.
     </p>
     <a
       href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"

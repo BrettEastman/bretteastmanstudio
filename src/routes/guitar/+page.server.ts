@@ -7,7 +7,7 @@ const pb = new PocketBase(PB_URL);
 export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("songs").getList(1, 100, {
+    const records = await pb.collection("songs").getList(1, 200, {
       filter: 'instrumentDescription ~ "Guitar"',
     });
 
@@ -17,6 +17,8 @@ export const load = async () => {
       artistName: record.artistName,
       songPdfLink: record.songPdfLink,
     }));
+
+    songList.sort((a, b) => a.songTitle.localeCompare(b.songTitle));
 
     return { songList };
   } catch (error) {
