@@ -22,4 +22,5 @@ vite.config.ts.timestamp-*
 
 # Other
 seedDB.js
+seedResources.js
 content
