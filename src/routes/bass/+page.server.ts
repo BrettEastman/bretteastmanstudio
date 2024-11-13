@@ -7,11 +7,11 @@ const pb = new PocketBase(PB_URL);
 export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("songs").getList(1, 100, {
+    const records = await pb.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Bass"',
     });
 
-    const songList: SongList = records.items.map((record) => ({
+    const songList: SongList = records.map((record) => ({
       songTitle: record.songTitle,
       instrumentDescription: record.instrumentDescription,
       artistName: record.artistName,

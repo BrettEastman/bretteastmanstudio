@@ -7,11 +7,11 @@ const pb = new PocketBase(PB_URL);
 export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("resources").getList(1, 100, {
+    const records = await pb.collection("resources").getFullList({
       sort: "-created",
     });
 
-    const resourceList: ResourceList = records.items.map((record) => ({
+    const resourceList: ResourceList = records.map((record) => ({
       description: record.description,
       instrument: record.instrument,
       pdfLink: record.pdfLink,
