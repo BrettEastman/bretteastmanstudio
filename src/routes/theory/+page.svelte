@@ -16,7 +16,7 @@
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
-  <h1 class="text-xl text-primary30 font-semibold py-8 dark:text-secondary90">
+  <h1 class="text-2xl text-primary30 font-semibold py-8 dark:text-secondary90">
     Theory resources
   </h1>
   <input

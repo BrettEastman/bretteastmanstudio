@@ -39,20 +39,24 @@
   });
 </script>
 
-<div class="min-h-screen bg-gray-100 p-4">
+<div class="p-6">
   <div class="max-w-3xl mx-auto">
-    <h1 class="text-3xl font-bold text-center mb-8">Music History AI Chat</h1>
+    <h1
+      class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
+    >
+      Music History AI Chat
+    </h1>
 
     <div
-      class="bg-white rounded-lg shadow-lg p-4 mb-4 h-[600px] overflow-y-auto"
+      class="bg-secondary90 rounded-lg shadow-lg p-4 mb-4 h-[500px] overflow-y-auto no-scrollbar dark:bg-secondary30"
     >
       {#each messages as message (message.id)}
         <div class="mb-4">
-          <div class="bg-blue-100 p-3 rounded-lg mb-2">
+          <div class="bg-secondary70 p-3 rounded-lg mb-2 dark:bg-secondary80">
             <p class="font-semibold">You:</p>
             <p>{message.message}</p>
           </div>
-          <div class="bg-gray-100 p-3 rounded-lg">
+          <div class="bg-tertiary90 p-3 rounded-lg">
             <p class="font-semibold">Music Historian:</p>
             <p>{message.response}</p>
           </div>
@@ -62,7 +66,7 @@
       {#if loading}
         <div class="flex justify-center">
           <div
-            class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"
+            class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
           ></div>
         </div>
       {/if}
@@ -73,12 +77,12 @@
         type="text"
         bind:value={newMessage}
         placeholder="Ask about any music history topic..."
-        class="flex-1 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        class="flex-1 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
         disabled={loading}
       />
       <button
         type="submit"
-        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+        class="bg-secondary50 text-primary90 px-4 py-2 rounded-lg hover:bg-secondary40 disabled:opacity-50"
         disabled={loading || !newMessage.trim()}
       >
         Send
