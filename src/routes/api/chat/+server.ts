@@ -1,6 +1,7 @@
 import { json } from "@sveltejs/kit";
 import { pb } from "$lib/server/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import { EMAIL, PASSWORD } from "$env/static/private";
 
 export async function POST({ request }) {
   const { message } = await request.json();
@@ -23,6 +24,7 @@ export async function POST({ request }) {
 
 export async function GET() {
   try {
+    await pb.admins.authWithPassword(EMAIL, PASSWORD);
     const records = await pb.collection("messages").getList(1, 50, {
       sort: "created",
     });
