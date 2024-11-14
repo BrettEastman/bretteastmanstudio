@@ -24,7 +24,7 @@ export async function POST({ request }) {
 export async function GET() {
   try {
     const records = await pb.collection("messages").getList(1, 50, {
-      sort: "-created",
+      sort: "created",
     });
 
     return json(records.items);

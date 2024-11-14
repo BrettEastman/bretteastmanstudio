@@ -5,6 +5,18 @@
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
+  let messageContainer: HTMLDivElement; // Add container reference
+
+  const scrollToBottom = () => {
+    if (messageContainer) {
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+  };
+
+  // Reactive statement to trigger scroll when messages change
+  $: if (messages) {
+    setTimeout(scrollToBottom, 0);
+  }
 
   async function sendMessage() {
     if (!newMessage.trim()) return;
@@ -48,16 +60,27 @@
     </h1>
 
     <div
+      bind:this={messageContainer}
       class="bg-secondary90 rounded-lg shadow-lg p-4 mb-4 h-[500px] overflow-y-auto no-scrollbar dark:bg-secondary30"
     >
       {#each messages as message (message.id)}
         <div class="mb-4">
-          <div class="bg-secondary70 p-3 rounded-lg mb-2 dark:bg-secondary80">
-            <p class="font-semibold">You:</p>
+          <div class="bg-secondary80 p-3 rounded-lg mb-2 dark:bg-secondary90">
+            <div class="flex justify-between">
+              <p class="font-semibold">You:</p>
+              <p class="text-xs text-primary30">
+                {message.created.slice(5, 10)}
+              </p>
+            </div>
             <p>{message.message}</p>
           </div>
           <div class="bg-tertiary90 p-3 rounded-lg">
-            <p class="font-semibold">Music Historian:</p>
+            <div class="flex justify-between">
+              <p class="font-semibold">Music Historian:</p>
+              <p class="text-xs text-primary30">
+                {message.created.slice(5, 10)}
+              </p>
+            </div>
             <p>{message.response}</p>
           </div>
         </div>
@@ -77,12 +100,12 @@
         type="text"
         bind:value={newMessage}
         placeholder="Ask about any music history topic..."
-        class="flex-1 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
+        class="flex-1 px-4 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
         disabled={loading}
       />
       <button
         type="submit"
-        class="bg-secondary50 text-primary90 px-4 py-2 rounded-lg hover:bg-secondary40 disabled:opacity-50"
+        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
         disabled={loading || !newMessage.trim()}
       >
         Send
