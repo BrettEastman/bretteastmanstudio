@@ -1,8 +1,7 @@
-import PocketBase from "pocketbase";
 import type { ResourceList } from "$lib/typesAndInterfaces";
-import { EMAIL, PASSWORD, PB_URL } from "$env/static/private";
+import { EMAIL, PASSWORD } from "$env/static/private";
 
-const pb = new PocketBase(PB_URL);
+import { pb } from "$lib/server/pocketbase";
 
 export const load = async () => {
   try {
