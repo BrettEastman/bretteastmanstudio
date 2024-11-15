@@ -1,17 +1,16 @@
-import PocketBase from "pocketbase";
 import type { SongList } from "$lib/typesAndInterfaces";
-import { EMAIL, PASSWORD, PB_URL } from "$env/static/private";
+import { EMAIL, PASSWORD } from "$env/static/private";
 
-const pb = new PocketBase(PB_URL);
+import { pb } from "$lib/server/pocketbase";
 
 export const load = async () => {
   try {
     await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("songs").getList(1, 200, {
+    const records = await pb.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Guitar"',
     });
 
-    const songList: SongList = records.items.map((record) => ({
+    const songList: SongList = records.map((record) => ({
       songTitle: record.songTitle,
       instrumentDescription: record.instrumentDescription,
       artistName: record.artistName,

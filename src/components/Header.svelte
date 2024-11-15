@@ -4,6 +4,7 @@
     { name: "Drums", href: "/drums" },
     { name: "Bass", href: "/bass" },
     { name: "Theory", href: "/theory" },
+    { name: "Chat", href: "/chat" },
   ];
 </script>
 
