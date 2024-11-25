@@ -51,14 +51,15 @@
 <header
   class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70"
 >
-  <!-- Top Row: Title and Hamburger -->
-  <div class="flex flex-row justify-between items-center px-4 py-2">
-    <a
-      href="/"
-      class="text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
-    >
-      Brett Eastman <em>teaching archives</em>
-    </a>
+  <div class="flex flex-row justify-between items-center px-4 pt-6 sm:hidden">
+    <div>
+      <a
+        href="/"
+        class="text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+      >
+        Brett Eastman <em>teaching archives</em>
+      </a>
+    </div>
 
     <button
       class="md:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none"
@@ -71,24 +72,35 @@
     </button>
   </div>
 
-  <!-- Navigation Menu -->
-  <nav>
-    <!-- Desktop Navigation -->
-    <ul class="hidden md:flex justify-center">
-      {#each navItems as item}
-        <li class="mx-4">
-          <a
-            href={item.href}
-            class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
-            {item.name}
-          </a>
-        </li>
-      {/each}
-    </ul>
+  {#if !isMobileMenuOpen}
+    <nav>
+      <div class="flex justify-between py-4">
+        <a
+          href="/"
+          class="hidden md:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+        >
+          Brett Eastman <em>teaching archives</em>
+        </a>
+        <!-- Desktop nav -->
+        <ul class="hidden md:flex justify-end">
+          {#each navItems as item}
+            <li class="mx-4">
+              <a
+                href={item.href}
+                class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+              >
+                {`${item.name} desk`}
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </nav>
+  {/if}
 
-    <!-- Mobile Navigation -->
-    {#if isMobileMenuOpen}
+  {#if isMobileMenuOpen}
+    <nav>
+      <!-- Mobile nav -->
       <ul
         id="mobile-menu"
         class="flex flex-col mt-2 bg-secondary93 dark:bg-secondary20 rounded-md p-4 shadow-lg"
@@ -105,8 +117,8 @@
           </li>
         {/each}
       </ul>
-    {/if}
-  </nav>
+    </nav>
+  {/if}
 </header>
 
 <style>
