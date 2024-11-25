@@ -15,7 +15,9 @@
 
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+    }
   }
 
   function handleClickOutside(event: MouseEvent) {
@@ -28,13 +30,21 @@
   }
 
   onMount(() => {
-    window.addEventListener("click", handleClickOutside);
+    if (typeof window !== "undefined") {
+      window.addEventListener("click", handleClickOutside);
+    } else {
+      console.error("Window is not defined.");
+    }
   });
 
   // Reset body overflow on component unmount
   onDestroy(() => {
-    document.body.style.overflow = "auto";
-    window.removeEventListener("click", handleClickOutside);
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "auto";
+    }
+    if (typeof window !== "undefined") {
+      window.removeEventListener("click", handleClickOutside);
+    }
   });
 </script>
 
