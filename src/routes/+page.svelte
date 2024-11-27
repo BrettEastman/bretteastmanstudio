@@ -1,11 +1,13 @@
 <script lang="ts">
 </script>
 
-<div class="flex flex-col items-center px-2 py-4">
+<div class="flex flex-col items-center px-8 py-4">
   <h1 class="text-2xl text-primary10 dark:text-primary80 font-semibold py-8">
     Home Page
   </h1>
-  <div class="w-1/2 text-lg text-primary10 dark:text-primary80">
+  <div
+    class="text-md text-primary10 dark:text-primary80 sm:text-lg md:w-3/4 lg:w-1/2"
+  >
     <p>
       Brett Eastman is a{" "}
       <a
@@ -59,7 +61,7 @@
       <img
         src="/images/Patterns-and-Beats4.jpg"
         alt="Patterns and Beats front cover"
-        class="w-1/2 rounded-lg hover:scale-105 duration-500"
+        class="w-full md:w-3/4 lg:w-1/2 rounded-lg hover:scale-105 duration-500"
       />
     </a>
   </div>
