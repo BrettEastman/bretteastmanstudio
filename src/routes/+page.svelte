@@ -6,7 +6,7 @@
     Home Page
   </h1>
   <div
-    class="w-7/8 text-md text-primary10 dark:text-primary80 sm:text-lg sm:w-1/2"
+    class="text-md text-primary10 dark:text-primary80 sm:text-lg md:w-3/4 lg:w-1/2"
   >
     <p>
       Brett Eastman is a{" "}
@@ -61,7 +61,7 @@
       <img
         src="/images/Patterns-and-Beats4.jpg"
         alt="Patterns and Beats front cover"
-        class="w-1/2 rounded-lg hover:scale-105 duration-500"
+        class="w-full md:w-3/4 lg:w-1/2 rounded-lg hover:scale-105 duration-500"
       />
     </a>
   </div>

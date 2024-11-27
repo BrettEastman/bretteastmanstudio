@@ -62,7 +62,7 @@
     </div>
 
     <button
-      class="md:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none"
+      class="sm:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none"
       on:click={toggleMobileMenu}
       aria-label="Toggle navigation menu"
       aria-expanded={isMobileMenuOpen}
@@ -77,12 +77,12 @@
       <div class="flex justify-between py-4">
         <a
           href="/"
-          class="hidden md:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+          class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
         >
           Brett Eastman <em>teaching archives</em>
         </a>
         <!-- Desktop nav -->
-        <ul class="hidden md:flex justify-end">
+        <ul class="hidden sm:flex justify-end">
           {#each navItems as item}
             <li class="mx-4">
               <a
