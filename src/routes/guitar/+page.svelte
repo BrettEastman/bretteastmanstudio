@@ -15,12 +15,14 @@
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
-  <h1 class="text-2xl text-primary30 font-semibold py-8 dark:text-secondary90">
-    Guitar songs
+  <h1
+    class="text-2xl text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
+  >
+    Guitar Songs
   </h1>
   <input
     type="text"
-    class="w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md"
+    class="w-full sm:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md"
     placeholder="Search for a guitar song by artist or title..."
     bind:value={searchQuery}
   />

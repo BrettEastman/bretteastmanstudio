@@ -122,7 +122,6 @@
 </header>
 
 <style>
-  /* Optional: Add smooth transition for the mobile menu */
   #mobile-menu {
     transition:
       max-height 0.3s ease,
