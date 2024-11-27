@@ -89,7 +89,7 @@
                 href={item.href}
                 class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
               >
-                {`${item.name} desk`}
+                {item.name}
               </a>
             </li>
           {/each}
