@@ -1,11 +1,16 @@
 import type { SongList } from "$lib/typesAndInterfaces";
-import { EMAIL, PASSWORD } from "$env/static/private";
+// import { EMAIL, PASSWORD } from "$env/static/private";
 
 import { pb } from "$lib/server/pocketbase";
 
 export const load = async () => {
   try {
-    await pb.admins.authWithPassword(EMAIL, PASSWORD);
+    await pb
+      .collection("_superusers")
+      .authWithPassword(
+        "brett.austin.eastman@gmail.com",
+        "jkp*wbu8UCF8xzu!nxw"
+      );
     const records = await pb.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Guitar"',
     });
