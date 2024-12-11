@@ -93,6 +93,16 @@
               </a>
             </li>
           {/each}
+          <li
+            class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <a href="/login">Log In</a>
+          </li>
+          <li
+            class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <a href="/register">Register</a>
+          </li>
         </ul>
       </div>
     </nav>
