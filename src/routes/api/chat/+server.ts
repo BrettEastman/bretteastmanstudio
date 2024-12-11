@@ -1,16 +1,20 @@
 import { json } from "@sveltejs/kit";
 import { pb } from "$lib/server/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
-import { EMAIL, PASSWORD } from "$env/static/private";
+// import { EMAIL, PASSWORD } from "$env/static/private";
 
 export async function POST({ request }) {
+  if (!pb.authStore.isValid) {
+    return json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { message } = await request.json();
 
   try {
     const response = await getMusicHistorianResponse(message);
 
     const record = await pb.collection("messages").create({
-      user: "user",
+      user: pb.authStore.model?.id,
       message,
       response,
     });
@@ -23,10 +27,14 @@ export async function POST({ request }) {
 }
 
 export async function GET() {
+  if (!pb.authStore.isValid) {
+    return json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
-    await pb.admins.authWithPassword(EMAIL, PASSWORD);
     const records = await pb.collection("messages").getList(1, 50, {
       sort: "created",
+      filter: `user = "${pb.authStore.model?.id}"`,
     });
 
     return json(records.items);
