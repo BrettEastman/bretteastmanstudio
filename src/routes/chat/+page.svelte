@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { ChatMessage } from "$lib/server/pocketbase";
+  import type { ChatMessage } from "$lib/typesAndInterfaces";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
