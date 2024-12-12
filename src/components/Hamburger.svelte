@@ -1,4 +1,3 @@
-<!-- src/components/Hamburger.svelte -->
 <script lang="ts">
   export let isActive: boolean = false;
 </script>

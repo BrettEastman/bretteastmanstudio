@@ -1,7 +1,7 @@
-import { json } from "@sveltejs/kit";
-import { pb } from "$lib/server/pocketbase";
-import { getMusicHistorianResponse } from "$lib/server/gemini";
 import { EMAIL, PASSWORD } from "$env/static/private";
+import { pb } from "$lib/pocketbase";
+import { getMusicHistorianResponse } from "$lib/server/gemini";
+import { json } from "@sveltejs/kit";
 
 export async function POST({ request }) {
   const { message } = await request.json();

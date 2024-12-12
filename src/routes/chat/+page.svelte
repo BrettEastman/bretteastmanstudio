@@ -1,13 +1,12 @@
 <script lang="ts">
+  import type { ChatMessage } from "$lib/typesAndInterfaces";
   import { onMount } from "svelte";
-  import type { ChatMessage } from "$lib/server/pocketbase";
+  import { currentUser } from "$lib/pocketbase";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
   let messageContainer: HTMLDivElement; // Add container reference
-
-  let signedIn = false;
 
   const scrollToBottom = () => {
     if (messageContainer) {
@@ -55,7 +54,7 @@
 
 <div class="p-6">
   <div class="max-w-3xl mx-auto">
-    {#if !signedIn}
+    {#if !$currentUser}
       <iframe
         id="embed-preview-iframe"
         loading="eager"

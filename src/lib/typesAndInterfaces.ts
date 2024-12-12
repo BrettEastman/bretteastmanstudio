@@ -27,3 +27,11 @@ export interface SongItem {
 export type SongList = SongItem[];
 
 export type ResourceList = ResourceItem[];
+
+export interface ChatMessage {
+  id: string;
+  user: string;
+  message: string;
+  response: string;
+  created: string;
+}
