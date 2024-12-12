@@ -2,6 +2,7 @@
 <script lang="ts">
   import Hamburger from "./Hamburger.svelte";
   import { onDestroy, onMount } from "svelte";
+  import { currentUser } from "$lib/pocketbase";
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -93,16 +94,24 @@
               </a>
             </li>
           {/each}
-          <li
-            class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
-            <a href="/login">Log In</a>
-          </li>
-          <li
-            class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
-            <a href="/register">Register</a>
-          </li>
+          {#if $currentUser}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a href="/logout">Log Out</a>
+            </li>
+          {:else}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a href="/login">Log In</a>
+            </li>
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a href="/register">Register</a>
+            </li>
+          {/if}
         </ul>
       </div>
     </nav>

@@ -8,6 +8,7 @@
   class=""
   use:enhance={() => {
     return async ({ result }) => {
+      // when the form is submitted, we need to tell the client to load the user from the cookie
       pb.authStore.loadFromCookie(document.cookie);
       await applyAction(result);
     };
