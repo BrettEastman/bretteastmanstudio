@@ -5,7 +5,7 @@
 
 <form
   method="POST"
-  class="card"
+  class=""
   use:enhance={() => {
     return async ({ result }) => {
       pb.authStore.loadFromCookie(document.cookie);
@@ -13,8 +13,12 @@
     };
   }}
 >
-  <h1 class="text-2xl mb-8">Register</h1>
-  <div class="form-control gap-2 mb-4">
+  <h1
+    class="text-2xl mb-8 text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
+  >
+    Register
+  </h1>
+  <div class="gap-2 mb-4 text-lg">
     <input
       type="email"
       name="email"
@@ -33,6 +37,9 @@
       placeholder="Confirm password"
       class="input input-bordered"
     />
-    <button class="btn btn-primary">Register</button>
+    <button
+      class="text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
+      >Register</button
+    >
   </div>
 </form>

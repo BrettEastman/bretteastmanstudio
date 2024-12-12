@@ -9,9 +9,16 @@ export const actions: Actions = {
       passwordConfirm: string;
     };
 
-    // now that we have the form data, we can create the user and log them in
     try {
-      await locals.pb.collection("users").create(data);
+      // Create the user with required fields
+      const userData = {
+        email: data.email,
+        password: data.password,
+        passwordConfirm: data.passwordConfirm,
+        emailVisibility: true, // Required by PocketBase
+      };
+
+      await locals.pb.collection("users").create(userData);
       await locals.pb
         .collection("users")
         .authWithPassword(data.email, data.password);
@@ -20,6 +27,6 @@ export const actions: Actions = {
       throw e;
     }
 
-    redirect(303, "/");
+    throw redirect(303, "/");
   },
 };
