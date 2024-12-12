@@ -95,6 +95,7 @@
             </li>
           {/each}
           {#if $currentUser}
+            <li><a href="/">{$currentUser.email}</a></li>
             <li
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
