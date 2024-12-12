@@ -1,5 +1,6 @@
-import type { Handle } from "@sveltejs/kit";
 import { pb } from "$lib/pocketbase";
+import type { Handle } from "@sveltejs/kit";
+
 export const handle: Handle = async ({ event, resolve }) => {
   // BEFORE
   pb.authStore.loadFromCookie(event.request.headers.get("cookie") || "");

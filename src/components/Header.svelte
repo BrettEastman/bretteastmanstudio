@@ -1,8 +1,8 @@
-<!-- src/components/Header.svelte -->
 <script lang="ts">
-  import Hamburger from "./Hamburger.svelte";
+  import { applyAction, enhance } from "$app/forms";
+  import { currentUser, pb } from "$lib/pocketbase";
   import { onDestroy, onMount } from "svelte";
-  import { currentUser } from "$lib/pocketbase";
+  import Hamburger from "./Hamburger.svelte";
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -98,7 +98,18 @@
             <li
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
-              <a href="/logout">Log Out</a>
+              <form
+                method="post"
+                action="/logout"
+                use:enhance={() => {
+                  return async ({ result }) => {
+                    pb.authStore.clear();
+                    await applyAction(result);
+                  };
+                }}
+              >
+                <button> Log Out </button>
+              </form>
             </li>
           {:else}
             <li

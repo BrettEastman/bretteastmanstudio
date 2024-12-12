@@ -1,7 +1,7 @@
 <script lang="ts">
+  import type { ResourceItem } from "$lib/typesAndInterfaces";
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
   import type { PageServerData } from "./$types";
-  import type { ResourceItem } from "$lib/typesAndInterfaces";
 
   export let data: PageServerData;
 
