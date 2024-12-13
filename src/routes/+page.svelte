@@ -16,9 +16,16 @@
         class="hover:text-primary60 duration-200"
         >software engineer,
       </a>
-      {" "}composer,{" "}
+      {" "}<a
+        href="https://www.brettaustineastman.com/selected_works"
+        target="_blank"
+        class="hover:text-primary60 duration-200"
+      >
+        composer,
+      </a>
+      {" "}
       <a
-        href="https://www.brettaustineastman.com/"
+        href="https://www.brettaustineastman.com/about"
         target="_blank"
         class="hover:text-primary60 duration-200"
       >
@@ -32,10 +39,10 @@
     <br />
     <p>
       This website is an archive of various teaching materials Brett created or
-      modified for students over the years. There are several categories of
-      links to PDFs that anyone is welcome to download for free. Note that this
-      collection represents a mix of material that was either useful for
-      teaching music concepts, or requested by the student.
+      modified for students over the years. It is limited collection, but here
+      are several categories of links to PDFs that anyone is welcome to download
+      for free. Note that this collection represents a mix of material that was
+      either useful for teaching music concepts, or requested by the student.
     </p>
     <br />
     <p>
