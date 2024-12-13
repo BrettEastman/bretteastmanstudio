@@ -5,7 +5,7 @@
 
 <form
   method="POST"
-  class=""
+  class="grid place-items-center"
   use:enhance={() => {
     return async ({ result }) => {
       // when the form is submitted, we need to tell the client to load the user from the cookie
@@ -19,27 +19,27 @@
   >
     Register
   </h1>
-  <div class="gap-2 mb-4 text-lg">
+  <div class="flex flex-col gap-2 mb-4 text-lg">
     <input
       type="email"
       name="email"
       placeholder="Email"
-      class="input input-bordered"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2"
     />
     <input
       type="password"
       name="password"
       placeholder="Password"
-      class="input input-bordered"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2"
     />
     <input
       type="password"
       name="passwordConfirm"
       placeholder="Confirm password"
-      class="input input-bordered"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2"
     />
     <button
-      class="text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2 text-primary30 font-semibold dark:text-secondary90 hover:bg-secondary90 duration-200"
       >Register</button
     >
   </div>
