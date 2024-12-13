@@ -1,5 +1,6 @@
 import { pb } from "$lib/pocketbase";
 import type { Handle } from "@sveltejs/kit";
+import type { ClientResponseError } from "pocketbase";
 
 export const handle: Handle = async ({ event, resolve }) => {
   // BEFORE
@@ -8,7 +9,10 @@ export const handle: Handle = async ({ event, resolve }) => {
     try {
       await pb.collection("users").authRefresh();
     } catch (error) {
-      console.error("Error refreshing auth:", error);
+      const err = error as ClientResponseError;
+      if (err.status !== 401) {
+        console.error("Unexpected error refreshing auth:", err);
+      }
       pb.authStore.clear();
     }
   }
