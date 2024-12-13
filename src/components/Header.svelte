@@ -108,7 +108,7 @@
                   };
                 }}
               >
-                <button>{`Log Out ${$currentUser.email}`}</button>
+                <button>{`Log Out ${$currentUser.name}`}</button>
               </form>
             </li>
           {:else}
@@ -160,7 +160,7 @@
                 };
               }}
             >
-              <button>{`Log Out ${$currentUser.email}`}</button>
+              <button>{`Log Out ${$currentUser.name}`}</button>
             </form>
           </li>
         {:else}

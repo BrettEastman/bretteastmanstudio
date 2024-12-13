@@ -21,6 +21,18 @@
   </h1>
   <div class="flex flex-col gap-2 mb-4 text-lg">
     <input
+      type="text"
+      name="firstName"
+      placeholder="First Name"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2"
+    />
+    <input
+      type="text"
+      name="lastName"
+      placeholder="Last Name"
+      class="bg-secondary100 dark:bg-secondary80 rounded-md p-2"
+    />
+    <input
       type="email"
       name="email"
       placeholder="Email"
