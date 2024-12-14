@@ -2,11 +2,12 @@
   import type { ChatMessage } from "$lib/typesAndInterfaces";
   import { onMount } from "svelte";
   import { currentUser } from "$lib/pocketbase";
+  import { pb } from "$lib/pocketbase";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
-  let messageContainer: HTMLDivElement; // Add container reference
+  let messageContainer: HTMLDivElement;
 
   const scrollToBottom = () => {
     if (messageContainer) {
@@ -27,7 +28,7 @@
     newMessage = "";
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch("/chat", {
         method: "POST",
         body: JSON.stringify({ message }),
         headers: { "Content-Type": "application/json" },
@@ -43,9 +44,16 @@
   }
 
   onMount(async () => {
+    pb.authStore.loadFromCookie(document.cookie);
+    console.log("AuthStore isValid (chat client):", pb.authStore.isValid);
+    console.log("AuthStore model (chat client):", pb.authStore.model);
     try {
-      const response = await fetch("/api/chat");
+      const response = await fetch("/chat", {
+        method: "GET",
+        credentials: "include",
+      });
       messages = await response.json();
+      console.log("Messages (chat client):", messages);
     } catch (error) {
       console.error("Error loading messages:", error);
     }

@@ -8,24 +8,24 @@ export const handle: Handle = async ({ event, resolve }) => {
   // If no cookie is found, an empty string is used, which effectively means no auth state.
   pb.authStore.loadFromCookie(event.request.headers.get("cookie") || "");
 
-  // Check if the current authentication state is valid, meaning the user is logged in
+  // Check if user is logged in
   if (pb.authStore.isValid) {
     try {
       // Attempt to refresh the authentication token for the user.
       // This is typically done to ensure the user session remains active.
       await pb.collection("users").authRefresh();
     } catch (error) {
-      // If an error occurs during the token refresh, handle it here.
       const err = error as ClientResponseError;
 
-      // If the error is not a 401 Unauthorized error, log it as unexpected. Not sure why, but this 401 error kept popping up although the user is logged in.
-      if (err.status !== 401) {
-        console.error("Unexpected error refreshing auth:", err);
-      }
+      // // If the error is not a 401 Unauthorized error, log it as unexpected. Not sure why, but this 401 error kept popping up although the user is logged in.
+      // if (err.status !== 401) {
+      //   console.error("Unexpected error refreshing auth:", err);
+      // }
+      console.error("hook.server.ts error:", err);
 
       // Clear the authentication state, effectively logging the user out.
       // ?? why is this here?
-      pb.authStore.clear();
+      // pb.authStore.clear();
     }
   }
 
@@ -35,12 +35,18 @@ export const handle: Handle = async ({ event, resolve }) => {
   // Note that the user model is a record object, so we need to convert it to a plain object so that SvelteKit can serialize it to JSON
   event.locals.user = structuredClone(pb.authStore.model);
 
+  console.log("AuthStore isValid (server):", pb.authStore.isValid);
+  console.log("AuthStore model (server):", pb.authStore.model);
+  // console.log("Cookies in request:", event.request.headers.get("cookie"));
+
   const response = await resolve(event);
 
   // AFTER
+  // console.log("Before setting cookie:", event.request.headers.get("cookie"));
   response.headers.set(
     "set-cookie",
-    pb.authStore.exportToCookie({ httpOnly: false })
+    pb.authStore.exportToCookie({ httpOnly: false, path: "/" })
   );
+  // console.log("After setting cookie:", response.headers.get("set-cookie"));
   return response;
 };

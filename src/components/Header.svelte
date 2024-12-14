@@ -98,12 +98,14 @@
             <li
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
+              <!-- enhance is used to enhance a form with additional client-side behavior, such as handling form submissions with JavaScript instead of a full page reload. -->
               <form
                 method="post"
                 action="/logout"
                 use:enhance={() => {
                   return async ({ result }) => {
                     pb.authStore.clear();
+                    // applyAction is used to apply the result of a server action to the client-side state. It's typically used in conjunction with form submissions to handle the response from the server.
                     await applyAction(result);
                   };
                 }}
