@@ -54,6 +54,8 @@
       });
       messages = await response.json();
       console.log("Messages (chat client):", messages);
+      // const data = await response.json();
+      // messages = data.messages;
     } catch (error) {
       console.error("Error loading messages:", error);
     }
