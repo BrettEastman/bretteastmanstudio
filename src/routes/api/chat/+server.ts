@@ -1,5 +1,5 @@
 import { json } from "@sveltejs/kit";
-import { pb } from "$lib/server/pocketbase";
+import { pb } from "$lib/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
 import { EMAIL, PASSWORD } from "$env/static/private";
 
