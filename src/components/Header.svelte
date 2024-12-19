@@ -1,7 +1,8 @@
-<!-- src/components/Header.svelte -->
 <script lang="ts">
-  import Hamburger from "./Hamburger.svelte";
+  import { applyAction, enhance } from "$app/forms";
+  import { currentUser, pb } from "$lib/pocketbase";
   import { onDestroy, onMount } from "svelte";
+  import Hamburger from "./Hamburger.svelte";
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -93,6 +94,37 @@
               </a>
             </li>
           {/each}
+          {#if $currentUser}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <!-- enhance is used to enhance a form with additional client-side behavior, such as handling form submissions with JavaScript instead of a full page reload. -->
+              <form
+                method="post"
+                action="/logout"
+                use:enhance={() => {
+                  return async ({ result }) => {
+                    pb.authStore.clear();
+                    // applyAction is used to apply the result of a server action to the client-side state. It's typically used in conjunction with form submissions to handle the response from the server.
+                    await applyAction(result);
+                  };
+                }}
+              >
+                <button>{`Log Out ${$currentUser.name}`}</button>
+              </form>
+            </li>
+          {:else}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a href="/login">Log In</a>
+            </li>
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a href="/register">Register</a>
+            </li>
+          {/if}
         </ul>
       </div>
     </nav>
@@ -116,6 +148,35 @@
             </a>
           </li>
         {/each}
+        {#if $currentUser}
+          <li
+            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <form
+              method="post"
+              action="/logout"
+              use:enhance={() => {
+                return async ({ result }) => {
+                  pb.authStore.clear();
+                  await applyAction(result);
+                };
+              }}
+            >
+              <button>{`Log Out ${$currentUser.name}`}</button>
+            </form>
+          </li>
+        {:else}
+          <li
+            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <a href="/login">Log In</a>
+          </li>
+          <li
+            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <a href="/register">Register</a>
+          </li>
+        {/if}
       </ul>
     </nav>
   {/if}
