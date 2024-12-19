@@ -1,4 +1,3 @@
-<!-- src/components/Header.svelte -->
 <script lang="ts">
   import Hamburger from "./Hamburger.svelte";
   import { onDestroy, onMount } from "svelte";
@@ -110,6 +109,29 @@
               </a>
             </li>
           {/each}
+          {#if isAuthenticated}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <button
+                on:click={handleLogout}
+                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+              >
+                Logout
+              </button>
+            </li>
+          {:else}
+            <li
+              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+            >
+              <a
+                href="/login"
+                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+              >
+                Login
+              </a>
+            </li>
+          {/if}
         </ul>
       </div>
     </nav>
@@ -133,27 +155,32 @@
             </a>
           </li>
         {/each}
+        {#if isAuthenticated}
+          <li
+            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <button
+              on:click={handleLogout}
+              class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+            >
+              Logout
+            </button>
+          </li>
+        {:else}
+          <li
+            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+          >
+            <a
+              href="/login"
+              class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+            >
+              Login
+            </a>
+          </li>
+        {/if}
       </ul>
     </nav>
   {/if}
-
-  <div class="flex items-center gap-4">
-    {#if isAuthenticated}
-      <button
-        on:click={handleLogout}
-        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
-      >
-        Logout
-      </button>
-    {:else}
-      <a
-        href="/login"
-        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
-      >
-        Login
-      </a>
-    {/if}
-  </div>
 </header>
 
 <style>
