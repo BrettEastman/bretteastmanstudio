@@ -30,7 +30,6 @@
       }
     }
   }
-
   // Check auth status whenever it changes
   function updateAuthStatus() {
     isAuthenticated = pb.authStore.isValid;
@@ -117,7 +116,7 @@
                 on:click={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                Logout
+                {`Logout ${pb.authStore.model?.name}`}
               </button>
             </li>
           {:else}

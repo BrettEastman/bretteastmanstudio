@@ -66,7 +66,11 @@
 
     {#if !isAuthenticated}
       <div class="text-center">
-        <p class="mb-4">Please log in to use the chat feature.</p>
+        <p
+          class="mb-4 text-lg text-primary30 font-semibold text-center mb-4 pb-4 dark:text-secondary90"
+        >
+          Please log in to use the chat feature.
+        </p>
         <a
           href="/login"
           class="inline-block bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
@@ -109,24 +113,23 @@
             ></div>
           </div>
         {/if}
+        <form on:submit|preventDefault={sendMessage} class="flex gap-2">
+          <input
+            type="text"
+            bind:value={newMessage}
+            placeholder="Ask about any music history topic..."
+            class="flex-1 px-4 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
+            disabled={loading}
+          />
+          <button
+            type="submit"
+            class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+            disabled={loading || !newMessage.trim()}
+          >
+            Send
+          </button>
+        </form>
       </div>
     {/if}
-
-    <form on:submit|preventDefault={sendMessage} class="flex gap-2">
-      <input
-        type="text"
-        bind:value={newMessage}
-        placeholder="Ask about any music history topic..."
-        class="flex-1 px-4 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
-        disabled={loading}
-      />
-      <button
-        type="submit"
-        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
-        disabled={loading || !newMessage.trim()}
-      >
-        Send
-      </button>
-    </form>
   </div>
 </div>

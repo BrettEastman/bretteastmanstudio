@@ -4,6 +4,8 @@
 
   let email = "";
   let password = "";
+  let firstName = "";
+  let lastName = "";
   let loading = false;
   let error = "";
   let isRegistering = false;
@@ -14,8 +16,14 @@
 
     try {
       if (isRegistering) {
+        if (!firstName.trim() || !lastName.trim()) {
+          throw new Error("First and last name are required");
+        }
+
         await pb.collection("users").create({
+          name: `${firstName.trim()} ${lastName.trim()}`,
           email,
+          emailVisibility: true,
           password,
           passwordConfirm: password,
         });
@@ -25,7 +33,10 @@
       await goto("/chat");
     } catch (e) {
       console.error(e);
-      error = "Authentication failed. Please check your credentials.";
+      error =
+        e instanceof Error
+          ? e.message
+          : "Authentication failed. Please check your credentials.";
     } finally {
       loading = false;
     }
@@ -33,13 +44,53 @@
 </script>
 
 <div class="max-w-md mx-auto p-6">
-  <h2 class="text-2xl font-semibold mb-6">
+  <h2
+    class="mb-4 text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
+  >
     {isRegistering ? "Create Account" : "Sign In"}
   </h2>
 
   <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+    {#if isRegistering}
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <label
+            for="firstName"
+            class="block text-sm font-medium text-primary30 dark:text-secondary90"
+          >
+            First Name
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            bind:value={firstName}
+            required={isRegistering}
+            class="block mt-1 w-full rounded-md border-primary50 shadow-sm"
+          />
+        </div>
+        <div class="flex-1">
+          <label
+            for="lastName"
+            class="block text-sm font-medium text-primary30 dark:text-secondary90"
+          >
+            Last Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            bind:value={lastName}
+            required={isRegistering}
+            class="mt-1 block w-full rounded-md border-primary50 shadow-sm"
+          />
+        </div>
+      </div>
+    {/if}
+
     <div>
-      <label for="email" class="block text-sm font-medium text-gray-700">
+      <label
+        for="email"
+        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+      >
         Email
       </label>
       <input
@@ -47,12 +98,15 @@
         id="email"
         bind:value={email}
         required
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        class="mt-1 block w-full rounded-md border-primary50 shadow-sm"
       />
     </div>
 
     <div>
-      <label for="password" class="block text-sm font-medium text-gray-700">
+      <label
+        for="password"
+        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+      >
         Password
       </label>
       <input
@@ -60,7 +114,7 @@
         id="password"
         bind:value={password}
         required
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        class="mt-1 mb-5 block w-full rounded-md border-primary50 shadow-sm"
       />
     </div>
 
@@ -78,12 +132,19 @@
 
     <button
       type="button"
-      on:click={() => (isRegistering = !isRegistering)}
-      class="w-full text-sm text-secondary50 hover:text-secondary60"
+      on:click={() => {
+        isRegistering = !isRegistering;
+        error = "";
+        if (!isRegistering) {
+          firstName = "";
+          lastName = "";
+        }
+      }}
+      class="w-full text-sm text-secondary50 hover:text-secondary80 duration-200"
     >
       {isRegistering
-        ? "Already have an account? Sign in"
-        : "Need an account? Register"}
+        ? "Already have an account? Sign in here"
+        : "Need an account? Register here"}
     </button>
   </form>
 </div>
