@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { pb } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
   let messageContainer: HTMLDivElement; // Add container reference
+  let isAuthenticated = false;
 
   const scrollToBottom = () => {
     if (messageContainer) {
@@ -42,6 +44,9 @@
   }
 
   onMount(async () => {
+    isAuthenticated = pb.authStore.isValid;
+    if (!isAuthenticated) return;
+
     try {
       const response = await fetch("/api/chat");
       messages = await response.json();
@@ -59,41 +64,53 @@
       Music History AI Chat
     </h1>
 
-    <div
-      bind:this={messageContainer}
-      class="bg-secondary90 rounded-lg shadow-lg p-4 mb-4 h-[500px] overflow-y-auto no-scrollbar dark:bg-secondary30"
-    >
-      {#each messages as message (message.id)}
-        <div class="mb-4">
-          <div class="bg-secondary80 p-3 rounded-lg mb-2 dark:bg-secondary90">
-            <div class="flex justify-between">
-              <p class="font-semibold">You:</p>
-              <p class="text-xs text-primary30">
-                {message.created.slice(5, 10)}
-              </p>
+    {#if !isAuthenticated}
+      <div class="text-center">
+        <p class="mb-4">Please log in to use the chat feature.</p>
+        <a
+          href="/login"
+          class="inline-block bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+        >
+          Login
+        </a>
+      </div>
+    {:else}
+      <div
+        bind:this={messageContainer}
+        class="bg-secondary90 rounded-lg shadow-lg p-4 mb-4 h-[500px] overflow-y-auto no-scrollbar dark:bg-secondary30"
+      >
+        {#each messages as message (message.id)}
+          <div class="mb-4">
+            <div class="bg-secondary80 p-3 rounded-lg mb-2 dark:bg-secondary90">
+              <div class="flex justify-between">
+                <p class="font-semibold">You:</p>
+                <p class="text-xs text-primary30">
+                  {message.created.slice(5, 10)}
+                </p>
+              </div>
+              <p>{message.message}</p>
             </div>
-            <p>{message.message}</p>
-          </div>
-          <div class="bg-tertiary90 p-3 rounded-lg">
-            <div class="flex justify-between">
-              <p class="font-semibold">Music Historian:</p>
-              <p class="text-xs text-primary30">
-                {message.created.slice(5, 10)}
-              </p>
+            <div class="bg-tertiary90 p-3 rounded-lg">
+              <div class="flex justify-between">
+                <p class="font-semibold">Music Historian:</p>
+                <p class="text-xs text-primary30">
+                  {message.created.slice(5, 10)}
+                </p>
+              </div>
+              <p>{message.response}</p>
             </div>
-            <p>{message.response}</p>
           </div>
-        </div>
-      {/each}
+        {/each}
 
-      {#if loading}
-        <div class="flex justify-center">
-          <div
-            class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
-          ></div>
-        </div>
-      {/if}
-    </div>
+        {#if loading}
+          <div class="flex justify-center">
+            <div
+              class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
+            ></div>
+          </div>
+        {/if}
+      </div>
+    {/if}
 
     <form on:submit|preventDefault={sendMessage} class="flex gap-2">
       <input

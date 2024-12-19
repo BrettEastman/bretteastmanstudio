@@ -2,6 +2,8 @@
 <script lang="ts">
   import Hamburger from "./Hamburger.svelte";
   import { onDestroy, onMount } from "svelte";
+  import { pb } from "$lib/pocketbase";
+  import { goto } from "$app/navigation";
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -12,6 +14,7 @@
   ];
 
   let isMobileMenuOpen = false;
+  let isAuthenticated = false;
 
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
@@ -29,12 +32,21 @@
     }
   }
 
+  // Check auth status whenever it changes
+  function updateAuthStatus() {
+    isAuthenticated = pb.authStore.isValid;
+  }
+
   onMount(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("click", handleClickOutside);
     } else {
       console.error("Window is not defined.");
     }
+    updateAuthStatus();
+    pb.authStore.onChange(() => {
+      updateAuthStatus();
+    });
   });
 
   // Reset body overflow on component unmount
@@ -46,6 +58,11 @@
       window.removeEventListener("click", handleClickOutside);
     }
   });
+
+  async function handleLogout() {
+    pb.authStore.clear();
+    await goto("/");
+  }
 </script>
 
 <header
@@ -119,6 +136,24 @@
       </ul>
     </nav>
   {/if}
+
+  <div class="flex items-center gap-4">
+    {#if isAuthenticated}
+      <button
+        on:click={handleLogout}
+        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+      >
+        Logout
+      </button>
+    {:else}
+      <a
+        href="/login"
+        class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+      >
+        Login
+      </a>
+    {/if}
+  </div>
 </header>
 
 <style>
