@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { applyAction, enhance } from "$app/forms";
-  import { currentUser, pb } from "$lib/pocketbase";
   import { onDestroy, onMount } from "svelte";
   import { pb } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import Hamburger from "./Hamburger.svelte";
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
