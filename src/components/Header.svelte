@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { applyAction, enhance } from "$app/forms";
-  import { currentUser, pb } from "$lib/pocketbase";
   import { onDestroy, onMount } from "svelte";
+  import { pb } from "$lib/pocketbase";
+  import { goto } from "$app/navigation";
   import Hamburger from "./Hamburger.svelte";
 
   let navItems = [
@@ -13,6 +13,7 @@
   ];
 
   let isMobileMenuOpen = false;
+  let isAuthenticated = false;
 
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
@@ -29,6 +30,10 @@
       }
     }
   }
+  // Check auth status whenever it changes
+  function updateAuthStatus() {
+    isAuthenticated = pb.authStore.isValid;
+  }
 
   onMount(() => {
     if (typeof window !== "undefined") {
@@ -36,6 +41,10 @@
     } else {
       console.error("Window is not defined.");
     }
+    updateAuthStatus();
+    pb.authStore.onChange(() => {
+      updateAuthStatus();
+    });
   });
 
   // Reset body overflow on component unmount
@@ -47,6 +56,11 @@
       window.removeEventListener("click", handleClickOutside);
     }
   });
+
+  async function handleLogout() {
+    pb.authStore.clear();
+    await goto("/");
+  }
 </script>
 
 <header
@@ -94,33 +108,27 @@
               </a>
             </li>
           {/each}
-          {#if $currentUser}
+          {#if isAuthenticated}
             <li
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
-              <form
-                method="post"
-                action="/logout"
-                use:enhance={() => {
-                  return async ({ result }) => {
-                    pb.authStore.clear();
-                    await applyAction(result);
-                  };
-                }}
+              <button
+                on:click={handleLogout}
+                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                <button>{`Log Out ${$currentUser.name}`}</button>
-              </form>
+                {`Logout ${pb.authStore.model?.name}`}
+              </button>
             </li>
           {:else}
             <li
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
-              <a href="/login">Log In</a>
-            </li>
-            <li
-              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-            >
-              <a href="/register">Register</a>
+              <a
+                href="/login"
+                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+              >
+                Login
+              </a>
             </li>
           {/if}
         </ul>
@@ -146,33 +154,27 @@
             </a>
           </li>
         {/each}
-        {#if $currentUser}
+        {#if isAuthenticated}
           <li
             class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
           >
-            <form
-              method="post"
-              action="/logout"
-              use:enhance={() => {
-                return async ({ result }) => {
-                  pb.authStore.clear();
-                  await applyAction(result);
-                };
-              }}
+            <button
+              on:click={handleLogout}
+              class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
             >
-              <button>{`Log Out ${$currentUser.name}`}</button>
-            </form>
+              Logout
+            </button>
           </li>
         {:else}
           <li
             class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
           >
-            <a href="/login">Log In</a>
-          </li>
-          <li
-            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
-            <a href="/register">Register</a>
+            <a
+              href="/login"
+              class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+            >
+              Login
+            </a>
           </li>
         {/if}
       </ul>

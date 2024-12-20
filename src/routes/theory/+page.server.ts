@@ -1,6 +1,7 @@
-import { EMAIL, PASSWORD } from "$env/static/private";
-import { pb } from "$lib/pocketbase";
 import type { ResourceList } from "$lib/typesAndInterfaces";
+import { EMAIL, PASSWORD } from "$env/static/private";
+
+import { pb } from "$lib/pocketbase";
 
 export const load = async () => {
   try {
