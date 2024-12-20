@@ -35,7 +35,8 @@
       modified for students over the years. There are several categories of
       links to PDFs that anyone is welcome to download for free. Note that this
       collection represents a mix of material that was either useful for
-      teaching music concepts, or requested by the student.
+      teaching music concepts, or requested by the student. It may be updated
+      from time to time.
     </p>
     <br />
     <p>
