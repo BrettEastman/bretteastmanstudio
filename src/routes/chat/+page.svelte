@@ -58,11 +58,11 @@
 
 <div class="p-6">
   <div class="max-w-3xl mx-auto">
-    <h1
-      class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
-    >
-      Music History AI Chat
-    </h1>
+      <h1
+        class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
+      >
+        Music History AI Chat
+      </h1>
 
     {#if !isAuthenticated}
       <div class="text-center">
