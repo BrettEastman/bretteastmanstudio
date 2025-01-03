@@ -2,8 +2,6 @@
   import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
-  import { fullName } from "../../stores/userStore";
-  // import { userState } from "../../stores/state.svelte";
 
   let email = "";
   let password = "";
@@ -12,9 +10,6 @@
   let loading = false;
   let error = "";
   let isRegistering = false;
-
-  $: fullName.set(`${firstName} ${lastName}`);
-  // userState.name = `${firstName} ${lastName}`;
 
   onMount(() => {
     pbUser.authStore.loadFromCookie(document.cookie);
@@ -44,10 +39,10 @@
         .authWithPassword(email, password);
 
       // Verify auth was successful
-      console.log("Auth successful:", {
-        valid: pbUser.authStore.isValid,
-        user: authData.record,
-      });
+      // console.log("Auth successful:", {
+      //   valid: pbUser.authStore.isValid,
+      //   user: authData.record,
+      // });
 
       // Save auth state to cookie
       document.cookie = pbUser.authStore.exportToCookie({

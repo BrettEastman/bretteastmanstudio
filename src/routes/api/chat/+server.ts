@@ -7,7 +7,7 @@ export async function POST({ request, locals }) {
     return json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  console.log("pbUser.authStore.model from server", pbUser.authStore.model);
+  // console.log("pbUser.authStore.model from server", pbUser.authStore.model);
 
   const { message } = await request.json();
 
@@ -16,11 +16,11 @@ export async function POST({ request, locals }) {
 
   try {
     const response = await getMusicHistorianResponse(message);
-    console.log("Attempting to create record with:", {
-      user: userId,
-      message,
-      response,
-    });
+    // console.log("Attempting to create record with:", {
+    //   user: userId,
+    //   message,
+    //   response,
+    // });
 
     const record = await pbUser.collection("messages").create({
       user: userId,
@@ -36,12 +36,12 @@ export async function POST({ request, locals }) {
 }
 
 export async function GET({ locals }) {
-  console.log("Full auth details:", {
-    isValid: locals.pb?.authStore?.isValid,
-    userId: locals.user?.id,
-    model: locals.user,
-    cookie: locals.pb?.authStore?.token,
-  });
+  // console.log("Full auth details:", {
+  //   isValid: locals.pb?.authStore?.isValid,
+  //   userId: locals.user?.id,
+  //   model: locals.user,
+  //   cookie: locals.pb?.authStore?.token,
+  // });
 
   if (!locals.user || !locals.pb?.authStore?.isValid) {
     return json({ error: "Unauthorized" }, { status: 401 });

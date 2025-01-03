@@ -3,15 +3,8 @@
   import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
   import Hamburger from "./Hamburger.svelte";
-  // import { userState } from "../stores/state.svelte";
-  import { fullName } from "../stores/userStore";
-  // import { subscribe } from "svelte/store";
 
-  let name: string;
-
-  const unsubscribe = fullName.subscribe((value) => {
-    name = value;
-  });
+  // console.log("pbUser:", pbUser);
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -39,7 +32,6 @@
       }
     }
   }
-  // Check auth status whenever it changes
   function updateAuthStatus() {
     isAuthenticated = pbUser.authStore.isValid;
   }
@@ -53,6 +45,7 @@
     updateAuthStatus();
     pbUser.authStore.onChange(() => {
       updateAuthStatus();
+      console.log("Auth status changed:", isAuthenticated);
     });
   });
 
@@ -64,11 +57,17 @@
     if (typeof window !== "undefined") {
       window.removeEventListener("click", handleClickOutside);
     }
-    unsubscribe();
   });
 
   async function handleLogout() {
     pbUser.authStore.clear();
+    console.log("Logged out");
+    document.cookie = pbUser.authStore.exportToCookie({
+      httpOnly: false,
+      secure: false,
+      path: "/",
+      expires: new Date(0),
+    });
     await goto("/");
   }
 </script>
@@ -126,7 +125,7 @@
                 on:click={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                {`Logout ${name}`}
+                {`Logout ${pbUser.authStore.model?.name}`}
               </button>
             </li>
           {:else}
