@@ -1,12 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { pb } from "$lib/pocketbase";
+  import { pbUser } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
-  let messageContainer: HTMLDivElement; // Add container reference
+  let messageContainer: HTMLDivElement;
   let isAuthenticated = false;
 
   const scrollToBottom = () => {
@@ -32,6 +32,7 @@
         method: "POST",
         body: JSON.stringify({ message }),
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
 
       const result = await response.json();
@@ -44,11 +45,14 @@
   }
 
   onMount(async () => {
-    isAuthenticated = pb.authStore.isValid;
+    isAuthenticated = pbUser.authStore.isValid;
     if (!isAuthenticated) return;
 
     try {
-      const response = await fetch("/api/chat");
+      const response = await fetch("/api/chat", {
+        method: "GET",
+        credentials: "include",
+      });
       messages = await response.json();
     } catch (error) {
       console.error("Error loading messages:", error);

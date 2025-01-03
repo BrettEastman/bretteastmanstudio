@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { pb } from "$lib/pocketbase";
+  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
   import Hamburger from "./Hamburger.svelte";
+
+  // console.log("pbUser:", pbUser);
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -30,9 +32,8 @@
       }
     }
   }
-  // Check auth status whenever it changes
   function updateAuthStatus() {
-    isAuthenticated = pb.authStore.isValid;
+    isAuthenticated = pbUser.authStore.isValid;
   }
 
   onMount(() => {
@@ -42,8 +43,9 @@
       console.error("Window is not defined.");
     }
     updateAuthStatus();
-    pb.authStore.onChange(() => {
+    pbUser.authStore.onChange(() => {
       updateAuthStatus();
+      console.log("Auth status changed:", isAuthenticated);
     });
   });
 
@@ -58,7 +60,14 @@
   });
 
   async function handleLogout() {
-    pb.authStore.clear();
+    pbUser.authStore.clear();
+    console.log("Logged out");
+    document.cookie = pbUser.authStore.exportToCookie({
+      httpOnly: false,
+      secure: false,
+      path: "/",
+      expires: new Date(0),
+    });
     await goto("/");
   }
 </script>
@@ -116,7 +125,7 @@
                 on:click={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                {`Logout ${pb.authStore.model?.name}`}
+                {`Logout ${pbUser.authStore.model?.name}`}
               </button>
             </li>
           {:else}

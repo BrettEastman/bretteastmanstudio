@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { pb } from "$lib/pocketbase";
+  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
 
   let email = "";
   let password = "";
@@ -9,6 +10,10 @@
   let loading = false;
   let error = "";
   let isRegistering = false;
+
+  onMount(() => {
+    pbUser.authStore.loadFromCookie(document.cookie);
+  });
 
   async function handleSubmit() {
     loading = true;
@@ -20,7 +25,7 @@
           throw new Error("First and last name are required");
         }
 
-        await pb.collection("users").create({
+        await pbUser.collection("users").create({
           name: `${firstName.trim()} ${lastName.trim()}`,
           email,
           emailVisibility: true,
@@ -29,10 +34,26 @@
         });
       }
 
-      await pb.collection("users").authWithPassword(email, password);
+      const authData = await pbUser
+        .collection("users")
+        .authWithPassword(email, password);
+
+      // Verify auth was successful
+      // console.log("Auth successful:", {
+      //   valid: pbUser.authStore.isValid,
+      //   user: authData.record,
+      // });
+
+      // Save auth state to cookie
+      document.cookie = pbUser.authStore.exportToCookie({
+        httpOnly: false,
+        secure: false,
+        path: "/",
+      });
+
       await goto("/chat");
     } catch (e) {
-      console.error(e);
+      console.error("Auth error:", e);
       error =
         e instanceof Error
           ? e.message

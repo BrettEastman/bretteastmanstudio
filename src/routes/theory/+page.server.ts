@@ -1,12 +1,12 @@
 import type { ResourceList } from "$lib/typesAndInterfaces";
-import { EMAIL, PASSWORD } from "$env/static/private";
+// import { EMAIL, PASSWORD } from "$env/static/private";
 
-import { pb } from "$lib/pocketbase";
+import { pbUser } from "$lib/pocketbase";
 
 export const load = async () => {
   try {
-    await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("resources").getFullList({
+    // await pbUser.admins.authWithPassword(EMAIL, PASSWORD);
+    const records = await pbUser.collection("resources").getFullList({
       sort: "-created",
     });
 
