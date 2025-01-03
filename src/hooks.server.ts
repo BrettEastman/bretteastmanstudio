@@ -8,7 +8,52 @@ export const handle: Handle = async ({ event, resolve }) => {
   // pbUser.authStore.clear();
   // pbAdmin.authStore.clear();
   // Get the auth cookie
-  pbUser.authStore.loadFromCookie(event.request.headers.get("cookie") || "");
+  const cookie = event.request.headers.get("cookie") || "";
+  pbUser.authStore.loadFromCookie(cookie);
+
+  // if (pbUser.authStore.isValid) {
+  //   console.log(
+  //     "pbUser.authStore.model from hooks server:",
+  //     pbUser.authStore.model
+  //   );
+  //   event.locals.user = structuredClone(pbUser.authStore.model);
+  // } else {
+  //   event.locals.user = null;
+  // }
+
+  try {
+    // Verify and refresh the auth store if token exists
+    if (pbUser.authStore.isValid) {
+      await pbUser.collection("users").authRefresh();
+      // Important: Set both pb and user in locals
+      event.locals.pb = pbUser;
+      event.locals.user = structuredClone(pbUser.authStore.model);
+    } else {
+      // Clear locals if not authenticated
+      event.locals.pb = pbUser;
+      event.locals.user = null;
+    }
+  } catch (err) {
+    // Clear auth store and locals on error
+    console.error("Error refreshing auth token:", err);
+    pbUser.authStore.clear();
+    event.locals.pb = pbUser;
+    event.locals.user = null;
+  }
+
+  // try {
+  //   // Verify and refresh the auth store
+  //   if (pbUser.authStore.isValid) {
+  //     await pbUser.collection("users").authRefresh();
+  //   }
+  // } catch (_) {
+  //   // Clear the auth store on failed refresh
+  //   pbUser.authStore.clear();
+  // }
+
+  // event.locals.pb = pbUser;
+  // // event.locals.user = structuredClone(pbUser.authStore.model);
+  // event.locals.user = pbUser.authStore.model;
 
   // Protect chat routes
   if (event.url.pathname.startsWith("/chat")) {
@@ -17,22 +62,16 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
   }
 
-  if (pbUser.authStore.isValid) {
-    console.log(
-      "pbUser.authStore.model from hooks server:",
-      pbUser.authStore.model
-    );
-    event.locals.user = structuredClone(pbUser.authStore.model);
-  } else {
-    event.locals.user = null;
-  }
-
   const response = await resolve(event);
 
   // Send the auth cookie back
   response.headers.set(
     "set-cookie",
-    pbUser.authStore.exportToCookie({ httpOnly: false, path: "/" })
+    pbUser.authStore.exportToCookie({
+      secure: false,
+      httpOnly: false,
+      path: "/",
+    })
   );
 
   return response;

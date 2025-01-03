@@ -49,7 +49,10 @@
     if (!isAuthenticated) return;
 
     try {
-      const response = await fetch("/api/chat");
+      const response = await fetch("/api/chat", {
+        method: "GET",
+        credentials: "include",
+      });
       messages = await response.json();
     } catch (error) {
       console.error("Error loading messages:", error);

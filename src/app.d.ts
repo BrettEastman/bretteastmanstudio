@@ -4,7 +4,7 @@ declare global {
   namespace App {
     // interface Error {}
     interface Locals {
-      pbUser: import("pocketbase").default;
+      pb: import("pocketbase").default;
       user: import("pocketbase").default["authStore"]["model"];
     }
     // interface PageData {}
