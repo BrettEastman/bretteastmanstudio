@@ -6,7 +6,7 @@
   let messages: ChatMessage[] = [];
   let newMessage = "";
   let loading = false;
-  let messageContainer: HTMLDivElement; // Add container reference
+  let messageContainer: HTMLDivElement;
   let isAuthenticated = false;
 
   const scrollToBottom = () => {

@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { currentUserId } from "$lib/stores/user";
   import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
+  import { fullName } from "../../stores/userStore";
+  // import { userState } from "../../stores/state.svelte";
 
   let email = "";
   let password = "";
@@ -12,53 +13,32 @@
   let error = "";
   let isRegistering = false;
 
+  $: fullName.set(`${firstName} ${lastName}`);
+  // userState.name = `${firstName} ${lastName}`;
+
   onMount(() => {
     pbUser.authStore.loadFromCookie(document.cookie);
-    currentUserId.set(pbUser.authStore.model?.id || null);
   });
 
-  // async function handleSubmit() {
-  //   loading = true;
-  //   error = "";
-
-  //   try {
-  //     if (isRegistering) {
-  //       if (!firstName.trim() || !lastName.trim()) {
-  //         throw new Error("First and last name are required");
-  //       }
-
-  //       await pbUser.collection("users").create({
-  //         name: `${firstName.trim()} ${lastName.trim()}`,
-  //         email,
-  //         emailVisibility: true,
-  //         password,
-  //         passwordConfirm: password,
-  //       });
-  //     }
-
-  //     const authData = await pbUser
-  //       .collection("users")
-  //       .authWithPassword(email, password);
-  //     currentUserId.set(authData.record.id);
-
-  //     // These two should be the same
-  //     console.log("authData.record.id from login:", authData.record.id);
-  //     console.log("pbUser.authStore.model.id", pbUser.authStore.model?.id);
-  //     // currentUserId.set(authData.record.id);
-
-  //     await goto("/chat");
-  //   } catch (e) {
-  //     console.error(e);
-  //     error =
-  //       e instanceof Error
-  //         ? e.message
-  //         : "Authentication failed. Please check your credentials.";
-  //   } finally {
-  //     loading = false;
-  //   }
-  // }
   async function handleSubmit() {
+    loading = true;
+    error = "";
+
     try {
+      if (isRegistering) {
+        if (!firstName.trim() || !lastName.trim()) {
+          throw new Error("First and last name are required");
+        }
+
+        await pbUser.collection("users").create({
+          name: `${firstName.trim()} ${lastName.trim()}`,
+          email,
+          emailVisibility: true,
+          password,
+          passwordConfirm: password,
+        });
+      }
+
       const authData = await pbUser
         .collection("users")
         .authWithPassword(email, password);
@@ -79,7 +59,12 @@
       await goto("/chat");
     } catch (e) {
       console.error("Auth error:", e);
-      error = "Authentication failed";
+      error =
+        e instanceof Error
+          ? e.message
+          : "Authentication failed. Please check your credentials.";
+    } finally {
+      loading = false;
     }
   }
 </script>

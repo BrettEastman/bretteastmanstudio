@@ -3,6 +3,15 @@
   import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
   import Hamburger from "./Hamburger.svelte";
+  // import { userState } from "../stores/state.svelte";
+  import { fullName } from "../stores/userStore";
+  // import { subscribe } from "svelte/store";
+
+  let name: string;
+
+  const unsubscribe = fullName.subscribe((value) => {
+    name = value;
+  });
 
   let navItems = [
     { name: "Guitar", href: "/guitar" },
@@ -55,6 +64,7 @@
     if (typeof window !== "undefined") {
       window.removeEventListener("click", handleClickOutside);
     }
+    unsubscribe();
   });
 
   async function handleLogout() {
@@ -116,7 +126,7 @@
                 on:click={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                {`Logout ${pbUser.authStore.model?.name}`}
+                {`Logout ${name}`}
               </button>
             </li>
           {:else}
