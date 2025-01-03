@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { pb } from "$lib/pocketbase";
+  import { pbUser } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
 
   let messages: ChatMessage[] = [];
@@ -32,6 +32,7 @@
         method: "POST",
         body: JSON.stringify({ message }),
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
 
       const result = await response.json();
@@ -44,7 +45,7 @@
   }
 
   onMount(async () => {
-    isAuthenticated = pb.authStore.isValid;
+    isAuthenticated = pbUser.authStore.isValid;
     if (!isAuthenticated) return;
 
     try {

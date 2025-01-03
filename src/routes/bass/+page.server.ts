@@ -1,12 +1,12 @@
-import { EMAIL, PASSWORD } from "$env/static/private";
+// import { EMAIL, PASSWORD } from "$env/static/private";
 
-import { pb } from "$lib/pocketbase";
+import { pbUser } from "$lib/pocketbase";
 import type { SongList } from "$lib/typesAndInterfaces";
 
 export const load = async () => {
   try {
-    await pb.admins.authWithPassword(EMAIL, PASSWORD);
-    const records = await pb.collection("songs").getFullList({
+    // await pbUser.admins.authWithPassword(EMAIL, PASSWORD);
+    const records = await pbUser.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Bass"',
     });
 

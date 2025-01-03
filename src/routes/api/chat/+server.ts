@@ -1,39 +1,52 @@
 import { json } from "@sveltejs/kit";
-import { pb } from "$lib/pocketbase";
+import { pbUser } from "$lib/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import { currentUserId } from "$lib/stores/user.js";
 
-export async function POST({ request }) {
-  if (!pb.authStore.isValid) {
+export async function POST({ request, locals }) {
+  // if (!pbUser.authStore.isValid) {
+  //   return json({ error: "Unauthorized" }, { status: 401 });
+  // }
+
+  if (!locals.user) {
     return json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  console.log("pbUser.authStore.model from server", pbUser.authStore.model);
+
   const { message } = await request.json();
+
+  const userId = locals.user.id;
+  console.log("userId", userId);
 
   try {
     const response = await getMusicHistorianResponse(message);
 
-    const record = await pb.collection("messages").create({
-      user: pb.authStore.model?.id,
+    await pbUser.collection;
+
+    const record = await pbUser.collection("messages").create({
+      user: userId,
       message,
       response,
     });
 
     return json(record);
   } catch (error) {
-    console.error("Error processing message:", error);
-    return json({ error: "Failed to process message" }, { status: 500 });
+    console.error("Error processing POST request:", error);
+    return json({ error: "Failed to process request" }, { status: 400 });
   }
 }
 
 export async function GET() {
-  if (!pb.authStore.isValid) {
+  if (!pbUser.authStore.isValid) {
     return json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const records = await pb.collection("messages").getList(1, 50, {
+    const records = await pbUser.collection("messages").getList(1, 50, {
       sort: "created",
-      filter: `user = "${pb.authStore.model?.id}"`,
+      filter: `user = "${currentUserId}"`,
+      // filter: `user = "${pbUser.authStore.model?.id}"`,
     });
 
     return json(records.items);

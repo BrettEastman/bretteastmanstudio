@@ -1,6 +1,8 @@
 <script lang="ts">
-  import { pb } from "$lib/pocketbase";
+  import { currentUserId } from "$lib/stores/user";
+  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
 
   let email = "";
   let password = "";
@@ -9,6 +11,11 @@
   let loading = false;
   let error = "";
   let isRegistering = false;
+
+  onMount(() => {
+    pbUser.authStore.loadFromCookie(document.cookie);
+    currentUserId.set(pbUser.authStore.model?.id || null);
+  });
 
   async function handleSubmit() {
     loading = true;
@@ -20,7 +27,7 @@
           throw new Error("First and last name are required");
         }
 
-        await pb.collection("users").create({
+        await pbUser.collection("users").create({
           name: `${firstName.trim()} ${lastName.trim()}`,
           email,
           emailVisibility: true,
@@ -29,7 +36,16 @@
         });
       }
 
-      await pb.collection("users").authWithPassword(email, password);
+      const authData = await pbUser
+        .collection("users")
+        .authWithPassword(email, password);
+      currentUserId.set(authData.record.id);
+
+      // These two should be the same
+      console.log("authData.record.id from login:", authData.record.id);
+      console.log("pbUser.authStore.model.id", pbUser.authStore.model?.id);
+      currentUserId.set(authData.record.id);
+
       await goto("/chat");
     } catch (e) {
       console.error(e);
