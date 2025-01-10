@@ -32,6 +32,8 @@
       <ResourceDisplay {resource} />
     {/each}
   {:else}
-    <p>No resources available</p>
+    <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
+      No resources available
+    </p>
   {/if}
 </div>

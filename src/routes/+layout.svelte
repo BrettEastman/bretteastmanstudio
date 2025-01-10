@@ -2,6 +2,10 @@
   import "../app.css";
   import Footer from "../components/Footer.svelte";
   import Header from "../components/Header.svelte";
+  import { dev } from "$app/environment";
+  import { injectAnalytics } from "@vercel/analytics/sveltekit";
+
+  injectAnalytics({ mode: dev ? "development" : "production" });
 </script>
 
 <div>
