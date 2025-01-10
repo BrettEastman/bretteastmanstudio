@@ -98,7 +98,7 @@
 
   {#if !isMobileMenuOpen}
     <nav>
-      <div class="flex justify-between py-4">
+      <div class="flex justify-between items-center py-4">
         <a
           href="/"
           class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
@@ -106,7 +106,7 @@
           Brett Eastman <em>teaching archives</em>
         </a>
         <!-- Desktop nav -->
-        <ul class="hidden sm:flex justify-end">
+        <ul class="hidden sm:flex justify-end items-center">
           {#each navItems as item}
             <li class="mx-4">
               <a

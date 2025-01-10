@@ -9,7 +9,7 @@
     class="text-md text-primary10 dark:text-primary80 sm:text-lg md:w-3/4 lg:w-1/2"
   >
     <p>
-      Brett Eastman is a{" "}
+      Hello, I am Brett, a{" "}
       <a
         href="https://www.bretteastman.dev/"
         target="_blank"
@@ -30,24 +30,28 @@
         class="hover:text-primary60 duration-200"
       >
         musician,
-      </a> and former music teacher based in San Francisco. As a teacher, his mission
+      </a> and former music teacher based in San Francisco. As a teacher, my mission
       was to provide students the chance to develop lasting musical skills, leaving
-      the student with abilities to provide a lifetime of musical enjoyment. His
-      aim was to inspire students to do their very best and to find their own deep
-      connection to music.
+      them with the ability to continue to provide for themselves a lifetime of musical
+      enjoyment. My aim was to inspire students to be curious, to do their very best
+      and to find their own deep connection to music.
     </p>
     <br />
     <p>
-      This website is an archive of various teaching materials Brett created or
-      modified for students over the years. It is limited collection, but here
-      are several categories of links to PDFs that anyone is welcome to download
-      for free. Note that this collection represents a mix of material that was
-      either useful for teaching music concepts, or requested by the student.
+      This website is an archive of various teaching materials I created or
+      modified for students over the years, which does not necessarily represent
+      my music tastes. It is very limited collection, with several categories of
+      links to PDFs that anyone is welcome to download for free. Note that this
+      collection primarily represents material that was either useful for
+      teaching music concepts, or requested by the student. While most of the
+      pieces in the collection were arranged or written by me, some of the tabs
+      are adaptations of arrangements others wrote that I sourced online, then
+      refined.
     </p>
     <br />
     <p>
-      For the drummers out there, you may also be interested in purchasing
-      Brett's book,
+      For the drummers out there, you may also be interested in purchasing my
+      drum book,
       <a
         href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
         target="_blank"

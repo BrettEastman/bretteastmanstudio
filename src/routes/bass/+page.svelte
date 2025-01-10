@@ -31,6 +31,8 @@
       <SongDisplay {song} />
     {/each}
   {:else}
-    <p>No bass songs available</p>
+    <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
+      No bass songs available
+    </p>
   {/if}
 </div>
