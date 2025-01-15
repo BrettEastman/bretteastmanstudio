@@ -167,5 +167,12 @@
         ? "Already have an account? Sign in here"
         : "Need an account? Register here"}
     </button>
+
+    <button
+      type="button"
+      on:click={() => goto("/forgot-password")}
+      class="w-full text-xs text-secondary50 hover:text-secondary80 duration-200"
+      >Forgot password?</button
+    >
   </form>
 </div>
