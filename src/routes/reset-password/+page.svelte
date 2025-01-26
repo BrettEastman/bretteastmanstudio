@@ -1,11 +1,21 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { goto } from "$app/navigation";
   import { pbUser } from "$lib/pocketbase";
 
-  let email = "";
+  let password = "";
+  let confirmPassword = "";
   let loading = false;
   let errorMessage = "";
   let successMessage = "";
+
+  // Get token from URL query parameter
+  const token: string | null = $page.url.searchParams.get("token");
+
+  // Redirect if no token present
+  if (!token) {
+    goto("/login");
+  }
 
   async function handleSubmit() {
     loading = true;
@@ -13,34 +23,33 @@
     successMessage = "";
 
     try {
-      // Validate email format
-      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        throw new Error("Please enter a valid email address");
+      // Validate password
+      if (password.length < 8) {
+        throw new Error("Password must be at least 8 characters long");
       }
 
-      // Check if email exists in database (optional)
-      try {
-        await pbUser.collection("users").getFirstListItem(`email="${email}"`);
-      } catch (e) {
-        // Don't reveal if email exists for security
-        console.log("Email check:", e);
+      if (password !== confirmPassword) {
+        throw new Error("Passwords do not match");
       }
 
-      // Request password reset
-      await pbUser.collection("users").requestPasswordReset(email);
+      if (!token) {
+        throw new Error("Invalid password reset token");
+      }
 
-      successMessage =
-        "If an account exists with this email, you will receive password reset instructions shortly.";
+      // Confirm password reset
+      await pbUser
+        .collection("users")
+        .confirmPasswordReset(token, password, confirmPassword);
 
-      // Delay redirect to show success message
+      successMessage = "Password successfully reset!";
+
+      // Redirect to login after success
       setTimeout(() => {
         goto("/login");
       }, 3000);
     } catch (e: any) {
-      console.error("Forgot password error:", e);
-      errorMessage =
-        e.message ||
-        "Failed to process password reset request. Please try again.";
+      console.error("Password reset error:", e);
+      errorMessage = e.message || "Failed to reset password. Please try again.";
     } finally {
       loading = false;
     }
@@ -51,7 +60,7 @@
   <h2
     class="mb-4 text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
   >
-    Forgot Password
+    Reset Password
   </h2>
 
   {#if successMessage}
@@ -69,19 +78,37 @@
   <form on:submit|preventDefault={handleSubmit} class="space-y-4">
     <div>
       <label
-        for="email"
+        for="password"
         class="block text-sm font-medium text-primary30 dark:text-secondary90"
       >
-        Email
+        New Password
       </label>
       <input
-        type="email"
-        id="email"
-        bind:value={email}
+        type="password"
+        id="password"
+        bind:value={password}
         required
         disabled={loading}
         class="mt-1 block w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
-        placeholder="Enter your email address"
+        placeholder="Enter new password"
+      />
+    </div>
+
+    <div>
+      <label
+        for="confirmPassword"
+        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+      >
+        Confirm Password
+      </label>
+      <input
+        type="password"
+        id="confirmPassword"
+        bind:value={confirmPassword}
+        required
+        disabled={loading}
+        class="mt-1 block w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
+        placeholder="Confirm new password"
       />
     </div>
 
@@ -115,14 +142,8 @@
           Processing...
         </span>
       {:else}
-        Reset Password
+        Set New Password
       {/if}
     </button>
-
-    <div class="text-center mt-4">
-      <a href="/login" class="text-sm text-secondary50 hover:text-secondary60">
-        Back to Login
-      </a>
-    </div>
   </form>
 </div>
