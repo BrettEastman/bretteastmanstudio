@@ -13,26 +13,23 @@
     successMessage = "";
 
     try {
-      // Validate email format
       if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
         throw new Error("Please enter a valid email address");
       }
 
-      // Check if email exists in database (optional)
+      // if email already exists in database?
       try {
         await pbUser.collection("users").getFirstListItem(`email="${email}"`);
       } catch (e) {
-        // Don't reveal if email exists for security
         console.log("Email check:", e);
       }
 
-      // Request password reset
       await pbUser.collection("users").requestPasswordReset(email);
 
       successMessage =
         "If an account exists with this email, you will receive password reset instructions shortly.";
 
-      // Delay redirect to show success message
+      // Do we want this delay?
       setTimeout(() => {
         goto("/login");
       }, 3000);
@@ -70,7 +67,7 @@
     <div>
       <label
         for="email"
-        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+        class="text-sm font-medium text-primary30 dark:text-secondary90"
       >
         Email
       </label>
@@ -80,7 +77,7 @@
         bind:value={email}
         required
         disabled={loading}
-        class="mt-1 block w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
         placeholder="Enter your email address"
       />
     </div>
@@ -88,7 +85,7 @@
     <button
       type="submit"
       disabled={loading}
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 disabled:opacity-50 disabled:cursor-not-allowed duration-200"
     >
       {#if loading}
         <span class="inline-flex items-center">
@@ -120,7 +117,10 @@
     </button>
 
     <div class="text-center mt-4">
-      <a href="/login" class="text-sm text-secondary50 hover:text-secondary60">
+      <a
+        href="/login"
+        class="text-sm text-secondary50 hover:text-secondary80 duration-200"
+      >
         Back to Login
       </a>
     </div>

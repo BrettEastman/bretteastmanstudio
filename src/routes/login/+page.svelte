@@ -24,7 +24,6 @@
         if (!firstName.trim() || !lastName.trim()) {
           throw new Error("First and last name are required");
         }
-
         await pbUser.collection("users").create({
           name: `${firstName.trim()} ${lastName.trim()}`,
           email,
@@ -34,29 +33,18 @@
         });
       }
 
-      const authData = await pbUser
-        .collection("users")
-        .authWithPassword(email, password);
-
-      // Verify auth was successful
-      // console.log("Auth successful:", {
-      //   valid: pbUser.authStore.isValid,
-      //   user: authData.record,
-      // });
-
-      // Save auth state to cookie
+      await pbUser.collection("users").authWithPassword(email, password);
       document.cookie = pbUser.authStore.exportToCookie({
         httpOnly: false,
         secure: false,
         path: "/",
       });
-
       await goto("/chat");
-    } catch (e) {
+    } catch (e: unknown) {
       console.error("Auth error:", e);
       error =
         e instanceof Error
-          ? e.message
+          ? "Please check your credentials. " + e.message
           : "Authentication failed. Please check your credentials.";
     } finally {
       loading = false;
@@ -77,7 +65,7 @@
         <div class="flex-1">
           <label
             for="firstName"
-            class="block text-sm font-medium text-primary30 dark:text-secondary90"
+            class="text-sm font-medium text-primary30 dark:text-secondary90"
           >
             First Name
           </label>
@@ -86,13 +74,13 @@
             id="firstName"
             bind:value={firstName}
             required={isRegistering}
-            class="block mt-1 w-full rounded-md border-primary50 shadow-sm"
+            class="p-2 mt-1 w-full rounded-md border-primary50 shadow-sm"
           />
         </div>
         <div class="flex-1">
           <label
             for="lastName"
-            class="block text-sm font-medium text-primary30 dark:text-secondary90"
+            class="text-sm font-medium text-primary30 dark:text-secondary90"
           >
             Last Name
           </label>
@@ -101,7 +89,7 @@
             id="lastName"
             bind:value={lastName}
             required={isRegistering}
-            class="mt-1 block w-full rounded-md border-primary50 shadow-sm"
+            class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm"
           />
         </div>
       </div>
@@ -110,7 +98,7 @@
     <div>
       <label
         for="email"
-        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+        class="text-sm font-medium text-primary30 dark:text-secondary90"
       >
         Email
       </label>
@@ -119,14 +107,14 @@
         id="email"
         bind:value={email}
         required
-        class="mt-1 block w-full rounded-md border-primary50 shadow-sm"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm"
       />
     </div>
 
     <div>
       <label
         for="password"
-        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+        class="text-sm font-medium text-primary30 dark:text-secondary90"
       >
         Password
       </label>
@@ -135,7 +123,7 @@
         id="password"
         bind:value={password}
         required
-        class="mt-1 mb-5 block w-full rounded-md border-primary50 shadow-sm"
+        class="mt-1 mb-5 p-2 w-full rounded-md border-primary50 shadow-sm"
       />
     </div>
 
