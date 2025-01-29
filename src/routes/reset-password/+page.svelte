@@ -9,10 +9,8 @@
   let errorMessage = "";
   let successMessage = "";
 
-  // Get token from URL query parameter
   const token: string | null = $page.url.searchParams.get("token");
 
-  // Redirect if no token present
   if (!token) {
     goto("/login");
   }
@@ -23,7 +21,6 @@
     successMessage = "";
 
     try {
-      // Validate password
       if (password.length < 8) {
         throw new Error("Password must be at least 8 characters long");
       }
@@ -36,14 +33,12 @@
         throw new Error("Invalid password reset token");
       }
 
-      // Confirm password reset
       await pbUser
         .collection("users")
         .confirmPasswordReset(token, password, confirmPassword);
 
       successMessage = "Password successfully reset!";
 
-      // Redirect to login after success
       setTimeout(() => {
         goto("/login");
       }, 3000);
@@ -79,7 +74,7 @@
     <div>
       <label
         for="password"
-        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+        class="text-sm font-medium text-primary30 dark:text-secondary90"
       >
         New Password
       </label>
@@ -89,7 +84,7 @@
         bind:value={password}
         required
         disabled={loading}
-        class="mt-1 block w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
         placeholder="Enter new password"
       />
     </div>
@@ -97,7 +92,7 @@
     <div>
       <label
         for="confirmPassword"
-        class="block text-sm font-medium text-primary30 dark:text-secondary90"
+        class="text-sm font-medium text-primary30 dark:text-secondary90"
       >
         Confirm Password
       </label>
@@ -107,7 +102,7 @@
         bind:value={confirmPassword}
         required
         disabled={loading}
-        class="mt-1 block w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:ring-secondary50 focus:border-secondary50"
         placeholder="Confirm new password"
       />
     </div>
@@ -115,7 +110,7 @@
     <button
       type="submit"
       disabled={loading}
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 disabled:opacity-50 disabled:cursor-not-allowed duration-200"
     >
       {#if loading}
         <span class="inline-flex items-center">
