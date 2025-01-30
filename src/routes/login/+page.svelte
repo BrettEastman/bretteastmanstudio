@@ -74,7 +74,7 @@
             id="firstName"
             bind:value={firstName}
             required={isRegistering}
-            class="p-2 mt-1 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+            class="p-2 mt-1 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
           />
         </div>
         <div class="flex-1">
@@ -89,7 +89,7 @@
             id="lastName"
             bind:value={lastName}
             required={isRegistering}
-            class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+            class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@
         id="email"
         bind:value={email}
         required
-        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
       />
     </div>
 
@@ -123,7 +123,7 @@
         id="password"
         bind:value={password}
         required
-        class="mt-1 mb-5 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 mb-5 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
       />
     </div>
 

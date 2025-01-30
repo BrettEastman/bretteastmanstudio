@@ -22,7 +22,7 @@
   </h1>
   <input
     type="text"
-    class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+    class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
     placeholder="Search for a guitar song by artist or title..."
     bind:value={searchQuery}
   />

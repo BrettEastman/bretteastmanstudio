@@ -84,7 +84,7 @@
         bind:value={password}
         required
         disabled={loading}
-        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
         placeholder="Enter new password"
       />
     </div>
