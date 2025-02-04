@@ -32,6 +32,7 @@
       }
     }
   }
+
   function updateAuthStatus() {
     isAuthenticated = pbUser.authStore.isValid;
   }
@@ -59,6 +60,11 @@
     }
   });
 
+  function handleLogin() {
+    isMobileMenuOpen = false;
+    goto("/login");
+  }
+
   async function handleLogout() {
     pbUser.authStore.clear();
     console.log("Logged out");
@@ -69,6 +75,7 @@
       expires: new Date(0),
     });
     await goto("/");
+    isMobileMenuOpen = false;
   }
 </script>
 
@@ -178,12 +185,12 @@
           <li
             class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
           >
-            <a
-              href="/login"
+            <button
+              on:click={handleLogin}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
             >
               Login
-            </a>
+            </button>
           </li>
         {/if}
       </ul>

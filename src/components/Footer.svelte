@@ -3,7 +3,7 @@
 </script>
 
 <footer
-  class="sticky bottom-0 bg-secondary90 border-t-4 border-solid border-tertiary70 dark:bg-secondary20 dark:border-tertiary70"
+  class="bottom-0 bg-secondary90 border-t-4 border-solid border-tertiary70 dark:bg-secondary20 dark:border-tertiary70"
 >
   <div
     class="flex justify-center py-6 mx-auto sm:justify-end gap-4 sm:pr-4 sm:gap-8"
