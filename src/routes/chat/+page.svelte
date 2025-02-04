@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { pbUser } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
+  import { formatDateTime } from "$lib/utils/formatDateTime";
 
   let messages: ChatMessage[] = [];
   let newMessage = "";
@@ -93,7 +94,7 @@
               <div class="flex justify-between">
                 <p class="font-semibold">You:</p>
                 <p class="text-xs text-primary30">
-                  {message.created.slice(5, 10)}
+                  {formatDateTime(message.created)}
                 </p>
               </div>
               <p>{message.message}</p>
@@ -102,7 +103,7 @@
               <div class="flex justify-between">
                 <p class="font-semibold">Music Historian:</p>
                 <p class="text-xs text-primary30">
-                  {message.created.slice(5, 10)}
+                  {formatDateTime(message.created)}
                 </p>
               </div>
               <p>{message.response}</p>
