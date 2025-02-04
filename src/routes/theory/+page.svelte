@@ -16,11 +16,9 @@
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
-  <h1
-    class="text-2xl text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
-  >
+  <h2 class="text-2xl text-primary30 font-semibold py-2 dark:text-secondary90">
     Theory Resources
-  </h1>
+  </h2>
   <input
     type="text"
     class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
