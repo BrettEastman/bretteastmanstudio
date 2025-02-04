@@ -80,7 +80,7 @@
 </script>
 
 <header
-  class="sticky top-0 bg-secondary93 border-b-4 z-20 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 p-4"
+  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 p-4"
 >
   <div class="flex flex-row justify-between items-center sm:hidden">
     <div>
