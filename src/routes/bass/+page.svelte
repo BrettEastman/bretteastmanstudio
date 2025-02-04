@@ -1,12 +1,21 @@
 <script lang="ts">
   import SongDisplay from "../../components/SongDisplay.svelte";
   import type { PageServerData } from "./$types";
+  import { writable } from "svelte/store";
 
   export let data: PageServerData;
 
   let searchQuery = "";
 
-  $: filteredSongs = data.songList.filter((song) => {
+  const songs = writable(data.songList);
+
+  function randomizeSongs() {
+    songs.update((currentSongs) =>
+      [...currentSongs].sort(() => Math.random() - 0.5)
+    );
+  }
+
+  $: filteredSongs = $songs.filter((song) => {
     return (
       song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
       song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -15,11 +24,15 @@
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
-  <h1
-    class="text-2xl text-primary30 font-semibold py-2 sm:py-8 dark:text-secondary90"
-  >
+  <h2 class="text-2xl text-primary30 font-semibold py-2 dark:text-secondary90">
     Bass Songs
-  </h1>
+  </h2>
+  <button
+    class="w-full text-sm text-secondary50 hover:text-secondary80 duration-200"
+    on:click={randomizeSongs}
+  >
+    Randomize order
+  </button>
   <input
     type="text"
     class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
