@@ -74,7 +74,7 @@
             id="firstName"
             bind:value={firstName}
             required={isRegistering}
-            class="p-2 mt-1 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+            class="p-2 mt-1 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50 dark:focus:ring-4 dark:focus:ring-tertiary60 dark:focus:border-tertiary60"
           />
         </div>
         <div class="flex-1">
@@ -89,7 +89,7 @@
             id="lastName"
             bind:value={lastName}
             required={isRegistering}
-            class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+            class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50 dark:focus:ring-4 dark:focus:ring-tertiary60 dark:focus:border-tertiary60"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@
         id="email"
         bind:value={email}
         required
-        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50 dark:focus:ring-4 dark:focus:ring-tertiary60 dark:focus:border-tertiary60"
       />
     </div>
 
@@ -123,7 +123,7 @@
         id="password"
         bind:value={password}
         required
-        class="mt-1 mb-5 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+        class="mt-1 mb-5 p-2 w-full rounded-md border-primary50 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50 dark:focus:ring-4 dark:focus:ring-tertiary60 dark:focus:border-tertiary60"
       />
     </div>
 
@@ -134,7 +134,7 @@
     <button
       type="submit"
       disabled={loading}
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50"
+      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 duration-200"
     >
       {loading ? "Processing..." : isRegistering ? "Register" : "Sign In"}
     </button>
