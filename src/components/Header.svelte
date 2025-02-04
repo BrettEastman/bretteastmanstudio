@@ -80,9 +80,9 @@
 </script>
 
 <header
-  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70"
+  class="sticky top-0 bg-secondary93 border-b-4 z-20 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 p-4"
 >
-  <div class="flex flex-row justify-between items-center px-4 pt-6 sm:hidden">
+  <div class="flex flex-row justify-between items-center sm:hidden">
     <div>
       <a
         href="/"
@@ -105,7 +105,7 @@
 
   {#if !isMobileMenuOpen}
     <nav>
-      <div class="flex justify-between items-center py-4">
+      <div class="flex justify-between items-center">
         <a
           href="/"
           class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
@@ -153,11 +153,13 @@
   {/if}
 
   {#if isMobileMenuOpen}
-    <nav>
+    <nav
+      class="absolute left-0 right-0 top-[66px] z-10 border-b-4 border-tertiary80 dark:border-tertiary70"
+    >
       <!-- Mobile nav -->
       <ul
         id="mobile-menu"
-        class="flex flex-col mt-2 bg-secondary93 dark:bg-secondary20 rounded-md p-4 shadow-lg"
+        class="flex flex-col bg-secondary93 dark:bg-secondary20 rounded-md px-4 py-2 shadow-lg"
       >
         {#each navItems as item}
           <li class="my-2">
