@@ -1,6 +1,4 @@
 import type { SongList } from "$lib/typesAndInterfaces";
-// import { EMAIL, PASSWORD } from "$env/static/private";
-
 import { pbUser } from "$lib/pocketbase";
 
 export const load = async () => {

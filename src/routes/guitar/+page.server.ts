@@ -1,10 +1,8 @@
 import type { SongList } from "$lib/typesAndInterfaces";
-// import { EMAIL, PASSWORD } from "$env/static/private";
 import { pbUser } from "$lib/pocketbase";
 
 export const load = async () => {
   try {
-    // await pbUser.admins.authWithPassword(EMAIL, PASSWORD);
     const records = await pbUser.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Guitar"',
     });

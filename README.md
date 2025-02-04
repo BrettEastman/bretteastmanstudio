@@ -9,6 +9,7 @@ Brett Eastman Studio - student PDF archives
 - Server Side Rendering
 - Database deployed on Linode server
 - CSS techniques including use of variables and keyframe animation
+- Icons are from Remix icons
 
 ## Tech Stack
 
@@ -16,6 +17,8 @@ Brett Eastman Studio - student PDF archives
 ![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![PocketBase](https://img.shields.io/badge/pocketbase-%23b8dbe4.svg?style=for-the-badge&logo=Pocketbase&logoColor=black)
+![Linode](https://img.shields.io/badge/linode-00A95C?style=for-the-badge&logo=linode&logoColor=white)
 
 ## Recommended IDE Setup
 
