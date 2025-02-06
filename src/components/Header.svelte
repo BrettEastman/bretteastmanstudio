@@ -4,8 +4,6 @@
   import { goto } from "$app/navigation";
   import Hamburger from "./Hamburger.svelte";
 
-  // console.log("pbUser:", pbUser);
-
   let navItems = [
     { name: "Guitar", href: "/guitar" },
     { name: "Drums", href: "/drums" },

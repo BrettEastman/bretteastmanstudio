@@ -16,7 +16,6 @@
     }
   };
 
-  // Reactive statement to trigger scroll when messages change
   $: if (messages) {
     setTimeout(scrollToBottom, 0);
   }
@@ -35,6 +34,12 @@
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
+
+      if (response.status === 429) {
+        const { error } = await response.json();
+        alert(error);
+        return;
+      }
 
       const result = await response.json();
       messages = [...messages, result];

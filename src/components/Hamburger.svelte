@@ -29,7 +29,6 @@
     transition: all 0.3s ease;
   }
 
-  /* Transform the lines into an "X" when active */
   .active .line:nth-child(1) {
     transform: rotate(45deg) translate(5px, 9px);
   }

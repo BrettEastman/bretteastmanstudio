@@ -28,7 +28,7 @@
     Drums Songs
   </h2>
   <button
-    class="w-full text-sm text-secondary50 hover:text-secondary80 duration-200"
+    class="w-full text-sm text-tertiary50 hover:text-tertiary80 duration-200"
     on:click={randomizeSongs}
   >
     Randomize order
