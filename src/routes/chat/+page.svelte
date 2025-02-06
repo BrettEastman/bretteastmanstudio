@@ -36,6 +36,12 @@
         credentials: "include",
       });
 
+      if (response.status === 429) {
+        const { error } = await response.json();
+        alert(error);
+        return;
+      }
+
       const result = await response.json();
       messages = [...messages, result];
     } catch (error) {
