@@ -11,7 +11,6 @@ export async function POST({ request, locals }) {
     const user = await locals.pb.collection("users").getOne(locals.user.id);
     const today = new Date().toISOString().split("T")[0];
 
-    // Reset count if it's a new day
     if (user.lastQuestionDate !== today) {
       await locals.pb.collection("users").update(locals.user.id, {
         questionCount: 0,
@@ -19,7 +18,6 @@ export async function POST({ request, locals }) {
       });
     }
 
-    // Check question limit
     if (user.questionCount >= 10) {
       return json(
         { error: "Daily question limit reached. Please try again tomorrow." },

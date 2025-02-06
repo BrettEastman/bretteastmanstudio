@@ -16,7 +16,6 @@
     }
   };
 
-  // Reactive statement to trigger scroll when messages change
   $: if (messages) {
     setTimeout(scrollToBottom, 0);
   }
