@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { SongItem } from "../lib/typesAndInterfaces";
+
   interface Props {
     song: SongItem;
   }

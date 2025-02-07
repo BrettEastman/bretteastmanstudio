@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
-  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import { pbUser } from "$lib/pocketbase";
+  import { onDestroy, onMount } from "svelte";
   import Hamburger from "./Hamburger.svelte";
 
   let navItems = [

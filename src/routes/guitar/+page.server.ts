@@ -1,5 +1,5 @@
-import type { SongList } from "$lib/typesAndInterfaces";
 import { pbUser } from "$lib/pocketbase";
+import type { SongList } from "$lib/typesAndInterfaces";
 
 export const load = async () => {
   try {

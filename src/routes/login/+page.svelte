@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { preventDefault } from 'svelte/legacy';
-
-  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import { pbUser } from "$lib/pocketbase";
   import { onMount } from "svelte";
 
   let email = $state("");
@@ -17,7 +15,8 @@
     pbUser.authStore.loadFromCookie(document.cookie);
   });
 
-  async function handleSubmit() {
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
     loading = true;
     error = "";
 
@@ -61,7 +60,7 @@
     {isRegistering ? "Create Account" : "Sign In"}
   </h2>
 
-  <form onsubmit={preventDefault(handleSubmit)} class="space-y-4">
+  <form onsubmit={handleSubmit} class="space-y-4">
     {#if isRegistering}
       <div class="flex gap-4">
         <div class="flex-1">

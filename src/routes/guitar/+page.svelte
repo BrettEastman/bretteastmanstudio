@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { writable } from "svelte/store";
   import SongDisplay from "../../components/SongDisplay.svelte";
   import type { PageServerData } from "./$types";
-  import { writable } from "svelte/store";
 
   interface Props {
     data: PageServerData;
@@ -19,12 +19,14 @@
     );
   }
 
-  let filteredSongs = $derived($songs.filter((song) => {
-    return (
-      song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }));
+  let filteredSongs = $derived(
+    $songs.filter((song) => {
+      return (
+        song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    })
+  );
 </script>
 
 <div class="grid place-items-center gap-4 p-6">

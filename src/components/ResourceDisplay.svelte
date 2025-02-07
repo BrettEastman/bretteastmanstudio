@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ResourceItem } from "../lib/typesAndInterfaces";
+
   interface Props {
     resource: ResourceItem;
   }
