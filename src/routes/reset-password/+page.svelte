@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { pbUser } from "$lib/pocketbase";
 
   let password = $state("");
@@ -9,7 +9,7 @@
   let errorMessage = $state("");
   let successMessage = $state("");
 
-  const token: string | null = $page.url.searchParams.get("token");
+  const token: string | null = page.url.searchParams.get("token");
 
   if (!token) {
     goto("/login");

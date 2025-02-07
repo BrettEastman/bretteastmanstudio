@@ -10,16 +10,13 @@
   >
     <p>
       Hello, I am Brett, a{" "}
-      <a
-        href="https://www.bretteastman.dev/"
-        target="_blank"
-        class="hover:text-primary60 duration-200"
+      <a href="https://www.bretteastman.dev/" target="_blank" class="text-links"
         >software engineer,
       </a>
       {" "}<a
         href="https://www.brettaustineastman.com/selected_works"
         target="_blank"
-        class="hover:text-primary60 duration-200"
+        class="text-links"
       >
         composer,
       </a>
@@ -27,7 +24,7 @@
       <a
         href="https://www.brettaustineastman.com/about"
         target="_blank"
-        class="hover:text-primary60 duration-200"
+        class="text-links"
       >
         musician,
       </a> and former music teacher based in San Francisco. As a teacher, my mission
@@ -50,13 +47,24 @@
     </p>
     <br />
     <p>
+      While you are here browsing pdfs, you might also want to chat with an <a
+        href="/chat"
+        class="text-links"
+      >
+        AI music historian
+      </a> who loves to give recommendations of artists, albums, and songs to listen
+      to. You can ask about any music history topic, and the AI will do its best
+      to provide an informative response. Please log in to use the chat feature.
+    </p>
+    <br />
+    <p>
       For the drummers out there, you may also be interested in purchasing my
       drum book,
       <a
         href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
         target="_blank"
         aria-label="Patterns and Beats on Amazon"
-        class="hover:text-secondary60 duration-200">Patterns and Beats</a
+        class="text-links">Patterns and Beats</a
       >, which is intended for beginner to intermediate level students. It is a
       very useful reference and guide, which contains collections of linear
       patterns, arranged by difficulty, and a curated selection of enjoyable and
@@ -77,3 +85,16 @@
     </a>
   </div>
 </div>
+
+<style>
+  .text-links {
+    border-bottom: solid 1px;
+    border-color: var(--secondary10);
+    transition-duration: 200ms;
+  }
+  .text-links:hover {
+    color: var(--secondary60);
+    border-color: transparent;
+    transition-duration: 200ms;
+  }
+</style>
