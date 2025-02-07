@@ -1,14 +1,16 @@
 <script lang="ts">
+  import { run, preventDefault } from 'svelte/legacy';
+
   import { onMount } from "svelte";
   import { pbUser } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
   import { formatDateTime } from "$lib/utils/formatDateTime";
 
-  let messages: ChatMessage[] = [];
-  let newMessage = "";
-  let loading = false;
-  let messageContainer: HTMLDivElement;
-  let isAuthenticated = false;
+  let messages: ChatMessage[] = $state([]);
+  let newMessage = $state("");
+  let loading = $state(false);
+  let messageContainer: HTMLDivElement = $state();
+  let isAuthenticated = $state(false);
 
   const scrollToBottom = () => {
     if (messageContainer) {
@@ -16,9 +18,11 @@
     }
   };
 
-  $: if (messages) {
-    setTimeout(scrollToBottom, 0);
-  }
+  run(() => {
+    if (messages) {
+      setTimeout(scrollToBottom, 0);
+    }
+  });
 
   async function sendMessage() {
     if (!newMessage.trim()) return;
@@ -123,7 +127,7 @@
             ></div>
           </div>
         {/if}
-        <form on:submit|preventDefault={sendMessage} class="flex gap-2">
+        <form onsubmit={preventDefault(sendMessage)} class="flex gap-2">
           <input
             type="text"
             bind:value={newMessage}

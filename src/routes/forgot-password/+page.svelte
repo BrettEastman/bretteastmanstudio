@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import { goto } from "$app/navigation";
   import { pbUser } from "$lib/pocketbase";
 
-  let email = "";
-  let loading = false;
-  let errorMessage = "";
-  let successMessage = "";
+  let email = $state("");
+  let loading = $state(false);
+  let errorMessage = $state("");
+  let successMessage = $state("");
 
   async function handleSubmit() {
     loading = true;
@@ -63,7 +65,7 @@
     </div>
   {/if}
 
-  <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+  <form onsubmit={preventDefault(handleSubmit)} class="space-y-4">
     <div>
       <label
         for="email"

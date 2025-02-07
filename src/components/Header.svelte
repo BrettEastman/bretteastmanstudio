@@ -12,8 +12,8 @@
     { name: "Chat", href: "/chat" },
   ];
 
-  let isMobileMenuOpen = false;
-  let isAuthenticated = false;
+  let isMobileMenuOpen = $state(false);
+  let isAuthenticated = $state(false);
 
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
@@ -92,7 +92,7 @@
 
     <button
       class="sm:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none"
-      on:click={toggleMobileMenu}
+      onclick={toggleMobileMenu}
       aria-label="Toggle navigation menu"
       aria-expanded={isMobileMenuOpen}
       aria-controls="mobile-menu"
@@ -127,7 +127,7 @@
               class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
               <button
-                on:click={handleLogout}
+                onclick={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
                 {`Logout ${pbUser.authStore.model?.name}`}
@@ -163,7 +163,7 @@
           <li class="my-2">
             <a
               href={item.href}
-              on:click={toggleMobileMenu}
+              onclick={toggleMobileMenu}
               class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
               {item.name}
@@ -175,7 +175,7 @@
             class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
           >
             <button
-              on:click={handleLogout}
+              onclick={handleLogout}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
             >
               Logout
@@ -186,7 +186,7 @@
             class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
           >
             <button
-              on:click={handleLogin}
+              onclick={handleLogin}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
             >
               Login

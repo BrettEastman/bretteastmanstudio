@@ -3,9 +3,13 @@
   import type { PageServerData } from "./$types";
   import { writable } from "svelte/store";
 
-  export let data: PageServerData;
+  interface Props {
+    data: PageServerData;
+  }
 
-  let searchQuery = "";
+  let { data }: Props = $props();
+
+  let searchQuery = $state("");
 
   const songs = writable(data.songList);
 
@@ -15,12 +19,12 @@
     );
   }
 
-  $: filteredSongs = $songs.filter((song) => {
+  let filteredSongs = $derived($songs.filter((song) => {
     return (
       song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
       song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  });
+  }));
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
@@ -29,7 +33,7 @@
   </h2>
   <button
     class="w-full text-sm text-tertiary50 hover:text-tertiary80 duration-200"
-    on:click={randomizeSongs}
+    onclick={randomizeSongs}
   >
     Randomize order
   </button>

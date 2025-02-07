@@ -1,6 +1,10 @@
 <script lang="ts">
   import type { SongItem } from "../lib/typesAndInterfaces";
-  export let song: SongItem;
+  interface Props {
+    song: SongItem;
+  }
+
+  let { song }: Props = $props();
 </script>
 
 <a

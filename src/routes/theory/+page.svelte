@@ -3,16 +3,20 @@
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
   import type { PageServerData } from "./$types";
 
-  export let data: PageServerData;
+  interface Props {
+    data: PageServerData;
+  }
 
-  let searchQuery = "";
+  let { data }: Props = $props();
 
-  $: filteredResources = data.resourceList.filter((resource: ResourceItem) => {
+  let searchQuery = $state("");
+
+  let filteredResources = $derived(data.resourceList.filter((resource: ResourceItem) => {
     return (
       resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       resource.instrument.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  });
+  }));
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
