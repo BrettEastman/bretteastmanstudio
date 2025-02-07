@@ -1,21 +1,22 @@
 <script lang="ts">
-  import { pbUser } from "$lib/pocketbase";
   import { goto } from "$app/navigation";
+  import { pbUser } from "$lib/pocketbase";
   import { onMount } from "svelte";
 
-  let email = "";
-  let password = "";
-  let firstName = "";
-  let lastName = "";
-  let loading = false;
-  let error = "";
-  let isRegistering = false;
+  let email = $state("");
+  let password = $state("");
+  let firstName = $state("");
+  let lastName = $state("");
+  let loading = $state(false);
+  let error = $state("");
+  let isRegistering = $state(false);
 
   onMount(() => {
     pbUser.authStore.loadFromCookie(document.cookie);
   });
 
-  async function handleSubmit() {
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
     loading = true;
     error = "";
 
@@ -59,7 +60,7 @@
     {isRegistering ? "Create Account" : "Sign In"}
   </h2>
 
-  <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+  <form onsubmit={handleSubmit} class="space-y-4">
     {#if isRegistering}
       <div class="flex gap-4">
         <div class="flex-1">
@@ -141,7 +142,7 @@
 
     <button
       type="button"
-      on:click={() => {
+      onclick={() => {
         isRegistering = !isRegistering;
         error = "";
         if (!isRegistering) {
@@ -158,7 +159,7 @@
 
     <button
       type="button"
-      on:click={() => goto("/forgot-password")}
+      onclick={() => goto("/forgot-password")}
       class="w-full text-xs text-secondary50 hover:text-secondary80 duration-200"
       >Forgot password?</button
     >

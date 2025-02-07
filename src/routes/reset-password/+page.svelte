@@ -1,21 +1,22 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import { pbUser } from "$lib/pocketbase";
 
-  let password = "";
-  let confirmPassword = "";
-  let loading = false;
-  let errorMessage = "";
-  let successMessage = "";
+  let password = $state("");
+  let confirmPassword = $state("");
+  let loading = $state(false);
+  let errorMessage = $state("");
+  let successMessage = $state("");
 
-  const token: string | null = $page.url.searchParams.get("token");
+  const token: string | null = page.url.searchParams.get("token");
 
   if (!token) {
     goto("/login");
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
     loading = true;
     errorMessage = "";
     successMessage = "";
@@ -70,7 +71,7 @@
     </div>
   {/if}
 
-  <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+  <form onsubmit={handleSubmit} class="space-y-4">
     <div>
       <label
         for="password"

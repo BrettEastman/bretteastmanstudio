@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let isActive: boolean = false;
+  interface Props {
+    isActive?: boolean;
+  }
+
+  let { isActive = false }: Props = $props();
 </script>
 
 <div class:active={isActive} class="hamburger">

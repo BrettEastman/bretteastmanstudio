@@ -1,6 +1,6 @@
-import { json } from "@sveltejs/kit";
 import { pbUser } from "$lib/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import { json } from "@sveltejs/kit";
 
 export async function POST({ request, locals }) {
   if (!locals.user) {

@@ -1,6 +1,11 @@
 <script lang="ts">
   import type { ResourceItem } from "../lib/typesAndInterfaces";
-  export let resource: ResourceItem;
+
+  interface Props {
+    resource: ResourceItem;
+  }
+
+  let { resource }: Props = $props();
 </script>
 
 <a

@@ -1,5 +1,5 @@
-import type { ResourceList } from "$lib/typesAndInterfaces";
 import { pbUser } from "$lib/pocketbase";
+import type { ResourceList } from "$lib/typesAndInterfaces";
 
 export const load = async () => {
   try {

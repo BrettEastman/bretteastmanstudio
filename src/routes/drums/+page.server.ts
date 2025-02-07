@@ -1,9 +1,8 @@
-import type { SongList } from "$lib/typesAndInterfaces";
 import { pbUser } from "$lib/pocketbase";
+import type { SongList } from "$lib/typesAndInterfaces";
 
 export const load = async () => {
   try {
-    // await pbUser.admins.authWithPassword(EMAIL, PASSWORD);
     // another option would be pbUser.collection.getList - a method that takes 3 arguments: page, pageSize, and options. The options object has a filter property that is a query string that filters the records in the collection according to what the operand dictates. In this case, "~" is the operand and it is used to filter the records in the collection where the instrumentDescription field contains the string "Drums".
     const records = await pbUser.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Drums"',

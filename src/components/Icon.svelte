@@ -1,7 +1,11 @@
 <script lang="ts">
-  export let name: string;
-  export let size: string = "24";
-  export let className: string = "";
+  interface Props {
+    name: string;
+    size?: string;
+    className?: string;
+  }
+
+  let { name, size = "24", className = "" }: Props = $props();
 </script>
 
 {#if name === "github"}
