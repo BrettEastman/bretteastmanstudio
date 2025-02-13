@@ -97,4 +97,9 @@
     border-color: transparent;
     transition-duration: 200ms;
   }
+  @media (prefers-color-scheme: dark) {
+    .text-links {
+      border-color: var(--secondary80);
+    }
+  }
 </style>
