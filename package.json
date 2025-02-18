@@ -30,6 +30,9 @@
     "vite": "^5.4.4"
   },
   "type": "module",
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
     "pocketbase": "^0.21.5"
