@@ -1,10 +1,16 @@
 import PocketBase from "pocketbase";
 import { PUBLIC_PB_URL } from "$env/static/public";
 
-// Create a single PocketBase instance that can be reused
-export const pbUser = new PocketBase(PUBLIC_PB_URL);
+let pb: PocketBase;
 
-// Ensure we're not storing auth state in a global when running on Cloudflare
-if (typeof window === 'undefined') {
-    pbUser.authStore.clear();
+// Initialize PocketBase based on the environment
+if (typeof window !== 'undefined') {
+    // Browser - create a new instance
+    pb = new PocketBase(PUBLIC_PB_URL);
+} else {
+    // Server - create a new instance for each request
+    pb = new PocketBase(PUBLIC_PB_URL);
+    pb.authStore.clear(); // Ensure clean auth state
 }
+
+export const pbUser = pb;

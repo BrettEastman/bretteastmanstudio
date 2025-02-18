@@ -1,29 +1,33 @@
-// import { pbUser, pbAdmin } from "$lib/pocketbase";
 import { pbUser } from "$lib/pocketbase";
 import { redirect, type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  // console.log("Request received:", event.url.pathname);
   // Get the auth cookie
   const cookie = event.request.headers.get("cookie") || "";
-  pbUser.authStore.loadFromCookie(cookie);
-
+  
   try {
+    // Load the auth state for this request
+    pbUser.authStore.loadFromCookie(cookie);
+    
     if (pbUser.authStore.isValid) {
-      await pbUser.collection("users").authRefresh();
-      // Important: Set both pb and user in locals
-      event.locals.pb = pbUser;
-      event.locals.user = structuredClone(pbUser.authStore.model);
+      try {
+        await pbUser.collection("users").authRefresh();
+        event.locals.pb = pbUser;
+        event.locals.user = structuredClone(pbUser.authStore.model);
+      } catch (err) {
+        // Handle refresh error
+        console.error("Auth refresh failed:", err);
+        event.locals.pb = pbUser;
+        event.locals.user = null;
+        pbUser.authStore.clear();
+      }
     } else {
-      // Clear locals if not authenticated
-      event.locals.pb = pbUser; // I'm still not sure if this is necessary
+      event.locals.pb = pbUser;
       event.locals.user = null;
     }
   } catch (err) {
-    // Clear auth store and locals on error
-    console.error("Error refreshing auth token:", err);
-    pbUser.authStore.clear();
-    event.locals.pb = pbUser; // I'm still not sure if this is necessary
+    console.error("Error in auth handling:", err);
+    event.locals.pb = pbUser;
     event.locals.user = null;
   }
 
@@ -36,15 +40,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const response = await resolve(event);
 
-  // Send the auth cookie back
-  response.headers.set(
-    "set-cookie",
-    pbUser.authStore.exportToCookie({
-      secure: false,
-      httpOnly: false,
-      path: "/",
-    })
-  );
+  // Send the auth cookie
+  response.headers.append('set-cookie', pbUser.authStore.exportToCookie());
 
   return response;
 };
