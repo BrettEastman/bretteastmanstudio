@@ -47,8 +47,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   response.headers.set(
     "set-cookie",
     pbUser.authStore.exportToCookie({
-      secure: false,
-      httpOnly: false,
+      // if import.meta.env.PROD is true, secure is set to true
+      // otherwise, secure is set to false
+      secure: import.meta.env.PROD,
+      httpOnly: true,
+      sameSite: "lax",
       path: "/",
     })
   );
