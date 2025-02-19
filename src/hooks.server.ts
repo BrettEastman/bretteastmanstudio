@@ -44,7 +44,6 @@ export const handle: Handle = async ({ event, resolve }) => {
   const response = await resolve(event);
 
   // Send the auth cookie
-  // response.headers.append("set-cookie", pbUser.authStore.exportToCookie());
   response.headers.set(
     "set-cookie",
     pbUser.authStore.exportToCookie({
