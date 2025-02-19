@@ -1,10 +1,11 @@
 import { pbUser } from "$lib/pocketbase";
+import type { PageLoad } from "./$types";
 import type { SongList } from "$lib/typesAndInterfaces";
 
-export const load = async () => {
+export const load: PageLoad = async () => {
   try {
     const records = await pbUser.collection("songs").getFullList({
-      filter: 'instrumentDescription ~ "Guitar"',
+      filter: 'instrumentDescription ~ "Bass"',
     });
 
     const songList: SongList = records.map((record) => ({
@@ -14,11 +15,14 @@ export const load = async () => {
       songPdfLink: record.songPdfLink,
     }));
 
-    songList.sort((a, b) => a.songTitle.localeCompare(b.songTitle));
-
-    return { songList };
-  } catch (error) {
-    console.error("Error fetching songs from PocketBase:", error);
-    return { songList: [] };
+    return {
+      songList: songList.sort((a, b) => a.songTitle.localeCompare(b.songTitle)),
+    };
+  } catch (err) {
+    console.error("Error loading bass data:", err);
+    return {
+      songList: [],
+      error: "Failed to load songs. Please try refreshing the page.",
+    };
   }
 };

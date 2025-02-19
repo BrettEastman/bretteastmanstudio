@@ -1,7 +1,8 @@
 import { pbUser } from "$lib/pocketbase";
+import type { PageLoad } from "./$types";
 import type { ResourceList } from "$lib/typesAndInterfaces";
 
-export const load = async () => {
+export const load: PageLoad = async () => {
   try {
     const records = await pbUser.collection("resources").getFullList({
       sort: "-created",
@@ -13,10 +14,16 @@ export const load = async () => {
       pdfLink: record.pdfLink,
     }));
 
-    resourceList.sort((a, b) => a.description.localeCompare(b.description));
-    return { resourceList };
-  } catch (error) {
-    console.error("Error fetching resources from Pocketbase:", error);
-    return { resourceList: [] };
+    return {
+      resourceList: resourceList.sort((a, b) =>
+        a.description.localeCompare(b.description)
+      ),
+    };
+  } catch (err) {
+    console.error("Error loading theory data:", err);
+    return {
+      resourceList: [],
+      error: "Failed to load theory. Please try refreshing the page.",
+    };
   }
 };
