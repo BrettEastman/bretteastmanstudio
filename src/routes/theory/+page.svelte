@@ -1,22 +1,26 @@
 <script lang="ts">
   import type { ResourceItem } from "$lib/typesAndInterfaces";
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
-  import type { PageServerData } from "./$types";
+  import type { PageData } from "./$types";
 
   interface Props {
-    data: PageServerData;
+    data: PageData;
   }
 
   let { data }: Props = $props();
 
   let searchQuery = $state("");
 
-  let filteredResources = $derived(data.resourceList.filter((resource: ResourceItem) => {
-    return (
-      resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      resource.instrument.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }));
+  let filteredResources = $derived(
+    data.resourceList.filter((resource: ResourceItem) => {
+      return (
+        resource.description
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        resource.instrument.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    })
+  );
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
