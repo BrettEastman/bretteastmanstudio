@@ -8,9 +8,9 @@ Brett Eastman Studio - student PDF archives
 
 - Server Side Rendering
 - Database deployed on Linode server
-- CSS techniques including use of variables and keyframe animation
 - Icons are from Remix icons
 - Svelte 5 syntax
+- Google Gemini AI chatbot
 
 ## Tech Stack
 
