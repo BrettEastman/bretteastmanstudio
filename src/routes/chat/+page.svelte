@@ -7,6 +7,7 @@
   let messages: ChatMessage[] = $state([]);
   let newMessage = $state("");
   let loading = $state(false);
+  let error = $state("");
   let messageContainer: HTMLDivElement | undefined = $state();
   let isAuthenticated = $state(false);
 
@@ -16,17 +17,47 @@
     }
   };
 
+  const checkAuth = () => {
+    isAuthenticated = pbUser.authStore.isValid;
+    console.log("Auth check - isValid:", isAuthenticated);
+    console.log("Auth token exists:", !!pbUser.authStore.token);
+  };
+
   $effect(() => {
     if (messages) {
       setTimeout(scrollToBottom, 0);
     }
   });
 
+  async function loadMessages() {
+    try {
+      const response = await fetch("/api/chat", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.error("Authentication failed when loading messages");
+          isAuthenticated = false;
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      messages = await response.json();
+    } catch (error) {
+      console.error("Error loading messages:", error);
+      error = "Failed to load messages. Please try refreshing the page.";
+    }
+  }
+
   async function sendMessage(e: Event) {
     e.preventDefault();
     if (!newMessage.trim()) return;
 
     loading = true;
+    error = "";
     const message = newMessage;
     newMessage = "";
 
@@ -38,34 +69,34 @@
         credentials: "include",
       });
 
-      if (response.status === 429) {
-        const { error } = await response.json();
-        alert(error);
-        return;
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.error("Authentication failed when sending message");
+          isAuthenticated = false;
+          return;
+        }
+        if (response.status === 429) {
+          const { error: errorMsg } = await response.json();
+          error = errorMsg;
+          return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const result = await response.json();
       messages = [...messages, result];
     } catch (error) {
       console.error("Error sending message:", error);
+      error = "Failed to send message. Please try again.";
     } finally {
       loading = false;
     }
   }
 
   onMount(async () => {
-    isAuthenticated = pbUser.authStore.isValid;
+    checkAuth();
     if (!isAuthenticated) return;
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "GET",
-        credentials: "include",
-      });
-      messages = await response.json();
-    } catch (error) {
-      console.error("Error loading messages:", error);
-    }
+    await loadMessages();
   });
 </script>
 
@@ -125,6 +156,8 @@
               class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
             ></div>
           </div>
+        {:else if error}
+          <div class="text-center text-red-500">{error}</div>
         {/if}
         <form onsubmit={sendMessage} class="flex gap-2">
           <input
