@@ -64,16 +64,25 @@
   }
 
   async function handleLogout() {
-    pbUser.authStore.clear();
-    console.log("Logged out");
-    document.cookie = pbUser.authStore.exportToCookie({
-      httpOnly: false,
-      secure: false,
-      path: "/",
-      expires: new Date(0),
-    });
-    await goto("/");
-    isMobileMenuOpen = false;
+    try {
+      // Call server-side logout endpoint
+      const response = await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+
+      // Clear client-side auth store
+      pbUser.authStore.clear();
+      await goto("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      isMobileMenuOpen = false;
+    }
   }
 </script>
 
