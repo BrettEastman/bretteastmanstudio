@@ -24,12 +24,22 @@ export const handle: Handle = async ({ event, resolve }) => {
         event.locals.user = structuredClone(pbUser.authStore.model);
         console.log("Auth refresh successful, user:", event.locals.user?.id);
       } catch (err) {
-        // Handle refresh error
-        console.error("Auth refresh failed:", err);
-        console.error("Token at time of failure:", pbUser.authStore.token);
-        event.locals.pb = pbUser;
-        event.locals.user = null;
-        pbUser.authStore.clear();
+        // Only clear auth if it's a real authentication error
+        // @ts-expect-error - accessing error status
+        if (err?.status === 401) {
+          console.error("Auth refresh failed with 401, clearing auth:", err);
+          event.locals.pb = pbUser;
+          event.locals.user = null;
+          pbUser.authStore.clear();
+        } else {
+          // For other errors (network, etc.), keep the existing auth state
+          console.warn(
+            "Non-auth error during refresh, keeping auth state:",
+            err
+          );
+          event.locals.pb = pbUser;
+          event.locals.user = structuredClone(pbUser.authStore.model);
+        }
       }
     } else {
       console.log("Auth store not valid");

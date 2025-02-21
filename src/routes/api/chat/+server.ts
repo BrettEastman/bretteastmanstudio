@@ -4,10 +4,17 @@ import { json } from "@sveltejs/kit";
 
 export async function POST({ request, locals }) {
   if (!locals.user) {
+    console.error("POST: No user in locals");
     return json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
+    // Verify auth is still valid
+    if (!locals.pb?.authStore?.isValid) {
+      console.error("POST: Auth store is invalid");
+      return json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const user = await locals.pb.collection("users").getOne(locals.user.id);
     const today = new Date().toISOString().split("T")[0];
 
@@ -42,12 +49,23 @@ export async function POST({ request, locals }) {
     return json(record);
   } catch (error) {
     console.error("Error processing request:", error);
+    // Check if it's an authentication error
+    // @ts-expect-error - accessing error status
+    if (error?.status === 401) {
+      return json({ error: "Authentication failed" }, { status: 401 });
+    }
     return json({ error: "Failed to process request" }, { status: 500 });
   }
 }
 
 export async function GET({ locals }) {
-  if (!locals.user || !locals.pb?.authStore?.isValid) {
+  if (!locals.user) {
+    console.error("GET: No user in locals");
+    return json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!locals.pb?.authStore?.isValid) {
+    console.error("GET: Auth store is invalid");
     return json({ error: "Unauthorized" }, { status: 401 });
   }
 
