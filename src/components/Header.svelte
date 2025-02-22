@@ -65,6 +65,11 @@
 
   async function handleLogout() {
     try {
+      isMobileMenuOpen = false; // Close menu immediately
+
+      // Clear client-side auth store first
+      pbUser.authStore.clear();
+
       // Call server-side logout endpoint
       const response = await fetch("/api/auth/logout", {
         method: "POST",
@@ -75,13 +80,12 @@
         throw new Error("Logout failed");
       }
 
-      // Clear client-side auth store
-      pbUser.authStore.clear();
-      await goto("/");
+      // Force a full page reload to clear all state
+      window.location.replace("/");
     } catch (error) {
       console.error("Logout error:", error);
-    } finally {
-      isMobileMenuOpen = false;
+      // Still try to redirect on error
+      window.location.replace("/");
     }
   }
 </script>

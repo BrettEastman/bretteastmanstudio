@@ -56,15 +56,30 @@ export async function POST({ request, locals }) {
   }
 }
 
-export async function GET({ locals }) {
-  if (!locals.user) {
-    console.error("GET: No user in locals");
-    return json({ error: "Unauthorized" }, { status: 401 });
-  }
+export async function GET({ locals, request }) {
+  // Add request URL logging
+  console.log("Chat GET request URL:", request.url);
+  console.log("Auth state:", !!locals.pb?.authStore?.isValid);
 
-  if (!locals.pb?.authStore?.isValid) {
-    console.error("GET: Auth store is invalid");
-    return json({ error: "Unauthorized" }, { status: 401 });
+  if (!locals.user || !locals.pb?.authStore?.isValid) {
+    console.error("GET: Authentication check failed", {
+      hasUser: !!locals.user,
+      isAuthValid: !!locals.pb?.authStore?.isValid,
+    });
+
+    // Return a more specific error code for auth failures
+    return json(
+      {
+        error: "Authentication required",
+        code: "AUTH_REQUIRED",
+      },
+      {
+        status: 401,
+        headers: {
+          "Cache-Control": "no-store, must-revalidate",
+        },
+      }
+    );
   }
 
   try {
@@ -73,9 +88,42 @@ export async function GET({ locals }) {
       filter: `user = "${locals.user.id}"`,
     });
 
-    return json(records.items);
+    return json(records.items, {
+      headers: {
+        "Cache-Control": "no-store, must-revalidate",
+      },
+    });
   } catch (error) {
     console.error("Error fetching messages:", error);
-    return json({ error: "Failed to fetch messages" }, { status: 500 });
+
+    // Check specifically for auth errors
+    // @ts-expect-error - accessing error status
+    if (error?.status === 401) {
+      return json(
+        {
+          error: "Authentication failed",
+          code: "AUTH_FAILED",
+        },
+        {
+          status: 401,
+          headers: {
+            "Cache-Control": "no-store, must-revalidate",
+          },
+        }
+      );
+    }
+
+    return json(
+      {
+        error: "Failed to fetch messages",
+        code: "FETCH_ERROR",
+      },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store, must-revalidate",
+        },
+      }
+    );
   }
 }
