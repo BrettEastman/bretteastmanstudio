@@ -83,10 +83,13 @@ export async function GET({ locals, request }) {
   }
 
   try {
+    console.log("Attempting to fetch messages from PocketBase");
     const records = await locals.pb.collection("messages").getList(1, 50, {
       sort: "created",
       filter: `user = "${locals.user.id}"`,
     });
+
+    console.log("Successfully fetched messages:", records.items.length);
 
     return json(records.items, {
       headers: {
@@ -111,6 +114,12 @@ export async function GET({ locals, request }) {
           },
         }
       );
+    }
+
+    if (error instanceof Error) {
+      console.error("Detailed error:", error.message, error.stack);
+    } else {
+      console.error("Unknown error:", error);
     }
 
     return json(
