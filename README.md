@@ -2,15 +2,15 @@
 
 Brett Eastman Studio - student PDF archives
 
-[Have a look online!](https://brett-eastman-studio-archive.vercel.app/)
+[Have a look online!](https://bretteastmanstudio.com/)
 
 ## Features
 
-- Server Side Rendering
-- Database deployed on Linode server
-- Icons are from Remix icons
-- Svelte 5 syntax
+- Pocketbase database deployed on Linode server
 - Google Gemini AI chatbot
+- NGINX as a reverse proxy for Pocketbase with HTTPS using Let’s Encrypt, with rate limiting
+- Icons from Remix icons
+- Svelte 5 syntax
 
 ## Tech Stack
 
@@ -20,6 +20,8 @@ Brett Eastman Studio - student PDF archives
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![PocketBase](https://img.shields.io/badge/pocketbase-%23b8dbe4.svg?style=for-the-badge&logo=Pocketbase&logoColor=black)
 ![Linode](https://img.shields.io/badge/linode-00A95C?style=for-the-badge&logo=linode&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ## Recommended IDE Setup
 
