@@ -42,6 +42,8 @@
           isAuthenticated = false;
           return;
         }
+        const errorData = await response.json();
+        console.error("Server error details:", errorData);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 

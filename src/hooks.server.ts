@@ -2,7 +2,6 @@ import { pbUser } from "$lib/pocketbase";
 import { redirect, type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  // Get the auth cookie
   const cookie = event.request.headers.get("cookie") || "";
   console.log("Auth cookie present:", !!cookie);
   console.log("Request path:", event.url.pathname);
@@ -12,7 +11,6 @@ export const handle: Handle = async ({ event, resolve }) => {
   );
 
   try {
-    // Load the auth state for this request
     pbUser.authStore.loadFromCookie(cookie);
     console.log("Auth store loaded, isValid:", pbUser.authStore.isValid);
     console.log("Auth token exists:", !!pbUser.authStore.token);
@@ -63,7 +61,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const response = await resolve(event);
 
-  // Send the auth cookie
+  // Calculate expiration date 15 days from now
+  const expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+
   const cookieOptions = {
     // if import.meta.env.PROD is true, secure is set to true
     // otherwise, secure is set to false
@@ -71,7 +71,9 @@ export const handle: Handle = async ({ event, resolve }) => {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
+    expires: expires,
   };
+
   console.log("Setting cookie with options:", cookieOptions);
 
   response.headers.set(

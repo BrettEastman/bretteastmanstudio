@@ -1,4 +1,3 @@
-import { pbUser } from "$lib/pocketbase";
 import { getMusicHistorianResponse } from "$lib/server/gemini";
 import { json } from "@sveltejs/kit";
 
@@ -9,7 +8,6 @@ export async function POST({ request, locals }) {
   }
 
   try {
-    // Verify auth is still valid
     if (!locals.pb?.authStore?.isValid) {
       console.error("POST: Auth store is invalid");
       return json({ error: "Unauthorized" }, { status: 401 });
@@ -70,7 +68,7 @@ export async function GET({ locals }) {
   }
 
   try {
-    const records = await pbUser.collection("messages").getList(1, 50, {
+    const records = await locals.pb.collection("messages").getList(1, 50, {
       sort: "created",
       filter: `user = "${locals.user.id}"`,
     });
