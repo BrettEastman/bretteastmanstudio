@@ -81,15 +81,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   // Only set the cookie if the user is actually authenticated
   if (pbUser.authStore.isValid) {
-    // Calculate expiration date 15 days from now
-    const expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
-
     const cookieOptions = {
       secure: import.meta.env.PROD,
       httpOnly: true,
       sameSite: "lax",
       path: "/",
-      expires: expires,
     };
 
     response.headers.set(
