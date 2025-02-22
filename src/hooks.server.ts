@@ -10,11 +10,11 @@ export const handle: Handle = async ({ event, resolve }) => {
     import.meta.env.PROD ? "production" : "development"
   );
 
-  try {
-    pbUser.authStore.loadFromCookie(cookie);
-    console.log("Auth store loaded, isValid:", pbUser.authStore.isValid);
-    console.log("Auth token exists:", !!pbUser.authStore.token);
+  pbUser.authStore.loadFromCookie(cookie);
+  console.log("Auth store loaded, isValid:", pbUser.authStore.isValid);
+  console.log("Auth token exists:", !!pbUser.authStore.token);
 
+  try {
     if (pbUser.authStore.isValid) {
       try {
         await pbUser.collection("users").authRefresh();
@@ -29,6 +29,23 @@ export const handle: Handle = async ({ event, resolve }) => {
           event.locals.pb = pbUser;
           event.locals.user = null;
           pbUser.authStore.clear();
+
+          // Create a new response object to set the cookie
+          const response = await resolve(event);
+
+          // Clear the cookie by setting it with an expiration date in the past
+          const cookieOptions = {
+            secure: import.meta.env.PROD,
+            httpOnly: true,
+            sameSite: "lax",
+            path: "/",
+            expires: new Date(0),
+          };
+
+          response.headers.set(
+            "set-cookie",
+            pbUser.authStore.exportToCookie(cookieOptions)
+          );
         } else {
           // For other errors (network, etc.), keep the existing auth state
           console.warn(
@@ -47,6 +64,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   } catch (err) {
     console.error("Error in auth handling:", err);
     console.error("Cookie at time of failure:", cookie);
+    pbUser.authStore.clear();
     event.locals.pb = pbUser;
     event.locals.user = null;
   }
@@ -61,25 +79,24 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const response = await resolve(event);
 
-  // Calculate expiration date 15 days from now
-  const expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+  // Only set the cookie if the user is actually authenticated
+  if (pbUser.authStore.isValid) {
+    // Calculate expiration date 15 days from now
+    const expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
 
-  const cookieOptions = {
-    // if import.meta.env.PROD is true, secure is set to true
-    // otherwise, secure is set to false
-    secure: import.meta.env.PROD,
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    expires: expires,
-  };
+    const cookieOptions = {
+      secure: import.meta.env.PROD,
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      expires: expires,
+    };
 
-  console.log("Setting cookie with options:", cookieOptions);
-
-  response.headers.set(
-    "set-cookie",
-    pbUser.authStore.exportToCookie(cookieOptions)
-  );
+    response.headers.set(
+      "set-cookie",
+      pbUser.authStore.exportToCookie(cookieOptions)
+    );
+  }
 
   return response;
 };
