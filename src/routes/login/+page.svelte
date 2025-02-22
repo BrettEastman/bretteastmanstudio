@@ -35,11 +35,15 @@
       }
 
       await pbUser.collection("users").authWithPassword(email, password);
+
+      // Set the cookie immediately after successful authentication
       document.cookie = pbUser.authStore.exportToCookie({
         httpOnly: false,
-        secure: false,
+        secure: import.meta.env.PROD,
         path: "/",
+        sameSite: "lax",
       });
+
       await goto("/chat");
     } catch (e: unknown) {
       console.error("Auth error:", e);

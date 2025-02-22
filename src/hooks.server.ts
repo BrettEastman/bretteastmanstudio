@@ -79,20 +79,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const response = await resolve(event);
 
-  // Only set the cookie if the user is actually authenticated
-  if (pbUser.authStore.isValid) {
-    const cookieOptions = {
-      secure: import.meta.env.PROD,
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-    };
-
-    response.headers.set(
-      "set-cookie",
-      pbUser.authStore.exportToCookie(cookieOptions)
-    );
-  }
-
   return response;
 };
