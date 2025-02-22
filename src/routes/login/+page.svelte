@@ -38,7 +38,7 @@
 
       // Set the cookie immediately after successful authentication
       document.cookie = pbUser.authStore.exportToCookie({
-        httpOnly: false,
+        httpOnly: true,
         secure: import.meta.env.PROD,
         path: "/",
         sameSite: "lax",
