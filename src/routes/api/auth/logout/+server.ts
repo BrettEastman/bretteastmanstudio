@@ -8,18 +8,15 @@ export async function POST({ cookies }) {
   pbUser.authStore.clear();
   const response = json({ message: "Logout successful", success: true });
 
-  // Set multiple cookie clearing headers to ensure it's removed
-  response.headers.append(
+  // Set cache control headers
+  response.headers.set("Cache-Control", "no-store, must-revalidate");
+  response.headers.set("Pragma", "no-cache");
+  response.headers.set("Expires", "0");
+
+  // Clear the cookie with a single, well-formed header
+  response.headers.set(
     "set-cookie",
     `pb_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httpOnly; ${
-      import.meta.env.PROD ? "secure; " : ""
-    }sameSite=lax`
-  );
-
-  // Also clear with empty quotes version
-  response.headers.append(
-    "set-cookie",
-    `pb_auth=""; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httpOnly; ${
       import.meta.env.PROD ? "secure; " : ""
     }sameSite=lax`
   );

@@ -46,6 +46,10 @@ export const handle: Handle = async ({ event, resolve }) => {
             "set-cookie",
             pbUser.authStore.exportToCookie(cookieOptions)
           );
+          // Add cache control headers
+          response.headers.set("Cache-Control", "no-store, must-revalidate");
+          response.headers.set("Pragma", "no-cache");
+          response.headers.set("Expires", "0");
         } else {
           // For other errors (network, etc.), keep the existing auth state
           console.warn(
