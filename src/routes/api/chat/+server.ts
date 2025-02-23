@@ -44,7 +44,13 @@ export async function POST({ request, locals }) {
       lastQuestionDate: today,
     });
 
-    return json(record);
+    return json(record, {
+      headers: {
+        "Cache-Control": "no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      }
+    });
   } catch (error) {
     console.error("Error processing request:", error);
     // Check if it's an authentication error
