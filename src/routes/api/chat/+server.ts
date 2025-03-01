@@ -47,9 +47,9 @@ export async function POST({ request, locals }) {
     return json(record, {
       headers: {
         "Cache-Control": "no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0"
-      }
+        Pragma: "no-cache",
+        Expires: "0",
+      },
     });
   } catch (error) {
     console.error("Error processing request:", error);
@@ -87,10 +87,11 @@ export async function GET({ locals, request }) {
       }
     );
   }
+  let records: any;
 
   try {
     console.log("Attempting to fetch messages from PocketBase");
-    const records = await locals.pb.collection("messages").getList(1, 50, {
+    records = await locals.pb.collection("messages").getList(1, 50, {
       sort: "created",
       filter: `user = "${locals.user.id}"`,
     });
@@ -132,6 +133,9 @@ export async function GET({ locals, request }) {
       {
         error: "Failed to fetch messages",
         code: "FETCH_ERROR",
+        details: error instanceof Error ? error?.message : "Unknown error",
+        status: error?.status || 500,
+        records,
       },
       {
         status: 500,
