@@ -15,10 +15,10 @@
 
   let isMobileMenuOpen = $state(false);
   let isAuthenticated = $state(false);
-  let pb: PocketBase;
+  let pb = $state<PocketBase | undefined>(undefined);
 
   // Initialize PocketBase immediately if we're in the browser
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     pb = createPocketBaseInstance();
   }
 
@@ -41,22 +41,22 @@
   function updateAuthStatus() {
     if (pb?.authStore) {
       isAuthenticated = pb.authStore.isValid;
-      console.log('Auth status updated:', isAuthenticated);
+      console.log("Auth status updated:", isAuthenticated);
     }
   }
 
   onMount(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("click", handleClickOutside);
-      
+
       // Ensure we have a PocketBase instance
       if (!pb) {
         pb = createPocketBaseInstance();
       }
-      
+
       // Initial auth check
       updateAuthStatus();
-      
+
       // Set up auth change listener
       pb.authStore.onChange(() => {
         updateAuthStatus();
@@ -86,7 +86,7 @@
       isMobileMenuOpen = false; // Close menu immediately
 
       // Clear client-side auth store first
-      pb.authStore.clear();
+      pb?.authStore.clear();
 
       // Call server-side logout endpoint
       const response = await fetch("/api/auth/logout", {
@@ -161,7 +161,7 @@
                 onclick={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
               >
-                {`Logout ${pb.authStore.model?.name}`}
+                {`Logout ${pb?.authStore.model?.name}`}
               </button>
             </li>
           {:else}
