@@ -1,7 +1,8 @@
-import { pbUser } from "$lib/pocketbase";
 import { redirect, type Handle } from "@sveltejs/kit";
+import { createPocketBaseInstance } from "$lib/pocketbase";
 
 export const handle: Handle = async ({ event, resolve }) => {
+  const pbUser = createPocketBaseInstance();
   const cookie = event.request.headers.get("cookie") || "";
   console.log("Auth cookie present:", !!cookie);
   console.log("Request path:", event.url.pathname);

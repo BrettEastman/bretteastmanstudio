@@ -1,10 +1,11 @@
-import { pbUser } from "$lib/pocketbase";
+import { createPocketBaseInstance } from "$lib/pocketbase";
 import { json } from "@sveltejs/kit";
 
 export async function POST({ cookies }) {
   // Clear the PocketBase auth cookie
   cookies.delete("pb_auth", { path: "/" });
 
+  const pbUser = createPocketBaseInstance();
   pbUser.authStore.clear();
   const response = json({ message: "Logout successful", success: true });
 

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
-  import { pbUser } from "$lib/pocketbase";
+  import { createPocketBaseInstance } from "$lib/pocketbase";
+
+  const pbUser = createPocketBaseInstance();
 
   let password = $state("");
   let confirmPassword = $state("");

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { pbUser } from "$lib/pocketbase";
+  import { createPocketBaseInstance } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/typesAndInterfaces";
   import { formatDateTime } from "$lib/utils/formatDateTime";
   import { onMount } from "svelte";
@@ -18,6 +18,7 @@
   };
 
   const checkAuth = () => {
+    const pbUser = createPocketBaseInstance();
     isAuthenticated = pbUser.authStore.isValid;
     console.log("Auth check - isValid:", isAuthenticated);
     console.log("Auth token exists:", !!pbUser.authStore.token);

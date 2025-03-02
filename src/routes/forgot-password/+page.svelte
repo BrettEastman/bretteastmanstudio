@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { pbUser } from "$lib/pocketbase";
+  import { createPocketBaseInstance } from "$lib/pocketbase";
 
   let email = $state("");
   let loading = $state(false);
@@ -8,6 +8,7 @@
   let successMessage = $state("");
 
   async function handleSubmit(e: Event) {
+    const pbUser = createPocketBaseInstance();
     e.preventDefault();
     loading = true;
     errorMessage = "";

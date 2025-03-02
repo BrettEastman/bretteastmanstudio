@@ -1,9 +1,10 @@
-import { pbUser } from "$lib/pocketbase";
+import { createPocketBaseInstance } from "$lib/pocketbase";
 import type { PageLoad } from "./$types";
 import type { ResourceList } from "$lib/typesAndInterfaces";
 
 export const load: PageLoad = async () => {
   try {
+    const pbUser = createPocketBaseInstance();
     const records = await pbUser.collection("resources").getFullList({
       sort: "-created",
     });
