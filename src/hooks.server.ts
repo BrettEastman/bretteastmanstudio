@@ -2,7 +2,8 @@ import { redirect, type Handle } from "@sveltejs/kit";
 import { createPocketBaseInstance } from "$lib/pocketbase";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const pbUser = createPocketBaseInstance();
+  // Create a fresh PocketBase instance for each request
+  const pb = createPocketBaseInstance();
   const cookie = event.request.headers.get("cookie") || "";
   console.log("Auth cookie present:", !!cookie);
   console.log("Request path:", event.url.pathname);
@@ -11,25 +12,25 @@ export const handle: Handle = async ({ event, resolve }) => {
     import.meta.env.PROD ? "production" : "development"
   );
 
-  pbUser.authStore.loadFromCookie(cookie);
-  console.log("Auth store loaded, isValid:", pbUser.authStore.isValid);
-  console.log("Auth token exists:", !!pbUser.authStore.token);
+  pb.authStore.loadFromCookie(cookie);
+  console.log("Auth store loaded, isValid:", pb.authStore.isValid);
+  console.log("Auth token exists:", !!pb.authStore.token);
 
   try {
-    if (pbUser.authStore.isValid) {
+    if (pb.authStore.isValid) {
       try {
-        await pbUser.collection("users").authRefresh();
-        event.locals.pb = pbUser;
-        event.locals.user = structuredClone(pbUser.authStore.model);
+        await pb.collection("users").authRefresh();
+        event.locals.pb = pb;
+        event.locals.user = structuredClone(pb.authStore.model);
         console.log("Auth refresh successful, user:", event.locals.user?.id);
       } catch (err) {
         // Only clear auth if it's a real authentication error
         // @ts-expect-error - accessing error status
         if (err?.status === 401) {
           console.error("Auth refresh failed with 401, clearing auth:", err);
-          event.locals.pb = pbUser;
+          event.locals.pb = pb;
           event.locals.user = null;
-          pbUser.authStore.clear();
+          pb.authStore.clear();
 
           // Create a new response object to set the cookie
           const response = await resolve(event);
@@ -45,7 +46,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
           response.headers.set(
             "set-cookie",
-            pbUser.authStore.exportToCookie(cookieOptions)
+            pb.authStore.exportToCookie(cookieOptions)
           );
           // Add cache control headers
           response.headers.set("Cache-Control", "no-store, must-revalidate");
@@ -57,26 +58,26 @@ export const handle: Handle = async ({ event, resolve }) => {
             "Non-auth error during refresh, keeping auth state:",
             err
           );
-          event.locals.pb = pbUser;
-          event.locals.user = structuredClone(pbUser.authStore.model);
+          event.locals.pb = pb;
+          event.locals.user = structuredClone(pb.authStore.model);
         }
       }
     } else {
       console.log("Auth store not valid");
-      event.locals.pb = pbUser;
+      event.locals.pb = pb;
       event.locals.user = null;
     }
   } catch (err) {
     console.error("Error in auth handling:", err);
     console.error("Cookie at time of failure:", cookie);
-    pbUser.authStore.clear();
-    event.locals.pb = pbUser;
+    pb.authStore.clear();
+    event.locals.pb = pb;
     event.locals.user = null;
   }
 
   // Protect chat routes
   if (event.url.pathname.startsWith("/chat")) {
-    if (!pbUser.authStore.isValid) {
+    if (!pb.authStore.isValid) {
       console.log("Redirecting to login - auth not valid for chat route");
       throw redirect(303, "/login");
     }
