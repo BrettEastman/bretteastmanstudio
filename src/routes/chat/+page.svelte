@@ -20,8 +20,6 @@
   const checkAuth = () => {
     const pbUser = createPocketBaseInstance();
     isAuthenticated = pbUser.authStore.isValid;
-    console.log("Auth check - isValid:", isAuthenticated);
-    console.log("Auth token exists:", !!pbUser.authStore.token);
   };
 
   $effect(() => {

@@ -41,7 +41,6 @@
   function updateAuthStatus() {
     if (pb?.authStore) {
       isAuthenticated = pb.authStore.isValid;
-      console.log("Auth status updated:", isAuthenticated);
     }
   }
 
@@ -49,15 +48,12 @@
     if (typeof window !== "undefined") {
       window.addEventListener("click", handleClickOutside);
 
-      // Ensure we have a PocketBase instance
       if (!pb) {
         pb = createPocketBaseInstance();
       }
 
-      // Initial auth check
       updateAuthStatus();
 
-      // Set up auth change listener
       pb.authStore.onChange(() => {
         updateAuthStatus();
       });
@@ -66,7 +62,6 @@
     }
   });
 
-  // Reset body overflow on component unmount
   onDestroy(() => {
     if (typeof document !== "undefined") {
       document.body.style.overflow = "auto";
@@ -83,12 +78,10 @@
 
   async function handleLogout() {
     try {
-      isMobileMenuOpen = false; // Close menu immediately
+      isMobileMenuOpen = false;
 
-      // Clear client-side auth store first
       pb?.authStore.clear();
 
-      // Call server-side logout endpoint
       const response = await fetch("/api/auth/logout", {
         method: "POST",
         credentials: "include",
@@ -98,11 +91,9 @@
         throw new Error("Logout failed");
       }
 
-      // Force a full page reload to clear all state
       window.location.replace("/");
     } catch (error) {
       console.error("Logout error:", error);
-      // Still try to redirect on error
       window.location.replace("/");
     }
   }

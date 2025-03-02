@@ -2,9 +2,8 @@ import PocketBase from "pocketbase";
 import { PUBLIC_PB_URL } from "$env/static/public";
 
 export function createPocketBaseInstance() {
-  // Browser - use cache
   if (typeof window !== "undefined") {
-    // Keep your existing browser-side caching logic
+    // Keep your existing browser-side caching logic - research if this is the best approach
     if (window.__pocketbaseInstance) {
       return window.__pocketbaseInstance;
     }
@@ -18,8 +17,8 @@ export function createPocketBaseInstance() {
       try {
         const parsed = JSON.parse(authData);
         pb.authStore.save(parsed.token, parsed.model);
-      } catch (e) {
-        console.error("Failed to restore auth state:", e);
+      } catch (error) {
+        console.error("Failed to restore auth state:", error);
         localStorage.removeItem("pocketbase_auth");
       }
     }
