@@ -1,9 +1,10 @@
-import { pbUser } from "$lib/pocketbase";
+import { createPocketBaseInstance } from "$lib/pocketbase";
 import type { PageLoad } from "./$types";
 import type { SongList } from "$lib/typesAndInterfaces";
 
 export const load: PageLoad = async () => {
   try {
+    const pbUser = createPocketBaseInstance();
     const records = await pbUser.collection("songs").getFullList({
       filter: 'instrumentDescription ~ "Drums"',
     });

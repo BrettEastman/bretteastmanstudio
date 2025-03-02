@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { pbUser } from "$lib/pocketbase";
+  import { createPocketBaseInstance } from "$lib/pocketbase";
   import { onMount } from "svelte";
 
   let email = $state("");
@@ -12,6 +12,7 @@
   let isRegistering = $state(false);
 
   onMount(() => {
+    const pbUser = createPocketBaseInstance();
     pbUser.authStore.loadFromCookie(document.cookie);
   });
 
@@ -21,6 +22,7 @@
     error = "";
 
     try {
+      const pbUser = createPocketBaseInstance();
       if (isRegistering) {
         if (!firstName.trim() || !lastName.trim()) {
           throw new Error("First and last name are required");
