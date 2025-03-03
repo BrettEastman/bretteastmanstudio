@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createPocketBaseInstance } from "$lib/pocketbase";
-  import type { ChatMessage } from "$lib/typesAndInterfaces";
+  import type { ChatMessage } from "$lib/types";
   import { formatDateTime } from "$lib/utils/formatDateTime";
   import { onMount } from "svelte";
 

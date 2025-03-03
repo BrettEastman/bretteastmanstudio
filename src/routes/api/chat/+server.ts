@@ -1,4 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import type { RecordMessage, ListResult } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
 export async function POST({ request, locals }) {
@@ -77,7 +78,7 @@ export async function GET({ locals }) {
       }
     );
   }
-  let records: any;
+  let records: ListResult<RecordMessage>;
 
   try {
     records = await locals.pb.collection("messages").getList(1, 50, {

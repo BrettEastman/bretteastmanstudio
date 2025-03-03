@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ResourceItem } from "$lib/typesAndInterfaces";
+  import type { ResourceItem } from "$lib/types";
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
   import type { PageData } from "./$types";
 
