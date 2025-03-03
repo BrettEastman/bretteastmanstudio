@@ -23,7 +23,7 @@
       try {
         await pbUser.collection("users").getFirstListItem(`email="${email}"`);
       } catch (e) {
-        console.log("Email check:", e);
+        console.error("Email check failed:", e);
       }
 
       await pbUser.collection("users").requestPasswordReset(email);

@@ -1,6 +1,6 @@
 import { createPocketBaseInstance } from "$lib/pocketbase";
 import type { PageLoad } from "./$types";
-import type { ResourceList } from "$lib/typesAndInterfaces";
+import type { ResourceList } from "$lib/types";
 
 export const load: PageLoad = async () => {
   try {

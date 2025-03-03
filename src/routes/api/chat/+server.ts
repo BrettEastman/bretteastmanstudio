@@ -1,4 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import type { RecordMessage, ListResult } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
 export async function POST({ request, locals }) {
@@ -53,20 +54,10 @@ export async function POST({ request, locals }) {
     });
   } catch (error) {
     console.error("Error processing request:", error);
-    // Check if it's an authentication error
-    // @ts-expect-error - accessing error status
-    if (error?.status === 401) {
-      return json({ error: "Authentication failed" }, { status: 401 });
-    }
-    return json({ error: "Failed to process request" }, { status: 500 });
   }
 }
 
-export async function GET({ locals, request }) {
-  // Add request URL logging
-  console.log("Chat GET request URL:", request.url);
-  console.log("Auth state:", !!locals.pb?.authStore?.isValid);
-
+export async function GET({ locals }) {
   if (!locals.user || !locals.pb?.authStore?.isValid) {
     console.error("GET: Authentication check failed", {
       hasUser: !!locals.user,
@@ -87,16 +78,14 @@ export async function GET({ locals, request }) {
       }
     );
   }
-  let records: any;
+
+  let records: ListResult<RecordMessage>;
 
   try {
-    console.log("Attempting to fetch messages from PocketBase");
     records = await locals.pb.collection("messages").getList(1, 50, {
       sort: "created",
       filter: `user = "${locals.user.id}"`,
     });
-
-    console.log("Successfully fetched messages:", records.items.length);
 
     return json(records.items, {
       headers: {
@@ -104,25 +93,6 @@ export async function GET({ locals, request }) {
       },
     });
   } catch (error) {
-    console.error("Error fetching messages:", error);
-
-    // Check specifically for auth errors
-    // @ts-expect-error - accessing error status
-    if (error?.status === 401) {
-      return json(
-        {
-          error: "Authentication failed",
-          code: "AUTH_FAILED",
-        },
-        {
-          status: 401,
-          headers: {
-            "Cache-Control": "no-store, must-revalidate",
-          },
-        }
-      );
-    }
-
     if (error instanceof Error) {
       console.error("Detailed error:", error.message, error.stack);
     } else {
@@ -134,8 +104,6 @@ export async function GET({ locals, request }) {
         error: "Failed to fetch messages",
         code: "FETCH_ERROR",
         details: error instanceof Error ? error?.message : "Unknown error",
-        status: error?.status || 500,
-        records,
       },
       {
         status: 500,
