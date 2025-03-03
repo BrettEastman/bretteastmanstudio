@@ -78,6 +78,7 @@ export async function GET({ locals }) {
       }
     );
   }
+
   let records: ListResult<RecordMessage>;
 
   try {
@@ -103,7 +104,6 @@ export async function GET({ locals }) {
         error: "Failed to fetch messages",
         code: "FETCH_ERROR",
         details: error instanceof Error ? error?.message : "Unknown error",
-        records,
       },
       {
         status: 500,

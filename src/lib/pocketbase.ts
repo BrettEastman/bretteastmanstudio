@@ -3,7 +3,7 @@ import { PUBLIC_PB_URL } from "$env/static/public";
 
 export function createPocketBaseInstance() {
   if (typeof window !== "undefined") {
-    // Keep your existing browser-side caching logic - research if this is the best approach
+    // Keep existing browser-side caching logic? Research if this is the best approach
     if (window.__pocketbaseInstance) {
       return window.__pocketbaseInstance;
     }

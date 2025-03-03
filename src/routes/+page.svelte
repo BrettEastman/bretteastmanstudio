@@ -35,19 +35,15 @@
     </p>
     <br />
     <p>
-      This website is an archive of various teaching materials I created or
-      modified for students over the years, which does not necessarily represent
-      my music tastes. It is very limited collection, with several categories of
-      links to PDFs that anyone is welcome to download for free. Note that this
-      collection primarily represents material that was either useful for
-      teaching music concepts, or requested by the student. While most of the
-      pieces in the collection were arranged or written by me, some of the tabs
-      are adaptations of arrangements others wrote that I sourced online, then
-      refined.
+      This archive contains teaching materials I’ve created or adapted for
+      students over the years. These resources were either useful for teaching
+      music concepts or specifically requested by students. Most pieces were
+      arranged or written by me, though some tabs are refined adaptations of
+      others’ arrangements found online. All PDFs are free to download.
     </p>
     <br />
     <p>
-      While you are here browsing pdfs, you might also want to chat with an <a
+      While you are here browsing, you might also want to chat with an <a
         href="/chat"
         class="text-links"
       >
@@ -58,8 +54,8 @@
     </p>
     <br />
     <p>
-      For the drummers out there, you may also be interested in purchasing my
-      drum book,
+      And for the drummers out there, you may also be interested in purchasing
+      my drum book,
       <a
         href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
         target="_blank"
@@ -67,9 +63,9 @@
         class="text-links">Patterns and Beats</a
       >, which is intended for beginner to intermediate level students. It is a
       very useful reference and guide, which contains collections of linear
-      patterns, arranged by difficulty, and a curated selection of enjoyable and
-      educational drum beats. The layout was aesthetically designed for
-      readability, clarity and comfort.
+      patterns and a curated selection of drum beats, arranged in logical order
+      of difficulty. The layout was designed for readability, clarity and
+      comfort. It is available on paperback and e-book.
     </p>
     <a
       href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
