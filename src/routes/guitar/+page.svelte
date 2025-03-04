@@ -34,7 +34,7 @@
     Guitar Songs
   </h2>
   <button
-    class="w-full text-sm text-tertiary50 hover:text-tertiary80 duration-200"
+    class="text-sm text-tertiary50 active:text-tertiary80 duration-200 [@media(hover:hover)]:hover:text-tertiary80"
     onclick={randomizeSongs}
   >
     Randomize order
