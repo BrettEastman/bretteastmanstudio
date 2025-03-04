@@ -23,11 +23,3 @@
     </a>
   </div>
 </footer>
-
-<!-- <style>
-  @media (hover: hover) {
-    .hover:text-tertiary60 {
-      color: var(--tertiary80);
-    }
-  }
-</style> -->
