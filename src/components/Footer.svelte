@@ -11,15 +11,23 @@
     <a
       href="https://github.com/BrettEastman/bretteastmanstudio/"
       target="_blank"
-      class="text-primary30 dark:text-primary50 hover:text-tertiary60 duration-200"
+      class="text-primary30 dark:text-primary50 active:text-tertiary80 transition duration-200"
       ><Icon name="github" className="fill-current" size="36" />
     </a>
 
     <a
       href="https://www.linkedin.com/in/brett-austin-eastman/"
       target="_blank"
-      class="text-primary30 dark:text-primary50 hover:text-tertiary60 duration-200"
+      class="text-primary30 dark:text-primary50 active:text-tertiary80 transition duration-200"
       ><Icon name="linkedin" className="fill-current" size="36" />
     </a>
   </div>
 </footer>
+
+<!-- <style>
+  @media (hover: hover) {
+    .hover:text-tertiary60 {
+      color: var(--tertiary80);
+    }
+  }
+</style> -->
