@@ -15,16 +15,15 @@ export async function POST({ request, locals }) {
     }
 
     const user = await locals.pb.collection("users").getOne(locals.user.id);
+
+    const lastQuestionDateStr = user.lastQuestionDate
+      ? user.lastQuestionDate.split(" ")[0]
+      : "";
     const today = new Date().toISOString().split("T")[0];
 
-    if (user.lastQuestionDate !== today) {
-      await locals.pb.collection("users").update(locals.user.id, {
-        questionCount: 0,
-        lastQuestionDate: today,
-      });
-    }
-
-    if (user.questionCount >= 10) {
+    if (lastQuestionDateStr !== today) {
+      console.log("Will reset count for new day");
+    } else if (user.questionCount >= 10) {
       return json(
         { error: "Daily question limit reached. Please try again tomorrow." },
         { status: 429 }
@@ -40,10 +39,46 @@ export async function POST({ request, locals }) {
       response,
     });
 
-    await locals.pb.collection("users").update(locals.user.id, {
-      questionCount: user.questionCount + 1,
-      lastQuestionDate: today,
-    });
+    try {
+      // Get a fresh copy of the user to avoid any stale data
+      const freshUser = await locals.pb
+        .collection("users")
+        .getOne(locals.user.id);
+
+      let newCount;
+      const freshUserDateStr = freshUser.lastQuestionDate
+        ? freshUser.lastQuestionDate.split(" ")[0]
+        : "";
+
+      if (freshUserDateStr !== today) {
+        newCount = 1;
+      } else {
+        const currentCount = parseInt(freshUser.questionCount, 10) || 0;
+        newCount = currentCount + 1;
+      }
+
+      const updateData = {
+        questionCount: newCount,
+        lastQuestionDate: today,
+      };
+
+      await locals.pb.collection("users").update(locals.user.id, updateData);
+
+      // Try a raw query to double check all is good
+      try {
+        const rawCheck = await locals.pb.send(
+          "/api/collections/users/records/" + locals.user.id,
+          {
+            method: "GET",
+          }
+        );
+        console.log("Raw API response:", rawCheck);
+      } catch (rawError) {
+        console.log("Raw API check failed:", rawError);
+      }
+    } catch (error) {
+      console.error("Error updating question count:", error);
+    }
 
     return json(record, {
       headers: {
@@ -64,7 +99,6 @@ export async function GET({ locals }) {
       isAuthValid: !!locals.pb?.authStore?.isValid,
     });
 
-    // Return a more specific error code for auth failures
     return json(
       {
         error: "Authentication required",
@@ -93,17 +127,12 @@ export async function GET({ locals }) {
       },
     });
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Detailed error:", error.message, error.stack);
-    } else {
-      console.error("Unknown error:", error);
-    }
+    console.error("Failed to fetch messages:", error);
 
     return json(
       {
         error: "Failed to fetch messages",
         code: "FETCH_ERROR",
-        details: error instanceof Error ? error?.message : "Unknown error",
       },
       {
         status: 500,
