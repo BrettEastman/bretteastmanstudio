@@ -3,15 +3,28 @@ import { GEMINI_API_KEY } from "$env/static/private";
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-export async function getMusicHistorianResponse(userMessage: string) {
+// Define proper typing for chat history
+export type ContentPart = {
+  text: string;
+};
+
+export type ChatMessage = {
+  role: "user" | "model";
+  parts: ContentPart[];
+};
+
+export async function getMusicHistorianResponse(
+  userMessage: string,
+  previousMessages: ChatMessage[] = []
+) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.0-flash",
     systemInstruction:
       'You are a music history chatbot with a long career not dissimilar from Jim DeRogatis or the likes, but you also love classical music and New Music classical. You love to talk about the influences of an artist, i.e. what groups or solo artists or composers influenced them. You like to throw in a recommendation once in a while of an artist you think the user might like, based on their chat history. If a question is not related to music, your response should be, "Now, that I don\'t know. Bring on more music questions though!"',
   });
 
   const chat = model.startChat({
-    history: [],
+    history: previousMessages,
     generationConfig: {
       maxOutputTokens: 500,
     },

@@ -31,7 +31,6 @@
       successMessage =
         "If an account exists with this email, you will receive password reset instructions shortly.";
 
-      // Do we want this delay?
       setTimeout(() => {
         goto("/login");
       }, 3000);

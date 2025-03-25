@@ -1,4 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import type { ChatMessage } from "$lib/server/gemini";
 import type { RecordMessage, ListResult } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
@@ -31,7 +32,28 @@ export async function POST({ request, locals }) {
     }
 
     const { message } = await request.json();
-    const response = await getMusicHistorianResponse(message);
+
+    // Get last 3 messages for conversation history
+    const recentMessages = await locals.pb
+      .collection("messages")
+      .getList(1, 3, {
+        sort: "-created",
+        filter: `user = "${locals.user.id}"`,
+      });
+
+    // Format previous messages for Gemini API
+    const previousMessages: ChatMessage[] = recentMessages.items.reverse().flatMap((item) => [
+      {
+        role: "user" as const,
+        parts: [{ text: item.message }],
+      },
+      {
+        role: "model" as const,
+        parts: [{ text: item.response }],
+      },
+    ]);
+
+    const response = await getMusicHistorianResponse(message, previousMessages);
 
     const record = await locals.pb.collection("messages").create({
       user: locals.user.id,
