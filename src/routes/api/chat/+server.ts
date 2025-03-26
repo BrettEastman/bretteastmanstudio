@@ -1,4 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
+import type { ChatMessage } from "$lib/server/gemini";
 import type { RecordMessage, ListResult } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
@@ -31,7 +32,30 @@ export async function POST({ request, locals }) {
     }
 
     const { message } = await request.json();
-    const response = await getMusicHistorianResponse(message);
+
+    // Get last 5 messages for conversation history
+    const recentMessages = await locals.pb
+      .collection("messages")
+      .getList(1, 5, {
+        sort: "-created",
+        filter: `user = "${locals.user.id}"`,
+      });
+
+    // Format previous messages for Gemini API
+    const previousMessages: ChatMessage[] = recentMessages.items
+      .reverse()
+      .flatMap((item) => [
+        {
+          role: "user" as const,
+          parts: [{ text: item.message }],
+        },
+        {
+          role: "model" as const,
+          parts: [{ text: item.response }],
+        },
+      ]);
+
+    const response = await getMusicHistorianResponse(message, previousMessages);
 
     const record = await locals.pb.collection("messages").create({
       user: locals.user.id,
@@ -63,19 +87,6 @@ export async function POST({ request, locals }) {
       };
 
       await locals.pb.collection("users").update(locals.user.id, updateData);
-
-      // Try a raw query to double check all is good
-      try {
-        const rawCheck = await locals.pb.send(
-          "/api/collections/users/records/" + locals.user.id,
-          {
-            method: "GET",
-          }
-        );
-        console.log("Raw API response:", rawCheck);
-      } catch (rawError) {
-        console.log("Raw API check failed:", rawError);
-      }
     } catch (error) {
       console.error("Error updating question count:", error);
     }
