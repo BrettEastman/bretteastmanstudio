@@ -1,21 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GEMINI_API_KEY } from "$env/static/private";
+import type { PrevMessage } from "$lib/types";
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-// Define proper typing for chat history
-export type ContentPart = {
-  text: string;
-};
-
-export type ChatMessage = {
-  role: "user" | "model";
-  parts: ContentPart[];
-};
-
 export async function getMusicHistorianResponse(
   userMessage: string,
-  previousMessages: ChatMessage[] = []
+  previousMessages: PrevMessage[] = []
 ) {
   const model = genAI.getGenerativeModel({
     model: "gemini-2.0-flash",

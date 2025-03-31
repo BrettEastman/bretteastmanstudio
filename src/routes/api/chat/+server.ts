@@ -1,5 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
-import type { ChatMessage } from "$lib/server/gemini";
+import type { PrevMessage } from "$lib/types";
 import type { RecordMessage, ListResult } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
@@ -42,7 +42,7 @@ export async function POST({ request, locals }) {
       });
 
     // Format previous messages for Gemini API
-    const previousMessages: ChatMessage[] = recentMessages.items
+    const previousMessages: PrevMessage[] = recentMessages.items
       .reverse()
       .flatMap((item) => [
         {
