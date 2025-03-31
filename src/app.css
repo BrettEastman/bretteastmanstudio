@@ -50,16 +50,12 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary20);
+  background: var(--secondary30);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--secondary40);
   border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary60);
 }
 
 @media (prefers-color-scheme: light) {
@@ -68,12 +64,8 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--secondary60);
+    background: var(--secondary80);
     border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary70);
   }
 }
 
