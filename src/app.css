@@ -2,22 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 :root {
   --primary10: #0d0e0b;
   --primary20: #2b2b2b;
@@ -59,4 +43,40 @@ html {
 * {
   font-family: "JetBrains Mono", monospace;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary20);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary40);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary60);
+}
+
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar-track {
+    background: var(--secondary90);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary60);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary70);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
