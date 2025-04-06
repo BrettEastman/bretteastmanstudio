@@ -49,6 +49,18 @@
       if (!verificationSent) {
         await pbUser.collection("users").authWithPassword(email, password);
 
+        // Check if the user is verified
+        const userData = pbUser.authStore.model;
+        if (userData && !userData.verified) {
+          pbUser.authStore.clear();
+          error =
+            "Please verify your email before logging in. Check your inbox for the verification link.";
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+          return;
+        }
+
         // Set the cookie immediately after successful authentication
         document.cookie = pbUser.authStore.exportToCookie({
           httpOnly: false,
@@ -61,10 +73,17 @@
       }
     } catch (e: unknown) {
       console.error("Auth error:", e);
-      error =
-        e instanceof Error
-          ? "Please check your credentials. " + e.message
-          : "Authentication failed. Please check your credentials.";
+      if (e instanceof Error) {
+        // Check if this is an unverified email error
+        if (e.message.includes("Please verify your email")) {
+          error =
+            "Please verify your email before logging in. Check your inbox for the verification link.";
+        } else {
+          error = e.message;
+        }
+      } else {
+        error = "An unknown error occurred";
+      }
     } finally {
       loading = false;
     }
