@@ -37,9 +37,9 @@
     <p>
       This archive contains teaching materials I’ve created or adapted for
       students over the years. These resources were either useful for teaching
-      music concepts or specifically requested by students. Most pieces were
-      arranged or written by me, though some tabs are refined adaptations of
-      others’ arrangements found online. All PDFs are free to download.
+      music concepts or specifically requested by students. Most songs were
+      arranged or written by me, although some are refined adaptations of
+      others’ arrangements or tabs found online. All PDFs are free to download.
     </p>
     <br />
     <p>
@@ -49,8 +49,10 @@
       >
         AI music historian
       </a> who loves to give recommendations of artists, albums, and songs to listen
-      to. You can ask about any music history topic, and the AI will do its best
-      to provide an informative response. Please log in to use the chat feature.
+      to. You can ask about any music history topic, or find out more about the background
+      of a song, artist, or album, and the AI will do its best to provide an informative
+      response. And it may even give you a recommendation or two! Please log in to
+      use the chat feature.
     </p>
     <br />
     <p>

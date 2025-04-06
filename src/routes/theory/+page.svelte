@@ -33,13 +33,39 @@
     placeholder="Search for a resource by instrument or description..."
     bind:value={searchQuery}
   />
-  {#if filteredResources.length > 0}
-    {#each filteredResources as resource}
-      <ResourceDisplay {resource} />
-    {/each}
-  {:else}
-    <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
-      No resources available
-    </p>
-  {/if}
+  <ul class="grid gap-4 w-full">
+    {#if filteredResources.length > 0}
+      {#each filteredResources as resource, i}
+        <div class="resource-item flex justify-center" style="--index: {i}">
+          <ResourceDisplay {resource} />
+        </div>
+      {/each}
+    {:else}
+      <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
+        No resources available
+      </p>
+    {/if}
+  </ul>
 </div>
+
+<style>
+  .resource-item {
+    view-timeline-name: --show-resource;
+    view-timeline-axis: block;
+    animation: linear resource-fade both;
+    animation-timeline: --show-resource;
+    animation-range: entry 10% cover 17%;
+    animation-delay: calc(var(--index) * 100ms);
+  }
+
+  @keyframes resource-fade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

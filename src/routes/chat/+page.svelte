@@ -126,7 +126,7 @@
     {:else}
       <div
         bind:this={messageContainer}
-        class="bg-secondary90 rounded-lg shadow-lg p-4 mb-4 h-[500px] overflow-y-auto no-scrollbar dark:bg-secondary30"
+        class="bg-secondary90 shadow-lg p-4 mb-4 h-[600px] overflow-y-auto dark:bg-secondary30"
       >
         {#each messages as message (message.id)}
           <div class="mb-4">

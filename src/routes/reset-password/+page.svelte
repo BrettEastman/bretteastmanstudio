@@ -62,7 +62,7 @@
   </h2>
 
   {#if successMessage}
-    <div class="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
+    <div class="mb-4 p-4 bg-secondary80 text-secondary20 rounded-md">
       {successMessage}
     </div>
   {/if}

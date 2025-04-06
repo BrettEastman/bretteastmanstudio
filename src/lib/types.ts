@@ -53,3 +53,12 @@ export interface ChatMessage {
   response: string;
   created: string;
 }
+
+export type ContentPart = {
+  text: string;
+};
+
+export type PrevMessage = {
+  role: "user" | "model";
+  parts: ContentPart[];
+};
