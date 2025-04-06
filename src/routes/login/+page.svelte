@@ -10,6 +10,7 @@
   let loading = $state(false);
   let error = $state("");
   let isRegistering = $state(false);
+  let verificationSent = $state(false);
 
   onMount(() => {
     const pbUser = createPocketBaseInstance();
@@ -34,19 +35,30 @@
           password,
           passwordConfirm: password,
         });
+
+        await pbUser.collection("users").requestVerification(email);
+        alert(
+          `Verification email sent to ${email}. Please check your inbox and click the verification link. Then you can come back and login.`
+        );
+        verificationSent = true;
+
+        window.location.reload();
+        return;
       }
 
-      await pbUser.collection("users").authWithPassword(email, password);
+      if (!verificationSent) {
+        await pbUser.collection("users").authWithPassword(email, password);
 
-      // Set the cookie immediately after successful authentication
-      document.cookie = pbUser.authStore.exportToCookie({
-        httpOnly: false,
-        secure: import.meta.env.PROD,
-        path: "/",
-        sameSite: "lax",
-      });
+        // Set the cookie immediately after successful authentication
+        document.cookie = pbUser.authStore.exportToCookie({
+          httpOnly: false,
+          secure: import.meta.env.PROD,
+          path: "/",
+          sameSite: "lax",
+        });
 
-      await goto("/chat");
+        await goto("/chat");
+      }
     } catch (e: unknown) {
       console.error("Auth error:", e);
       error =
@@ -138,13 +150,15 @@
       <p class="text-red-500 text-sm">{error}</p>
     {/if}
 
-    <button
-      type="submit"
-      disabled={loading}
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 duration-200"
-    >
-      {loading ? "Processing..." : isRegistering ? "Register" : "Sign In"}
-    </button>
+    {#if !verificationSent}
+      <button
+        type="submit"
+        disabled={loading}
+        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary50 hover:bg-secondary60 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary50 duration-200"
+      >
+        {loading ? "Processing..." : isRegistering ? "Register" : "Sign In"}
+      </button>
+    {/if}
 
     <button
       type="button"
