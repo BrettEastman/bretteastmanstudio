@@ -40,7 +40,7 @@
   {/if}
   {#if $songs.length > 0}
     <button
-      class="text-sm text-tertiary50 active:text-tertiary80 duration-200 [@media(hover:hover)]:hover:text-tertiary80"
+      class="text-sm text-tertiary70 active:text-tertiary80 duration-200 hover:text-tertiary50"
       onclick={randomizeSongs}
     >
       Randomize order
