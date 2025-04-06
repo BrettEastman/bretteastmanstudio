@@ -74,13 +74,7 @@
     } catch (e: unknown) {
       console.error("Auth error:", e);
       if (e instanceof Error) {
-        // Check if this is an unverified email error
-        if (e.message.includes("Please verify your email")) {
-          error =
-            "Please verify your email before logging in. Check your inbox for the verification link.";
-        } else {
-          error = e.message;
-        }
+        error = e.message;
       } else {
         error = "An unknown error occurred";
       }
