@@ -51,18 +51,44 @@
       placeholder="Search for a bass song by artist or title..."
       bind:value={searchQuery}
     />
-    {#if filteredSongs.length > 0}
-      {#each filteredSongs as song}
-        <SongDisplay {song} />
-      {/each}
-    {:else}
-      <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
-        No matching songs found.
-      </p>
-    {/if}
+    <ul class="grid gap-4 w-full">
+      {#if filteredSongs.length > 0}
+        {#each filteredSongs as song, i}
+          <div class="song-item flex justify-center" style="--index: {i}">
+            <SongDisplay {song} />
+          </div>
+        {/each}
+      {:else}
+        <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
+          No matching songs found.
+        </p>
+      {/if}
+    </ul>
   {:else}
     <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
       {data.error ? "Please try again later." : "No bass songs available."}
     </p>
   {/if}
 </div>
+
+<style>
+  .song-item {
+    view-timeline-name: --show-song;
+    view-timeline-axis: block;
+    animation: linear song-fade both;
+    animation-timeline: --show-song;
+    animation-range: entry 10% cover 17%;
+    animation-delay: calc(var(--index) * 100ms);
+  }
+
+  @keyframes song-fade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
