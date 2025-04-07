@@ -34,7 +34,7 @@
     Drums Songs
   </h2>
   <button
-    class="text-sm text-tertiary70 active:text-tertiary80 duration-200 hover:text-tertiary50"
+    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-2 touch-manipulation"
     onclick={randomizeSongs}
   >
     Randomize order

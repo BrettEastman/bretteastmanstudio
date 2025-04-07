@@ -38,8 +38,8 @@
       This archive contains teaching materials I’ve created or adapted for
       students over the years. These resources were either useful for teaching
       music concepts or specifically requested by students. Most songs were
-      arranged or written by me, although some are refined adaptations of
-      others’ arrangements or tabs found online. All PDFs are free to download.
+      transcribed by me, although some are based on others’ charts or tabs found
+      online, which I then modified. All PDFs are free to download.
     </p>
     <br />
     <p>
