@@ -24,6 +24,7 @@
 
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
+    // Prevent scrolling when the mobile menu is open
     if (typeof document !== "undefined") {
       document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
     }
@@ -33,7 +34,8 @@
     const target = event.target as HTMLElement;
     if (!target.closest("#mobile-menu") && !target.closest("button")) {
       if (isMobileMenuOpen) {
-        toggleMobileMenu();
+        // toggleMobileMenu();
+        isMobileMenuOpen = false;
       }
     }
   }
@@ -113,7 +115,7 @@
     </div>
 
     <button
-      class="sm:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none"
+      class="sm:hidden text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200 focus:outline-none p-2"
       onclick={toggleMobileMenu}
       aria-label="Toggle navigation menu"
       aria-expanded={isMobileMenuOpen}
