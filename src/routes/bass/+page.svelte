@@ -27,12 +27,6 @@
       );
     })
   );
-
-  function handleTouch(event: TouchEvent) {
-    event.preventDefault();
-    console.log("Touch event:", event.type);
-    randomizeSongs();
-  }
 </script>
 
 <div class="grid place-items-center gap-4 p-6">
@@ -46,10 +40,8 @@
   {/if}
   {#if $songs.length > 0}
     <button
-      class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-2 touch-manipulation"
+      class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-2 touch-none"
       onclick={randomizeSongs}
-      ontouchstart={handleTouch}
-      ontouchend={handleTouch}
     >
       Randomize order
     </button>
