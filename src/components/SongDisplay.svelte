@@ -14,10 +14,11 @@
   target="_blank"
 >
   <div class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
-    <p>Title: <b>{song.songTitle}</b></p>
+    <p>Title: <b class="px-3 sm:px-[14px]">{song.songTitle}</b></p>
     <div class="flex justify-between">
-      <span>Artist: <b>{song.artistName}</b></span>
-      <span>{song.instrumentDescription}</span>
+      <span>Artist: <b class="px-1">{song.artistName}</b></span>
+      <span class="text-xs flex items-center">{song.instrumentDescription}</span
+      >
     </div>
   </div>
 </a>

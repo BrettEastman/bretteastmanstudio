@@ -188,7 +188,7 @@
             <a
               href={item.href}
               onclick={toggleMobileMenu}
-              class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+              class="px-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
               {item.name}
             </a>

@@ -16,7 +16,7 @@
   <div class="text-primary10 dark:text-primary90 sm:text-lg">
     <p><b>{resource.description}</b></p>
     <div class="flex justify-end">
-      <span>{resource.instrument}</span>
+      <span class="text-xs flex items-center">{resource.instrument}</span>
     </div>
   </div>
 </a>
