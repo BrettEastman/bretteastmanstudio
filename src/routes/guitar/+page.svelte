@@ -29,19 +29,19 @@
   );
 </script>
 
-<div class="grid place-items-center gap-4 p-6">
+<div class="grid place-items-center gap-2 p-6">
   <h2 class="text-2xl text-primary30 font-semibold py-2 dark:text-secondary90">
     Guitar Songs
   </h2>
   <button
-    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-2 touch-none"
+    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
     onclick={randomizeSongs}
   >
     Randomize order
   </button>
   <input
     type="text"
-    class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+    class="w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
     placeholder="Search for a guitar song by artist or title..."
     bind:value={searchQuery}
   />

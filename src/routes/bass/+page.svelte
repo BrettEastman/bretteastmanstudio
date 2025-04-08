@@ -33,42 +33,31 @@
   <h2 class="text-2xl text-primary30 font-semibold py-2 dark:text-secondary90">
     Bass Songs
   </h2>
-  {#if data.error}
-    <p class="text-red-500 dark:text-red-400 text-center p-4">
-      {data.error}
-    </p>
-  {/if}
-  {#if $songs.length > 0}
-    <button
-      class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
-      onclick={randomizeSongs}
-    >
-      Randomize order
-    </button>
-    <input
-      type="text"
-      class="w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
-      placeholder="Search for a bass song by artist or title..."
-      bind:value={searchQuery}
-    />
-    <ul class="grid gap-4 w-full">
-      {#if filteredSongs.length > 0}
-        {#each filteredSongs as song, i}
-          <div class="song-item flex justify-center" style="--index: {i}">
-            <SongDisplay {song} />
-          </div>
-        {/each}
-      {:else}
-        <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
-          No matching songs found.
-        </p>
-      {/if}
-    </ul>
-  {:else}
-    <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
-      {data.error ? "Please try again later." : "No bass songs available."}
-    </p>
-  {/if}
+  <button
+    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
+    onclick={randomizeSongs}
+  >
+    Randomize order
+  </button>
+  <input
+    type="text"
+    class="w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+    placeholder="Search for a bass song by artist or title..."
+    bind:value={searchQuery}
+  />
+  <ul class="grid gap-4 w-full">
+    {#if filteredSongs.length > 0}
+      {#each filteredSongs as song, i}
+        <div class="song-item flex justify-center" style="--index: {i}">
+          <SongDisplay {song} />
+        </div>
+      {/each}
+    {:else}
+      <p class="text-sm text-primary10 dark:text-primary90 sm:text-lg">
+        No bass songs available.
+      </p>
+    {/if}
+  </ul>
 </div>
 
 <style>
