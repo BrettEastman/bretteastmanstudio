@@ -1,8 +1,8 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { createPocketBaseInstance } from "$lib/pocketbase";
-  import { onDestroy, onMount } from "svelte";
   import type PocketBase from "pocketbase";
+  import { onDestroy, onMount } from "svelte";
   import Hamburger from "./Hamburger.svelte";
 
   let navItems = [
@@ -34,7 +34,6 @@
     const target = event.target as HTMLElement;
     if (!target.closest("#mobile-menu") && !target.closest("button")) {
       if (isMobileMenuOpen) {
-        // toggleMobileMenu();
         isMobileMenuOpen = false;
       }
     }

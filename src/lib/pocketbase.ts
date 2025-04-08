@@ -1,5 +1,5 @@
-import PocketBase from "pocketbase";
 import { PUBLIC_PB_URL } from "$env/static/public";
+import PocketBase from "pocketbase";
 
 export function createPocketBaseInstance() {
   if (typeof window !== "undefined") {

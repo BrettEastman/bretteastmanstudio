@@ -43,7 +43,6 @@
 * {
   font-family: "JetBrains Mono", monospace;
   box-sizing: border-box;
-  /* -webkit-tap-highlight-color: transparent; */
 }
 
 ::-webkit-scrollbar {
@@ -61,19 +60,8 @@
 
 button,
 a {
-  /* touch-action: manipulation; */
   cursor: pointer;
 }
-
-/* html {
-  touch-action: manipulation;
-} */
-
-/* .touch-manipulation {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-} */
 
 @media (prefers-color-scheme: light) {
   ::-webkit-scrollbar-track {

@@ -63,8 +63,8 @@
 
 <style>
   .song-item {
-    opacity: 1; /* Default state for unsupported browsers */
-    transform: translateY(0); /* Default state for unsupported browsers */
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @supports (animation-timeline: view()) {
@@ -81,25 +81,6 @@
       from {
         opacity: 0;
         transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
-
-  /* Fallback for browsers that don't support view-timeline animations */
-  @supports not (animation-timeline: view()) {
-    .song-item {
-      animation: fallback-fade 0.5s ease-out forwards;
-      animation-delay: calc(var(--index) * 100ms);
-    }
-
-    @keyframes fallback-fade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
       }
       to {
         opacity: 1;
