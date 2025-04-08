@@ -50,22 +50,47 @@
 
 <style>
   .resource-item {
-    view-timeline-name: --show-resource;
-    view-timeline-axis: block;
-    animation: linear resource-fade both;
-    animation-timeline: --show-resource;
-    animation-range: entry 10% cover 17%;
-    animation-delay: calc(var(--index) * 100ms);
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  @keyframes resource-fade {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
+  @supports (animation-timeline: view()) {
+    .resource-item {
+      view-timeline-name: --show-resource;
+      view-timeline-axis: block;
+      animation: linear resource-fade both;
+      animation-timeline: --show-resource;
+      animation-range: entry 10% cover 17%;
+      animation-delay: calc(var(--index) * 100ms);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    @keyframes resource-fade {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @supports not (animation-timeline: view()) {
+    .resource-item {
+      animation: fallback-fade 0.5s ease-out forwards;
+      animation-delay: calc(var(--index) * 100ms);
+    }
+
+    @keyframes fallback-fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 </style>
