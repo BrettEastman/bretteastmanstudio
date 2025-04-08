@@ -41,7 +41,7 @@
   </button>
   <input
     type="text"
-    class="w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+    class="text-xs md:text-sm lg:text-base w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
     placeholder="Search for a bass song by artist or title..."
     bind:value={searchQuery}
   />
@@ -80,24 +80,6 @@
       from {
         opacity: 0;
         transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
-
-  @supports not (animation-timeline: view()) {
-    .song-item {
-      animation: fallback-fade 0.5s ease-out forwards;
-      animation-delay: calc(var(--index) * 100ms);
-    }
-
-    @keyframes fallback-fade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
       }
       to {
         opacity: 1;

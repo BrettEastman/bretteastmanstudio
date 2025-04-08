@@ -1,6 +1,5 @@
 import { getMusicHistorianResponse } from "$lib/server/gemini";
-import type { PrevMessage } from "$lib/types";
-import type { RecordMessage, ListResult } from "$lib/types";
+import type { ListResult, PrevMessage, RecordMessage } from "$lib/types";
 import { json } from "@sveltejs/kit";
 
 export async function POST({ request, locals }) {
