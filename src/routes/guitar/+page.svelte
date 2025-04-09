@@ -45,8 +45,8 @@
   <input
     type="text"
     aria-label="Search guitar songs"
-    class="text-xs md:text-sm lg:text-base w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
-    placeholder="Search for a guitar song by artist or title..."
+    class="text-sm lg:text-base w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
+    placeholder="Search by artist or title..."
     bind:value={searchQuery}
   />
 
