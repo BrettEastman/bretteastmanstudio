@@ -164,12 +164,14 @@
           <input
             type="text"
             bind:value={newMessage}
+            aria-label="Type your message"
             placeholder="Ask about any music history topic..."
             class="flex-1 px-4 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
             disabled={loading}
           />
           <button
             type="submit"
+            aria-label="Send message"
             class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
             disabled={loading || !newMessage.trim()}
           >

@@ -38,11 +38,13 @@
   <button
     class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
     onclick={randomizeSongs}
+    aria-label="Randomize song order"
   >
     Randomize order
   </button>
   <input
     type="text"
+    aria-label="Search bass songs"
     class="text-xs md:text-sm lg:text-base w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
     placeholder="Search for a bass song by artist or title..."
     bind:value={searchQuery}
@@ -67,8 +69,15 @@
   ${y <= 100 ? "opacity-0 pointer-events-none" : "opacity-100"}
 `}
   >
-    <button onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-      <Icon name="arrow-up-s-line" size="36" className="fill-current" />
+    <button
+      onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Scroll to top of page"
+    >
+      <Icon
+        name="arrow-up-s-line"
+        size="36"
+        className="fill-current text-primary30 dark:text-secondary90"
+      />
     </button>
   </div>
 </div>

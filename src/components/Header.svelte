@@ -108,6 +108,7 @@
       <a
         href="/"
         class="text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+        aria-label="Home - Brett Eastman teaching archives"
       >
         Brett Eastman <em>teaching archives</em>
       </a>
@@ -125,44 +126,45 @@
   </div>
 
   {#if !isMobileMenuOpen}
-    <nav>
+    <nav aria-label="Main navigation">
       <div class="flex justify-between items-center">
         <a
           href="/"
           class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+          aria-label="Home - Brett Eastman teaching archives"
         >
           Brett Eastman <em>teaching archives</em>
         </a>
         <!-- Desktop nav -->
-        <ul class="hidden sm:flex justify-end items-center">
+        <ul class="hidden sm:flex justify-end items-center" role="menubar">
           {#each navItems as item}
-            <li class="mx-4">
+            <li class="mx-4" role="none">
               <a
                 href={item.href}
                 class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+                role="menuitem"
               >
                 {item.name}
               </a>
             </li>
           {/each}
           {#if isAuthenticated}
-            <li
-              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-            >
+            <li class="mx-4" role="none">
               <button
                 onclick={handleLogout}
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+                role="menuitem"
+                aria-label="Logout {pb?.authStore.model?.name}"
               >
                 {`Logout ${pb?.authStore.model?.name}`}
               </button>
             </li>
           {:else}
-            <li
-              class="mx-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-            >
+            <li class="mx-4" role="none">
               <a
                 href="/login"
                 class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+                role="menuitem"
               >
                 Login
               </a>
@@ -174,43 +176,42 @@
   {/if}
 
   {#if isMobileMenuOpen}
-    <nav
-      class="absolute left-0 right-0 top-[66px] z-10 border-b-4 border-tertiary80 dark:border-tertiary70"
-    >
+    <nav aria-label="Mobile navigation">
       <!-- Mobile nav -->
       <ul
         id="mobile-menu"
         class="flex flex-col bg-secondary93 dark:bg-secondary20 rounded-md px-4 py-2 shadow-lg"
+        role="menu"
       >
         {#each navItems as item}
-          <li class="my-2 w-full">
+          <li class="my-2 w-full" role="none">
             <a
               href={item.href}
               onclick={toggleMobileMenu}
               class="flex px-4 w-full text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+              role="menuitem"
             >
               {item.name}
             </a>
           </li>
         {/each}
         {#if isAuthenticated}
-          <li
-            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
+          <li class="my-2" role="none">
             <button
               onclick={handleLogout}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+              role="menuitem"
+              aria-label="Logout {pb?.authStore.model?.name}"
             >
               Logout
             </button>
           </li>
         {:else}
-          <li
-            class="my-2 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
-          >
+          <li class="my-2" role="none">
             <button
               onclick={handleLogin}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+              role="menuitem"
             >
               Login
             </button>

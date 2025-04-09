@@ -12,6 +12,7 @@
       href="https://github.com/BrettEastman/bretteastmanstudio/"
       target="_blank"
       class="text-primary30 dark:text-primary50 active:text-tertiary80 transition duration-200"
+      aria-label="View project source code on GitHub"
     >
       <Icon name="github" className="fill-current" size="36" />
     </a>
@@ -20,6 +21,7 @@
       href="https://www.linkedin.com/in/brett-austin-eastman/"
       target="_blank"
       class="text-primary30 dark:text-primary50 active:text-tertiary80 transition duration-200"
+      aria-label="Connect with Brett Eastman on LinkedIn"
     >
       <Icon name="linkedin" className="fill-current" size="36" />
     </a>
