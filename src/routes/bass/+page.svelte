@@ -1,5 +1,6 @@
 <script lang="ts">
   import { writable } from "svelte/store";
+  import Icon from "../../components/Icon.svelte";
   import SongDisplay from "../../components/SongDisplay.svelte";
   import type { PageData } from "./$types";
 
@@ -10,6 +11,7 @@
   let { data }: Props = $props();
 
   let searchQuery = $state("");
+  let y = $state(0);
 
   const songs = writable(data.songList);
 
@@ -58,7 +60,20 @@
       </p>
     {/if}
   </ul>
+
+  <div
+    class={`
+  fixed bottom-0 left-0 px-2 py-8 sm:p-12 z-10 transition-opacity duration-200
+  ${y <= 100 ? "opacity-0 pointer-events-none" : "opacity-100"}
+`}
+  >
+    <button onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+      <Icon name="arrow-up-s-line" size="36" className="fill-current" />
+    </button>
+  </div>
 </div>
+
+<svelte:window bind:scrollY={y} />
 
 <style>
   .song-item {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ResourceItem } from "$lib/types";
+  import Icon from "../../components/Icon.svelte";
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
   import type { PageData } from "./$types";
 
@@ -10,6 +11,7 @@
   let { data }: Props = $props();
 
   let searchQuery = $state("");
+  let y = $state(0);
 
   let filteredResources = $derived(
     data.resourceList.filter((resource: ResourceItem) => {
@@ -46,7 +48,20 @@
       </p>
     {/if}
   </ul>
+
+  <div
+    class={`
+    fixed bottom-0 left-0 px-2 py-8 sm:p-12 z-10 transition-opacity duration-200
+    ${y <= 100 ? "opacity-0 pointer-events-none" : "opacity-100"}
+  `}
+  >
+    <button onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+      <Icon name="arrow-up-s-line" size="36" className="fill-current" />
+    </button>
+  </div>
 </div>
+
+<svelte:window bind:scrollY={y} />
 
 <style>
   .resource-item {
@@ -68,24 +83,6 @@
       from {
         opacity: 0;
         transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
-
-  @supports not (animation-timeline: view()) {
-    .resource-item {
-      animation: fallback-fade 0.5s ease-out forwards;
-      animation-delay: calc(var(--index) * 100ms);
-    }
-
-    @keyframes fallback-fade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
       }
       to {
         opacity: 1;

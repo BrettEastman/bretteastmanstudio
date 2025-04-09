@@ -183,11 +183,11 @@
         class="flex flex-col bg-secondary93 dark:bg-secondary20 rounded-md px-4 py-2 shadow-lg"
       >
         {#each navItems as item}
-          <li class="my-2">
+          <li class="my-2 w-full">
             <a
               href={item.href}
               onclick={toggleMobileMenu}
-              class="px-4 text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+              class="flex px-4 w-full text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
             >
               {item.name}
             </a>
