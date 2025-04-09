@@ -69,7 +69,11 @@
   `}
   >
     <button onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-      <Icon name="arrow-up-s-line" size="36" className="fill-current" />
+      <Icon
+        name="arrow-up-s-line"
+        size="36"
+        className="fill-current text-primary30 dark:text-secondary90"
+      />
     </button>
   </div>
 </div>
