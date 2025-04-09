@@ -10,7 +10,7 @@
 
   let {
     title = "Brett Eastman - Full Stack Developer",
-    description = "Brett Austin Eastman is a software engineer and musician based in San Francisco. He specializes in React, Svelte, Node, Firebase, and PostgreSQL.",
+    description = "Brett Austin Eastman is a Full Stack software engineer, musician, composer, and former music teacher based in San Francisco.",
     keywords = "software development, web development, developer, music, web design, guitar tabs, music theory, music history, AI music historian",
     ogImage = "/images/Brett-headshot.jpg",
   }: Props = $props();
