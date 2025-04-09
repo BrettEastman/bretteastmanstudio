@@ -75,22 +75,4 @@
       }
     }
   }
-
-  @supports not (animation-timeline: view()) {
-    .resource-item {
-      animation: fallback-fade 0.5s ease-out forwards;
-      animation-delay: calc(var(--index) * 100ms);
-    }
-
-    @keyframes fallback-fade {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
 </style>
