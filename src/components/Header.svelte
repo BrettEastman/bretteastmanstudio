@@ -35,6 +35,7 @@
     if (!target.closest("#mobile-menu") && !target.closest("button")) {
       if (isMobileMenuOpen) {
         isMobileMenuOpen = false;
+        document.body.style.overflow = "auto";
       }
     }
   }

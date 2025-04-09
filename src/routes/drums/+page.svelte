@@ -65,13 +65,14 @@
 
   <div
     class={`
-  fixed bottom-0 left-0 px-2 py-8 sm:p-12 z-10 transition-opacity duration-200
+  fixed bottom-0 left-0 z-10 transition-opacity duration-200
   ${y <= 100 ? "opacity-0 pointer-events-none" : "opacity-100"}
 `}
   >
     <button
       onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top of page"
+      class="px-3 py-8 sm:p-12"
     >
       <Icon
         name="arrow-up-s-line"

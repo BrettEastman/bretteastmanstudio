@@ -1,5 +1,8 @@
 <script lang="ts">
+  import Meta from "../components/Meta.svelte";
 </script>
+
+<Meta />
 
 <div class="flex flex-col items-center px-8 py-4">
   <h1 class="text-2xl text-primary10 dark:text-primary80 font-semibold py-8">
