@@ -31,6 +31,7 @@
   </h2>
   <input
     type="text"
+    aria-label="Search theory resources"
     class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
     placeholder="Search for a resource by instrument or description..."
     bind:value={searchQuery}
@@ -55,7 +56,10 @@
     ${y <= 100 ? "opacity-0 pointer-events-none" : "opacity-100"}
   `}
   >
-    <button onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    <button
+      onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Scroll to top of page"
+    >
       <Icon
         name="arrow-up-s-line"
         size="36"
