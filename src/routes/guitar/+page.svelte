@@ -73,7 +73,7 @@
     <button
       onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top of page"
-      class="px-3 py-8 sm:p-12"
+      class="px-3 py-6 sm:p-6"
     >
       <Icon
         name="arrow-up-s-line"
