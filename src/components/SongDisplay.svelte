@@ -6,6 +6,8 @@
   }
 
   let { song }: Props = $props();
+
+  let width = $state(0);
 </script>
 
 <a
@@ -14,12 +16,24 @@
   target="_blank"
   aria-label="Download {song.songTitle} by {song.artistName} ({song.instrumentDescription})"
 >
-  <div class="text-xs text-primary10 dark:text-primary90 sm:text-sm md:text-lg">
-    <p>Title: <b class="px-3 sm:px-[14px]">{song.songTitle}</b></p>
+  <div
+    class="text-sm text-primary10 dark:text-primary90 sm:text-base md:text-lg"
+  >
+    <p>
+      {width > 768 ? "Title: " : ""}<b
+        class={`${width > 768 ? "px-3" : "px-0"}`}>{song.songTitle}</b
+      >
+    </p>
     <div class="flex justify-between">
-      <span>Artist: <b class="px-1">{song.artistName}</b></span>
+      <span
+        >{width > 768 ? "Artist: " : ""}<b
+          class={`${width > 768 ? "px-1" : "px-0"}`}>{song.artistName}</b
+        >
+      </span>
       <span class="text-xs flex items-center">{song.instrumentDescription}</span
       >
     </div>
   </div>
 </a>
+
+<svelte:window bind:innerWidth={width} />
