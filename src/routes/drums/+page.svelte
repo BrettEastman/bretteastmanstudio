@@ -36,7 +36,7 @@
     Drums Songs
   </h2>
   <button
-    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
+    class="text-sm text-tertiary50 dark:text-tertiary60 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
     onclick={randomizeSongs}
     aria-label="Randomize song order"
   >
@@ -72,7 +72,7 @@
     <button
       onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top of page"
-      class="px-3 py-8 sm:p-12"
+      class="px-3 py-6 sm:p-6"
     >
       <Icon
         name="arrow-up-s-line"
