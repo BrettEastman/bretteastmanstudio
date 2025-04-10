@@ -1,6 +1,6 @@
 ## About
 
-Brett Eastman Studio - student PDF archives
+![IMG_0011](https://github.com/user-attachments/assets/20e9c239-2823-41f2-a960-ecefe6974c45)
 
 [Have a look online!](https://bretteastmanstudio.com/)
 
