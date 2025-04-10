@@ -36,7 +36,7 @@
     Drums Songs
   </h2>
   <button
-    class="text-sm text-tertiary50 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
+    class="text-sm text-tertiary50 dark:text-tertiary60 sm:hover:text-tertiary40 active:text-tertiary40 duration-200 p-4"
     onclick={randomizeSongs}
     aria-label="Randomize song order"
   >
