@@ -42,7 +42,8 @@
       students over the years. These resources were either useful for teaching
       music concepts or specifically requested by students. Most songs were
       transcribed by me, although some are based on others’ charts or tabs found
-      online, which I then modified. All PDFs are free to download.
+      online, which I then modified. All PDFs are stored on my google drive and
+      free to download.
     </p>
     <br />
     <p>
@@ -53,8 +54,8 @@
         AI music historian
       </a> who loves to give recommendations of artists, albums, and songs to listen
       to. You can ask about any music history topic, or find out more about the background
-      of a song, artist, or album, and the AI will do its best to provide an informative
-      response. Please log in to use the chat feature.
+      of a song, artist, or album, and the music historian will do its best to provide
+      an informative response. Please log in to use the chat feature.
     </p>
     <br />
     <p>
