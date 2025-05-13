@@ -19,13 +19,6 @@
         throw new Error("Please enter a valid email address");
       }
 
-      // if email already exists in database?
-      try {
-        await pbUser.collection("users").getFirstListItem(`email="${email}"`);
-      } catch (e) {
-        console.error("Email check failed:", e);
-      }
-
       await pbUser.collection("users").requestPasswordReset(email);
 
       successMessage =

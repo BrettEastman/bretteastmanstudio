@@ -1,4 +1,3 @@
-import { PUBLIC_PB_URL } from "$env/static/public";
 import PocketBase from "pocketbase";
 
 export function createPocketBaseInstance() {
@@ -8,7 +7,7 @@ export function createPocketBaseInstance() {
       return window.__pocketbaseInstance;
     }
 
-    const pb = new PocketBase(PUBLIC_PB_URL);
+    const pb = new PocketBase("https://api.bretteastmanstudio.com");
     window.__pocketbaseInstance = pb;
 
     // Restore auth from localStorage if present
@@ -27,5 +26,5 @@ export function createPocketBaseInstance() {
   }
 
   // Server - ALWAYS create a new instance (no caching)
-  return new PocketBase(PUBLIC_PB_URL);
+  return new PocketBase("https://api.bretteastmanstudio.com");
 }
