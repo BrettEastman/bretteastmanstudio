@@ -34,7 +34,8 @@
       was to provide students the chance to develop lasting musical skills, leaving
       them with the ability to continue to provide for themselves a lifetime of musical
       enjoyment. My aim was to inspire students to be curious, to do their very best
-      and to find their own deep connection to music.
+      and to find their own deep connection to music. It is to those students that
+      I dedicate this site.
     </p>
     <br />
     <p>
@@ -43,7 +44,8 @@
       music concepts or specifically requested by students. Most songs were
       transcribed by me, although some are based on others’ charts or tabs found
       online, which I then modified. All PDFs are stored on my google drive and
-      free to download.
+      free to download. On mobile, you will need Google Drive app to download
+      the PDFs.
     </p>
     <br />
     <p>
