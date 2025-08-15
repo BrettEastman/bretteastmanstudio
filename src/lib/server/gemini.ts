@@ -1,8 +1,8 @@
-import { GEMINI_API_KEY } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 import type { PrevMessage } from "$lib/types";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(env.PRIVATE_GEMINI_API_KEY);
 
 export async function getMusicHistorianResponse(
   userMessage: string,

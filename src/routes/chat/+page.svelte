@@ -101,7 +101,7 @@
   });
 </script>
 
-<div class="p-6 h-dvh">
+<div class="p-6 h-svh">
   <div class="max-w-3xl mx-auto">
     <h2
       class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
@@ -114,7 +114,7 @@
         <p
           class="text-lg text-primary30 font-semibold text-center mb-4 pb-4 dark:text-secondary90"
         >
-          Please log in to use the chat feature.
+          Please login or create an account to use the chat feature.
         </p>
         <a
           href="/login"
