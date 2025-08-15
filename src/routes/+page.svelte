@@ -73,7 +73,7 @@
       students. It contains collections of linear patterns and a curated
       selection of drum beats, arranged in logical order of difficulty. The
       minimalist layout was designed for readability, clarity and comfort. It is
-      available on paperback and e-book.
+      available on paperback and digital.
     </p>
     <a
       href="https://www.amazon.com/gp/product/B09QGB3TM3?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks&qid=1731269493&sr=8-1"
