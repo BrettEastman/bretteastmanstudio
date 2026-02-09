@@ -11,7 +11,13 @@
 
   let searchQuery = $state("");
   let y = $state(0);
-  let songs = $state([...data.songList]);
+
+  const initialSongs = $derived(data.songList);
+  let songs = $state<typeof initialSongs>([]);
+
+  $effect.pre(() => {
+    songs = [...initialSongs];
+  });
 
   function randomizeSongs() {
     songs = [...songs].sort(() => Math.random() - 0.5);
@@ -23,7 +29,7 @@
         song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
         song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
       );
-    })
+    }),
   );
 </script>
 
