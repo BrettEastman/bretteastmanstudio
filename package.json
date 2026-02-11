@@ -33,6 +33,7 @@
     "node": ">=18.18.0"
   },
   "dependencies": {
+    "@google/genai": "^1.40.0",
     "pocketbase": "^0.21.5"
   }
 }
