@@ -30,7 +30,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=20.19.0"
   },
   "dependencies": {
     "@google/genai": "^1.40.0",
