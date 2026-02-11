@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
   import Icon from "../../components/Icon.svelte";
   import SongDisplay from "../../components/SongDisplay.svelte";
   import type { PageData } from "./$types";
@@ -13,21 +12,26 @@
   let searchQuery = $state("");
   let y = $state(0);
 
-  const songs = writable(data.songList);
+  // Use derived state to avoid unnecessary re-renders
+  const initialSongs = $derived(data.songList);
+  let songs = $state<typeof initialSongs>([]);
+
+  // Initialize songs with the initial data
+  $effect.pre(() => {
+    songs = [...initialSongs];
+  });
 
   function randomizeSongs() {
-    songs.update((currentSongs) =>
-      [...currentSongs].sort(() => Math.random() - 0.5)
-    );
+    songs = [...songs].sort(() => Math.random() - 0.5);
   }
 
   let filteredSongs = $derived(
-    $songs.filter((song) => {
+    songs.filter((song) => {
       return (
         song.songTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
         song.artistName.toLowerCase().includes(searchQuery.toLowerCase())
       );
-    })
+    }),
   );
 </script>
 
