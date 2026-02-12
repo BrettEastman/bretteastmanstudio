@@ -30,9 +30,11 @@ export type InstrDescription =
   | "Guitar-chords-tab";
 
 export interface ResourceItem {
+  id: string;
   description: string;
   instrument: ResourceInstrument;
   pdfLink: string;
+  pdfFile?: string;
 }
 
 export interface SongItem {
