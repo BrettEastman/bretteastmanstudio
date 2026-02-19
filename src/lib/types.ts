@@ -38,10 +38,12 @@ export interface ResourceItem {
 }
 
 export interface SongItem {
+  id: string;
   songTitle: string;
   instrumentDescription: InstrDescription;
   artistName: string;
   songPdfLink: string;
+  songPdfFile?: string;
 }
 
 export type SongList = SongItem[];

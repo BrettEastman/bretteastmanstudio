@@ -10,10 +10,12 @@ export const load: PageLoad = async () => {
     });
 
     const songList: SongList = records.map((record) => ({
+      id: record.id,
       songTitle: record.songTitle,
       instrumentDescription: record.instrumentDescription,
       artistName: record.artistName,
       songPdfLink: record.songPdfLink,
+      songPdfFile: record.songPdfFile,
     }));
 
     return {
