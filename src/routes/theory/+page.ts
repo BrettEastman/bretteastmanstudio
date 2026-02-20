@@ -10,9 +10,11 @@ export const load: PageLoad = async () => {
     });
 
     const resourceList: ResourceList = records.map((record) => ({
+      id: record.id,
       description: record.description,
       instrument: record.instrument,
       pdfLink: record.pdfLink,
+      pdfFile: record.pdfFile,
     }));
 
     return {

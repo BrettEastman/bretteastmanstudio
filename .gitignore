@@ -24,3 +24,5 @@ vite.config.ts.timestamp-*
 seedDB.js
 seedResources.js
 content
+upload-song-pdfs.js
+upload-README.md

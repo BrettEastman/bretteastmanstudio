@@ -30,16 +30,20 @@ export type InstrDescription =
   | "Guitar-chords-tab";
 
 export interface ResourceItem {
+  id: string;
   description: string;
   instrument: ResourceInstrument;
   pdfLink: string;
+  pdfFile?: string;
 }
 
 export interface SongItem {
+  id: string;
   songTitle: string;
   instrumentDescription: InstrDescription;
   artistName: string;
   songPdfLink: string;
+  songPdfFile?: string;
 }
 
 export type SongList = SongItem[];
