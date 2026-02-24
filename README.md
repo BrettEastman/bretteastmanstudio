@@ -1,6 +1,7 @@
 ## About
 
-![IMG_0011](https://github.com/user-attachments/assets/20e9c239-2823-41f2-a960-ecefe6974c45)
+<img width="1223" height="887" alt="Screenshot 2026-02-23 at 11 53 19 PM" src="https://github.com/user-attachments/assets/16580410-2fc2-45b5-9a71-99f1863b1185" />
+
 
 [Have a look online!](https://bretteastmanstudio.com/)
 
