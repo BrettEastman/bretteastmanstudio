@@ -43,9 +43,7 @@
       students over the years. These resources were either useful for teaching
       music concepts or specifically requested by students. Most songs were
       transcribed by me, although some are based on others’ charts or tabs found
-      online, which I then modified. All PDFs are stored on my google drive and
-      free to download. On mobile, you will need Google Drive app to download
-      the PDFs.
+      online, which I then modified. All PDFs are free to download.
     </p>
     <br />
     <p>
