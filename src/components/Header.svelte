@@ -102,16 +102,17 @@
 </script>
 
 <header
-  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 p-4 z-20"
+  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 py-5 px-4 z-20"
 >
   <div class="flex flex-row justify-between items-center sm:hidden">
     <div>
       <a
         href="/"
-        class="text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
-        aria-label="Home - Brett Eastman teaching archives"
+        class="logo"
+        aria-label="Home - Brett Eastman Studio"
       >
-        Brett Eastman <em>teaching archives</em>
+        <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
+        <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
       </a>
     </div>
 
@@ -127,14 +128,15 @@
   </div>
 
   {#if !isMobileMenuOpen}
-    <nav aria-label="Main navigation">
+    <nav aria-label="Main navigation" class="hidden sm:block">
       <div class="flex justify-between items-center">
         <a
           href="/"
-          class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
-          aria-label="Home - Brett Eastman teaching archives"
+          class="logo hidden sm:block pl-4"
+          aria-label="Home - Brett Eastman Studio"
         >
-          Brett Eastman <em>teaching archives</em>
+          <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
+          <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
         </a>
         <!-- Desktop nav -->
         <ul class="hidden sm:flex justify-end items-center" role="menubar">
@@ -142,7 +144,7 @@
             <li class="mx-4" role="none">
               <a
                 href={item.href}
-                class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+                class="text-base text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
                 role="menuitem"
               >
                 {item.name}
@@ -228,5 +230,14 @@
     transition:
       max-height 0.3s ease,
       opacity 0.3s ease;
+  }
+  .logo {
+    display: block;
+    line-height: 0;
+  }
+
+  .logo-img {
+    height: 3.25rem;
+    width: auto;
   }
 </style>
