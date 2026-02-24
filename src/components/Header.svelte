@@ -108,10 +108,11 @@
     <div>
       <a
         href="/"
-        class="logo text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
-        aria-label="Home - Brett Eastman teaching archives"
+        class="logo"
+        aria-label="Home - Brett Eastman Studio"
       >
-        Brett Eastman <em>teaching archives</em>
+        <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
+        <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
       </a>
     </div>
 
@@ -131,10 +132,11 @@
       <div class="flex justify-between items-center">
         <a
           href="/"
-          class="logo hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
-          aria-label="Home - Brett Eastman teaching archives"
+          class="logo hidden sm:block pl-4"
+          aria-label="Home - Brett Eastman Studio"
         >
-          BRETT EASTMAN STUDIO: <em>teaching archives</em>
+          <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
+          <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
         </a>
         <!-- Desktop nav -->
         <ul class="hidden sm:flex justify-end items-center" role="menubar">
@@ -230,10 +232,12 @@
       opacity 0.3s ease;
   }
   .logo {
-    font-family: "Manrope", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    font-size: 1.3rem;
-    letter-spacing: 0.1em;
+    display: block;
+    line-height: 0;
+  }
+
+  .logo-img {
+    height: 2.5rem;
+    width: auto;
   }
 </style>
