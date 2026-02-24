@@ -102,7 +102,7 @@
 </script>
 
 <header
-  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 p-4 z-20"
+  class="sticky top-0 bg-secondary93 border-b-4 border-tertiary80 dark:bg-secondary20 dark:border-tertiary70 py-5 px-4 z-20"
 >
   <div class="flex flex-row justify-between items-center sm:hidden">
     <div>
@@ -128,7 +128,7 @@
   </div>
 
   {#if !isMobileMenuOpen}
-    <nav aria-label="Main navigation">
+    <nav aria-label="Main navigation" class="hidden sm:block">
       <div class="flex justify-between items-center">
         <a
           href="/"
@@ -144,7 +144,7 @@
             <li class="mx-4" role="none">
               <a
                 href={item.href}
-                class="text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+                class="text-base text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
                 role="menuitem"
               >
                 {item.name}
@@ -237,7 +237,7 @@
   }
 
   .logo-img {
-    height: 2.5rem;
+    height: 3.25rem;
     width: auto;
   }
 </style>
