@@ -108,7 +108,7 @@
     <div>
       <a
         href="/"
-        class="text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+        class="logo text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
         aria-label="Home - Brett Eastman teaching archives"
       >
         Brett Eastman <em>teaching archives</em>
@@ -131,10 +131,10 @@
       <div class="flex justify-between items-center">
         <a
           href="/"
-          class="hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
+          class="logo hidden sm:block pl-4 text-primary30 dark:text-tertiary90 font-semibold hover:text-tertiary60 duration-200"
           aria-label="Home - Brett Eastman teaching archives"
         >
-          Brett Eastman <em>teaching archives</em>
+          BRETT EASTMAN STUDIO: <em>teaching archives</em>
         </a>
         <!-- Desktop nav -->
         <ul class="hidden sm:flex justify-end items-center" role="menubar">
@@ -228,5 +228,12 @@
     transition:
       max-height 0.3s ease,
       opacity 0.3s ease;
+  }
+  .logo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
   }
 </style>
