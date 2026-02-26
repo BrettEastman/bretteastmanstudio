@@ -106,13 +106,17 @@
 >
   <div class="flex flex-row justify-between items-center sm:hidden">
     <div>
-      <a
-        href="/"
-        class="logo"
-        aria-label="Home - Brett Eastman Studio"
-      >
-        <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
-        <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
+      <a href="/" class="logo" aria-label="Home - Brett Eastman Studio">
+        <img
+          src="/images/bes-logo.png"
+          alt="Brett Eastman Studio"
+          class="logo-img block dark:hidden"
+        />
+        <img
+          src="/images/bes-logo-dark.png"
+          alt="Brett Eastman Studio"
+          class="logo-img hidden dark:block"
+        />
       </a>
     </div>
 
@@ -135,8 +139,16 @@
           class="logo hidden sm:block pl-4"
           aria-label="Home - Brett Eastman Studio"
         >
-          <img src="/images/bes-logo.png" alt="Brett Eastman Studio" class="logo-img block dark:hidden" />
-          <img src="/images/bes-logo-dark.png" alt="Brett Eastman Studio" class="logo-img hidden dark:block" />
+          <img
+            src="/images/bes-logo.png"
+            alt="Brett Eastman Studio"
+            class="logo-img block dark:hidden"
+          />
+          <img
+            src="/images/bes-logo-dark.png"
+            alt="Brett Eastman Studio"
+            class="logo-img hidden dark:block"
+          />
         </a>
         <!-- Desktop nav -->
         <ul class="hidden sm:flex justify-end items-center" role="menubar">
@@ -155,7 +167,7 @@
             <li class="mx-4" role="none">
               <button
                 onclick={handleLogout}
-                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+                class="font-manrope tracking-widest bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
                 role="menuitem"
                 aria-label="Logout {pb?.authStore.model?.name}"
               >
@@ -166,7 +178,7 @@
             <li class="mx-4" role="none">
               <a
                 href="/login"
-                class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+                class="font-manrope tracking-widestbg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
                 role="menuitem"
               >
                 Login
