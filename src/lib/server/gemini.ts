@@ -17,7 +17,7 @@ export async function getMusicHistorianResponse(
   const chat = model.startChat({
     history: previousMessages,
     generationConfig: {
-      maxOutputTokens: 500,
+      maxOutputTokens: 2048,
     },
   });
 

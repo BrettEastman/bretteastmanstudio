@@ -5,6 +5,9 @@ export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
+      fontFamily: {
+        manrope: ["Manrope", "sans-serif"],
+      },
       boxShadow: {
         customXl: "rgba(0, 0, 0, 0.07) 0px 3px 13px 0px",
       },
