@@ -1,6 +1,6 @@
 ## About
 
-<img width="1223" height="887" alt="Screenshot 2026-02-23 at 11 53 19 PM" src="https://github.com/user-attachments/assets/16580410-2fc2-45b5-9a71-99f1863b1185" />
+<img width="1158" height="885" alt="Screenshot 2026-02-25 at 11 33 44 PM" src="https://github.com/user-attachments/assets/3804fdc3-f79b-44db-b46d-9435baefe5a8" />
 
 
 [Have a look online!](https://bretteastmanstudio.com/)
@@ -23,7 +23,3 @@
 ![Linode](https://img.shields.io/badge/linode-00A95C?style=for-the-badge&logo=linode&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
