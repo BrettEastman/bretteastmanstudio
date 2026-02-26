@@ -178,7 +178,7 @@
             <li class="mx-4" role="none">
               <a
                 href="/login"
-                class="font-manrope tracking-widestbg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
+                class="font-manrope tracking-widest bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
                 role="menuitem"
               >
                 Login
