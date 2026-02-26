@@ -11,10 +11,10 @@
   let { children }: Props = $props();
 </script>
 
-<div>
+<div class="flex h-svh flex-col overflow-hidden">
   <Header />
-  <div class="h-fit min-h-svh bg-secondary97 dark:bg-secondary10">
+  <main class="min-h-0 flex-1 flex flex-col overflow-auto bg-secondary97 dark:bg-secondary10">
     {@render children?.()}
-  </div>
+  </main>
   <Footer />
 </div>

@@ -2,6 +2,7 @@
   import { createPocketBaseInstance } from "$lib/pocketbase";
   import type { ChatMessage } from "$lib/types";
   import { formatDateTime } from "$lib/utils/formatDateTime";
+  import { markdownToHtml } from "$lib/utils/markdown";
   import { onMount } from "svelte";
 
   let messages: ChatMessage[] = $state([]);
@@ -101,8 +102,8 @@
   });
 </script>
 
-<div class="p-6 h-svh">
-  <div class="max-w-3xl mx-auto">
+<div class="flex flex-1 flex-col min-h-0 p-6">
+  <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col min-h-0">
     <h2
       class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
     >
@@ -125,59 +126,76 @@
       </div>
     {:else}
       <div
-        bind:this={messageContainer}
-        class="bg-secondary90 shadow-lg p-4 mb-4 h-[600px] overflow-y-auto dark:bg-secondary30"
+        class="flex flex-1 flex-col min-h-0 rounded-lg overflow-hidden"
       >
-        {#each messages as message (message.id)}
-          <div class="mb-4">
-            <div class="bg-secondary80 p-3 rounded-lg mb-2 dark:bg-secondary90">
-              <div class="flex justify-between">
-                <p class="font-semibold">You:</p>
-                <p class="text-xs text-primary30">
-                  {formatDateTime(message.created)}
-                </p>
+        <!-- Scrollable messages (history loads here; scroll up to see previous chats) -->
+        <div
+          bind:this={messageContainer}
+          class="flex-1 min-h-0 overflow-y-auto bg-secondary90 dark:bg-secondary30 shadow-lg p-4"
+        >
+          {#each messages as message (message.id)}
+            <div class="mb-4">
+              <div
+                class="bg-secondary80 p-3 rounded-lg mb-2 dark:bg-secondary20 text-primary20 dark:text-secondary90"
+              >
+                <div class="flex justify-between">
+                  <p class="font-semibold">You:</p>
+                  <p class="text-xs opacity-80">
+                    {formatDateTime(message.created)}
+                  </p>
+                </div>
+                <p>{message.message}</p>
               </div>
-              <p>{message.message}</p>
-            </div>
-            <div class="bg-tertiary90 p-3 rounded-lg">
-              <div class="flex justify-between">
-                <p class="font-semibold">Music Historian:</p>
-                <p class="text-xs text-primary30">
-                  {formatDateTime(message.created)}
-                </p>
+              <div
+                class="bg-tertiary90 dark:bg-secondary20 p-3 rounded-lg text-primary20 dark:text-secondary90"
+              >
+                <div class="flex justify-between">
+                  <p class="font-semibold">Music Historian:</p>
+                  <p class="text-xs opacity-80">
+                    {formatDateTime(message.created)}
+                  </p>
+                </div>
+                <div
+                  class="prose prose-sm max-w-none dark:prose-invert"
+                >
+                  {@html markdownToHtml(message.response)}
+                </div>
               </div>
-              <p>{message.response}</p>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
 
         {#if loading}
-          <div class="flex justify-center">
+          <div class="flex justify-center py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30">
             <div
               class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
             ></div>
           </div>
         {:else if error}
-          <div class="text-center text-red-500">{error}</div>
+          <div class="text-center text-red-500 py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30">{error}</div>
         {/if}
-        <form onsubmit={sendMessage} class="flex gap-2">
-          <input
-            type="text"
-            bind:value={newMessage}
-            aria-label="Type your message"
-            placeholder="Ask about any music history topic..."
-            class="flex-1 px-4 rounded-lg border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70"
-            disabled={loading}
-          />
-          <button
-            type="submit"
-            aria-label="Send message"
-            class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
-            disabled={loading || !newMessage.trim()}
-          >
-            Send
-          </button>
-        </form>
+
+        <!-- Fixed input bar (always visible, ChatGPT-style) -->
+        <div class="shrink-0 border-t border-secondary80 dark:border-secondary30 bg-secondary96 dark:bg-secondary20 p-4">
+          <form onsubmit={sendMessage} class="flex gap-2 max-w-3xl mx-auto">
+            <input
+              type="text"
+              bind:value={newMessage}
+              aria-label="Type your message"
+              placeholder="Ask about any music history topic..."
+              class="flex-1 px-4 py-2.5 rounded-lg border border-primary70 shadow-sm focus:border-secondary50 focus:ring-secondary70 bg-primary100 dark:bg-secondary10 text-primary10 dark:text-secondary97 placeholder:primary50 dark:placeholder-secondary60"
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              aria-label="Send message"
+              class="bg-secondary80 text-primary20 px-4 py-2.5 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200 shrink-0 font-medium"
+              disabled={loading || !newMessage.trim()}
+            >
+              Send
+            </button>
+          </form>
+        </div>
       </div>
     {/if}
   </div>
