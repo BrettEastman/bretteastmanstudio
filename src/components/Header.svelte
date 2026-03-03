@@ -203,7 +203,7 @@
             <a
               href={item.href}
               onclick={toggleMobileMenu}
-              class="flex px-4 w-full text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
+              class="flex justify-center w-full text-primary30 dark:text-tertiary90 hover:text-tertiary60 duration-200"
               role="menuitem"
             >
               {item.name}
@@ -211,7 +211,7 @@
           </li>
         {/each}
         {#if isAuthenticated}
-          <li class="my-2" role="none">
+          <li class="mx-auto" role="none">
             <button
               onclick={handleLogout}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
@@ -222,7 +222,7 @@
             </button>
           </li>
         {:else}
-          <li class="my-2" role="none">
+          <li class="mx-auto" role="none">
             <button
               onclick={handleLogin}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
