@@ -12,7 +12,7 @@
     title = "Brett Eastman Studio teaching archives",
     description = "Brett Austin Eastman is a Full Stack software engineer, musician, composer, and former music teacher based in San Francisco. This archive contains teaching materials including guitar and bass tabs, music theory, drum scores, and AI music historian chatbot.",
     keywords = "software development, web development, developer, music, web design, guitar tabs, music theory, music history, AI music historian",
-    ogImage = "/images/BE-teaching-chat2.png",
+    ogImage = "/images/BE-teaching-chat3.png",
   }: Props = $props();
 
   let fullUrl = $derived($page.url.href);
