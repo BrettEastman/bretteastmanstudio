@@ -222,7 +222,7 @@
             </button>
           </li>
         {:else}
-          <li class="my-2" role="none">
+          <li class="mx-auto" role="none">
             <button
               onclick={handleLogin}
               class="bg-secondary80 text-primary20 px-4 py-2 rounded-lg hover:bg-secondary60 dark:bg-secondary30 dark:text-tertiary90 duration-200"
