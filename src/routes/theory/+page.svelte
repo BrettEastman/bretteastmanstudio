@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { ResourceItem } from "$lib/types";
   import Icon from "../../components/Icon.svelte";
+  import SearchInput from "../../components/SearchInput.svelte";
   import ResourceDisplay from "../../components/ResourceDisplay.svelte";
   import type { PageData } from "./$types";
 
@@ -29,12 +30,10 @@
   <h2 class="text-2xl text-primary30 font-semibold py-2 dark:text-secondary90">
     Theory Resources
   </h2>
-  <input
-    type="text"
-    aria-label="Search theory resources"
-    class="w-full md:w-3/4 lg:w-1/2 p-2 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
-    placeholder="Search for a resource by instrument or description..."
+  <SearchInput
     bind:value={searchQuery}
+    placeholder="Search for a resource by instrument or description..."
+    ariaLabel="Search theory resources"
   />
   <ul class="grid gap-4 w-full">
     {#if filteredResources.length > 0}

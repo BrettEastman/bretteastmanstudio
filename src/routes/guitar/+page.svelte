@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from "../../components/Icon.svelte";
+  import SearchInput from "../../components/SearchInput.svelte";
   import SongDisplay from "../../components/SongDisplay.svelte";
   import type { PageData } from "./$types";
 
@@ -46,13 +47,13 @@
   >
     Randomize order
   </button>
-  <input
-    type="text"
-    aria-label="Search guitar songs"
-    class="text-base w-full md:w-3/4 lg:w-1/2 p-2 mb-4 border border-primary30 dark:border-secondary90 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary50 focus:border-secondary50"
-    placeholder="Search by artist or title..."
-    bind:value={searchQuery}
-  />
+  <div class="mb-4 w-full flex justify-center">
+    <SearchInput
+      bind:value={searchQuery}
+      placeholder="Search by artist or title..."
+      ariaLabel="Search guitar songs"
+    />
+  </div>
 
   <ul class="grid gap-4 w-full">
     {#if filteredSongs.length > 0}
