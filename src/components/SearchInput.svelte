@@ -7,7 +7,11 @@
     ariaLabel?: string;
   }
 
-  let { value = $bindable(), placeholder = "", ariaLabel = "" }: Props = $props();
+  let {
+    value = $bindable(),
+    placeholder = "",
+    ariaLabel = "",
+  }: Props = $props();
 
   let inputEl: HTMLInputElement;
 
@@ -34,6 +38,10 @@
     onclick={clear}
     aria-label="Clear search"
   >
-    <Icon name="close-line" size="18" className="fill-current text-primary30 dark:text-secondary90" />
+    <Icon
+      name="close-line"
+      size="18"
+      className="fill-current text-primary20 dark:text-secondary20"
+    />
   </button>
 </div>
