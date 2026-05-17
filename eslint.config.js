@@ -25,6 +25,15 @@ export default [
 		}
 	},
 	{
+		rules: {
+			'svelte/no-navigation-without-resolve': 'warn',
+			'svelte/require-each-key': 'warn',
+			'svelte/prefer-writable-derived': 'warn',
+			'svelte/no-useless-mustaches': 'warn',
+			'no-useless-assignment': 'warn'
+		}
+	},
+	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
 ];
