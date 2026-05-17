@@ -32,7 +32,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=22"
   },
   "dependencies": {
     "@google/genai": "^2.3.0",

@@ -37,6 +37,8 @@
            {value ? 'opacity-100' : 'opacity-0 pointer-events-none'}"
     onclick={clear}
     aria-label="Clear search"
+    aria-hidden={!value}
+    tabindex={value ? 0 : -1}
   >
     <Icon
       name="close-line"
