@@ -14,7 +14,7 @@
     <p>
       Hello, I am Brett, a{" "}
       <a href="https://www.bretteastman.dev/" target="_blank" class="text-links"
-        >software engineer,
+        >software developer,
       </a>
       {" "}<a
         href="https://www.brettaustineastman.com/selected_works"
@@ -30,12 +30,7 @@
         class="text-links"
       >
         musician,
-      </a> and former music teacher based in San Francisco. As a teacher, my mission
-      was to provide students the chance to develop lasting musical skills, leaving
-      them with the ability to continue to provide for themselves a lifetime of musical
-      enjoyment. My aim was to inspire students to be curious, to do their very best
-      and to find their own deep connection to music. It is to those students that
-      I dedicate this site.
+      </a> and former music teacher based in San Francisco.
     </p>
     <br />
     <p>
@@ -47,15 +42,16 @@
     </p>
     <br />
     <p>
-      While you are here browsing, you might also want to chat with an <a
+      While you are here browsing, you might also want to ask a <a
         href="/chat"
         class="text-links"
       >
-        AI music historian
-      </a> who loves to give recommendations of artists, albums, and songs to listen
-      to. You can ask about any music history topic, or find out more about the background
-      of a song, artist, or album, and the music historian will do its best to provide
-      an informative response. Please log in to use the chat feature.
+        music historian chatbot
+      </a> questions about the band or song you're learning. The chat loves to give
+      recommendations of artists, albums, and songs to listen to. You can ask about
+      any music history topic, or find out more about the background of a song, artist,
+      or album, and the chat will do its best to provide an informative response.
+      Please log in to use the chat feature.
     </p>
     <br />
     <p>
