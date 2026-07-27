@@ -48,8 +48,8 @@
       }
 
       messages = await response.json();
-    } catch (error) {
-      console.error("Error loading messages:", error);
+    } catch (err) {
+      console.error("Error loading messages:", err);
       error = "Failed to load messages. Please try refreshing the page.";
     }
   }
@@ -87,8 +87,8 @@
 
       const result = await response.json();
       messages = [...messages, result];
-    } catch (error) {
-      console.error("Error sending message:", error);
+    } catch (err) {
+      console.error("Error sending message:", err);
       error = "Failed to send message. Please try again.";
     } finally {
       loading = false;
@@ -107,7 +107,7 @@
     <h2
       class="text-2xl text-primary30 font-semibold text-center my-8 pb-4 dark:text-secondary90"
     >
-      Music History AI Chat
+      Music History Chatbot
     </h2>
 
     {#if !isAuthenticated}
@@ -125,9 +125,7 @@
         </a>
       </div>
     {:else}
-      <div
-        class="flex flex-1 flex-col min-h-0 rounded-lg overflow-hidden"
-      >
+      <div class="flex flex-1 flex-col min-h-0 rounded-lg overflow-hidden">
         <!-- Scrollable messages (history loads here; scroll up to see previous chats) -->
         <div
           bind:this={messageContainer}
@@ -155,9 +153,8 @@
                     {formatDateTime(message.created)}
                   </p>
                 </div>
-                <div
-                  class="prose prose-sm max-w-none dark:prose-invert"
-                >
+                <div class="prose prose-sm max-w-none dark:prose-invert">
+                  <!-- eslint-disable-next-line svelte/no-at-html-tags -- markdownToHtml strips raw HTML and unsafe URLs -->
                   {@html markdownToHtml(message.response)}
                 </div>
               </div>
@@ -166,17 +163,25 @@
         </div>
 
         {#if loading}
-          <div class="flex justify-center py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30">
+          <div
+            class="flex justify-center py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30"
+          >
             <div
               class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary50"
             ></div>
           </div>
         {:else if error}
-          <div class="text-center text-red-500 py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30">{error}</div>
+          <div
+            class="text-center text-red-500 py-2 bg-secondary96 dark:bg-secondary20 border-t border-secondary80 dark:border-secondary30"
+          >
+            {error}
+          </div>
         {/if}
 
         <!-- Fixed input bar (always visible, ChatGPT-style) -->
-        <div class="shrink-0 border-t border-secondary80 dark:border-secondary30 bg-secondary96 dark:bg-secondary20 p-4">
+        <div
+          class="shrink-0 border-t border-secondary80 dark:border-secondary30 bg-secondary96 dark:bg-secondary20 p-4"
+        >
           <form onsubmit={sendMessage} class="flex gap-2 max-w-3xl mx-auto">
             <input
               type="text"
